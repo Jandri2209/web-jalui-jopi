@@ -1,0 +1,30 @@
+{% set T = i18n[lang] %}
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Bar Jalui Jopi</h4>
+      <p>{{ site.address }}</p>
+      <p><a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>{% if site.mobile %} · <a href="tel:{{ site.mobile | replace(' ', '') }}">{{ site.mobile }}</a>{% endif %}</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    </div>
+    <div>
+      <h4>{{ T['FollowUs'] }}</h4>
+      <p>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/{{ lang == 'en' ? 'en/legal/' : (lang == 'fr' ? 'fr/mentions-legales/' : 'es/legal/') }}">{{ T['Legal'] }}</a></li>
+        <li><a href="/{{ lang == 'en' ? 'en/privacy/' : (lang == 'fr' ? 'fr/confidentialite/' : 'es/privacidad/') }}">{{ T['Privacy'] }}</a></li>
+        <li><a href="/{{ lang == 'en' ? 'en/cookies/' : (lang == 'fr' ? 'fr/cookies/' : 'es/cookies/') }}">{{ T['Cookies'] }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container copyright">
+    <p>© <span id="y"></span> Jalui Jopi · <small>Fustiñana</small></p>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</footer>

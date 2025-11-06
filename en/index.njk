@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Home
+lang: en
+permalink: /en/
+alt: {"es": "/es/", "fr": "/fr/"}
+---
+<section class="hero">
+  <div>
+    <p class="kicker">Fustiñana · Navarra</p>
+    <h1>{{ i18n.en.HeroTitle }}</h1>
+    <p class="lead">{{ i18n.en.HeroSubtitle }}</p>
+    <div class="cta-row">
+      <a class="btn" href="/en/menu/">{{ i18n.en.CTA_SeeMenu }}</a>
+      <a class="btn alt" href="/en/contact/">{{ i18n.en.CTA_Contact }}</a>
+    </div>
+    <p class="lead-note" style="margin-top:10px">{{ i18n.en.OpenHoursNote }}</p>
+  </div>
+  <div class="card">
+    <h3>A local icon since 1967</h3>
+    <p>We started as a music & drinks bar and evolved into a casual spot for <strong>sandwiches, sharing plates, pizzas and combo dishes</strong>.</p>
+    <ul>
+      <li>Address: <strong>{{ site.address }}</strong></li>
+      <li>Phone: <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Mobile: <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
+      <li>Instagram: <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
+    </ul>
+  </div>
+</section>

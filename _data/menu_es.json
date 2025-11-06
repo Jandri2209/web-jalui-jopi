@@ -1,0 +1,128 @@
+{
+  "categories": [
+    {
+      "key": "bocadillos",
+      "title": "Bocadillos",
+      "image": "https://placehold.co/1200x500?text=Bocadillos",
+      "items": [
+        {
+          "name": "Jamón y queso",
+          "price": 4.5,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        },
+        {
+          "name": "Lomo con queso",
+          "price": 5.0,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        },
+        {
+          "name": "Tortilla",
+          "price": 4.0,
+          "allergens": [
+            "huevo"
+          ]
+        },
+        {
+          "name": "Calamares",
+          "price": 5.5,
+          "allergens": [
+            "gluten",
+            "pescado"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "raciones",
+      "title": "Raciones",
+      "image": "https://placehold.co/1200x500?text=Raciones",
+      "items": [
+        {
+          "name": "Patatas bravas",
+          "price": 6.0,
+          "allergens": []
+        },
+        {
+          "name": "Croquetas caseras (jamón)",
+          "price": 7.0,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        },
+        {
+          "name": "Torreznos",
+          "price": 7.5,
+          "allergens": []
+        },
+        {
+          "name": "Ensaladilla rusa",
+          "price": 6.5,
+          "allergens": [
+            "huevo",
+            "lácteos"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "platos",
+      "title": "Platos combinados",
+      "image": "https://placehold.co/1200x500?text=Platos+Combinados",
+      "items": [
+        {
+          "name": "Lomo, huevo y patatas",
+          "price": 9.5,
+          "allergens": [
+            "huevo"
+          ]
+        },
+        {
+          "name": "Escalope, ensalada y patatas",
+          "price": 10.0,
+          "allergens": [
+            "gluten",
+            "huevo"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pizzas",
+      "title": "Pizzas",
+      "image": "https://placehold.co/1200x500?text=Pizzas",
+      "items": [
+        {
+          "name": "Margarita",
+          "price": 8.5,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        },
+        {
+          "name": "Cuatro quesos",
+          "price": 9.5,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        },
+        {
+          "name": "Barbacoa",
+          "price": 10.0,
+          "allergens": [
+            "gluten",
+            "lácteos"
+          ]
+        }
+      ]
+    }
+  ]
+}

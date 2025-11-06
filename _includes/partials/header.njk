@@ -1,0 +1,22 @@
+{% set T = i18n[lang] %}
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="/{{ lang }}/" aria-label="Inicio">
+      <img src="/images/logo.svg" alt="Bar Jalui Jopi" width="36" height="36">
+      <span>Jalui Jopi</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <a href="/{{ lang }}/" class="{{ 'is-active' if page.url == '/' or page.url == '/' ~ lang ~ '/' else '' }}">{{ T['Inicio'] }}</a>
+      <a href="/{{ lang in ['en'] ? 'en/menu/' : (lang == 'fr' ? 'fr/carte/' : 'es/carta/') }}" class="{{ page.url contains '/carta/' or page.url contains '/menu/' or page.url contains '/carte/' ? 'is-active' : '' }}">{{ T['Carta'] }}</a>
+      <a href="/{{ lang in ['en'] ? 'en/contact/' : (lang == 'fr' ? 'fr/contact/' : 'es/contacto/') }}" class="{{ page.url contains '/contact' or page.url contains '/contacto' ? 'is-active' : '' }}">{{ T['Contacto'] }}</a>
+      <a href="/{{ lang in ['en'] ? 'en/getting-here/' : (lang == 'fr' ? 'fr/comment-arriver/' : 'es/como-llegar/') }}" class="{{ page.url contains '/como-llegar' or page.url contains '/getting-here' or page.url contains '/comment-arriver' ? 'is-active' : '' }}">{{ T['ComoLlegar'] }}</a>
+    </nav>
+
+    <nav class="lang-nav" aria-label="Language">
+      {% if alt and alt.es %}<a href="{{ alt.es }}" hreflang="es" title="Español">🇪🇸</a>{% else %}<a href="/es/" hreflang="es" title="Español">🇪🇸</a>{% endif %}
+      {% if alt and alt.en %}<a href="{{ alt.en }}" hreflang="en" title="English">🇬🇧</a>{% else %}<a href="/en/" hreflang="en" title="English">🇬🇧</a>{% endif %}
+      {% if alt and alt.fr %}<a href="{{ alt.fr }}" hreflang="fr" title="Français">🇫🇷</a>{% else %}<a href="/fr/" hreflang="fr" title="Français">🇫🇷</a>{% endif %}
+    </nav>
+  </div>
+</header>

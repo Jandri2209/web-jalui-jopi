@@ -1,0 +1,128 @@
+{
+  "categories": [
+    {
+      "key": "bocadillos",
+      "title": "Sandwiches",
+      "image": "https://placehold.co/1200x500?text=Sandwiches",
+      "items": [
+        {
+          "name": "Ham & Cheese",
+          "price": 4.5,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        },
+        {
+          "name": "Pork Loin & Cheese",
+          "price": 5.0,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        },
+        {
+          "name": "Spanish Omelette",
+          "price": 4.0,
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "name": "Fried Calamari",
+          "price": 5.5,
+          "allergens": [
+            "gluten",
+            "fish"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "raciones",
+      "title": "Sharing plates",
+      "image": "https://placehold.co/1200x500?text=Sharing+Plates",
+      "items": [
+        {
+          "name": "Patatas bravas",
+          "price": 6.0,
+          "allergens": []
+        },
+        {
+          "name": "Homemade croquettes (ham)",
+          "price": 7.0,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        },
+        {
+          "name": "Torreznos (crispy pork)",
+          "price": 7.5,
+          "allergens": []
+        },
+        {
+          "name": "Russian salad",
+          "price": 6.5,
+          "allergens": [
+            "egg",
+            "dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "platos",
+      "title": "Combo plates",
+      "image": "https://placehold.co/1200x500?text=Combo+Plates",
+      "items": [
+        {
+          "name": "Pork loin, fried egg & fries",
+          "price": 9.5,
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "name": "Breaded steak, salad & fries",
+          "price": 10.0,
+          "allergens": [
+            "gluten",
+            "egg"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pizzas",
+      "title": "Pizzas",
+      "image": "https://placehold.co/1200x500?text=Pizzas",
+      "items": [
+        {
+          "name": "Margherita",
+          "price": 8.5,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        },
+        {
+          "name": "Four cheeses",
+          "price": 9.5,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        },
+        {
+          "name": "Barbecue",
+          "price": 10.0,
+          "allergens": [
+            "gluten",
+            "dairy"
+          ]
+        }
+      ]
+    }
+  ]
+}

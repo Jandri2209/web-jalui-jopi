@@ -1,0 +1,34 @@
+---
+layout: base.njk
+title: Menu
+lang: en
+permalink: /en/menu/
+alt: {"es": "/es/carta/", "fr": "/fr/carte/"}
+---
+{% set MENU = menu_en %}
+<article>
+  <header class="menu-hero">
+    <img src="https://placehold.co/1600x600?text=Bar+Jalui+Jopi" alt="Bar Jalui Jopi">
+    <h1 style="margin-top:10px">{{ i18n.en.Carta }}</h1>
+    <p class="lead-note">{{ i18n.en.PricesNote }} <time>{{ "now" | date("en-GB") }}</time></p>
+  </header>
+  {% for cat in MENU.categories %}
+    <section class="menu-cat">
+      <img src="{{ cat.image }}" alt="{{ cat.title }}">
+      <h3>{{ cat.title }}</h3>
+      <div class="menu-items">
+        {% for it in cat.items %}
+          <div class="name">
+            {{ it.name }}
+            {% if it.allergens and it.allergens.length %}
+              <span class="allergens">
+                {% for a in it.allergens %}<span class="a" title="{{ i18n.en.Allergens }}">{{ a }}</span>{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          <div class="price">{{ it.price | round(2) }} €</div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</article>

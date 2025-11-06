@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: Inicio
+lang: es
+permalink: /es/
+alt: {"en": "/en/", "fr": "/fr/"}
+---
+<section class="hero">
+  <div>
+    <p class="kicker">Fustiñana · Navarra</p>
+    <h1>{{ i18n.es.HeroTitle }}</h1>
+    <p class="lead">{{ i18n.es.HeroSubtitle }}</p>
+    <div class="cta-row">
+      <a class="btn" href="/es/carta/">{{ i18n.es.CTA_SeeMenu }}</a>
+      <a class="btn alt" href="/es/contacto/">{{ i18n.es.CTA_Contact }}</a>
+    </div>
+    <p class="lead-note" style="margin-top:10px">{{ i18n.es.OpenHoursNote }}</p>
+  </div>
+  <div class="card">
+    <h3>Un clásico desde 1967</h3>
+    <p>Jalui Jopi nació como local de copas y música en la Plaza de los Fueros. Con el tiempo
+    fuimos ampliando a <strong>bocadillos, raciones, pizzas y platos combinados</strong>. Hoy seguimos siendo ese punto de encuentro
+    para tomar algo y comer sencillo, rico y rápido.</p>
+    <ul>
+      <li>Ubicación: <strong>{{ site.address }}</strong></li>
+      <li>Tel.: <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Móvil: <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
+      <li>Instagram: <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid-3">
+    <div class="card"><h4>Bocadillos</h4><p>Clásicos bien resueltos: jamón y queso, lomo, tortilla, calamares…</p></div>
+    <div class="card"><h4>Raciones & pintxos</h4><p>Para compartir en la barra o en la terraza.</p></div>
+    <div class="card"><h4>Pizzas & combinados</h4><p>Para saciar el hambre sin complicaciones.</p></div>
+  </div>
+</section>

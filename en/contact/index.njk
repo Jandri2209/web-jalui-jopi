@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: Contact
+lang: en
+permalink: /en/contact/
+alt: {"es": "/es/contacto/", "fr": "/fr/contact/"}
+---
+<section class="section">
+  <h1>{{ i18n.en.FormTitle }}</h1>
+  <p class="lead">{{ i18n.en.FormIntro }}</p>
+  <form class="contact-form card" name="contact-jalui-en" method="POST" action="/en/thanks/" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8">
+    <input type="hidden" name="form-name" value="contact-jalui-en">
+    <p class="hidden"><label>Are you a robot? <input name="bot-field"></label></p>
+
+    <label for="name">{{ i18n.en.Name }}</label>
+    <input id="name" name="name" required>
+
+    <label for="email">{{ i18n.en.Email }}</label>
+    <input id="email" type="email" name="email" required>
+
+    <label for="reason">{{ i18n.en.Reason }}</label>
+    <select id="reason" name="reason">
+      <option>General inquiry</option>
+      <option>Group booking</option>
+      <option>Suggestion</option>
+    </select>
+
+    <label for="message">{{ i18n.en.Message }}</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+
+    <button class="btn" type="submit">{{ i18n.en.Send }}</button>
+  </form>
+</section>

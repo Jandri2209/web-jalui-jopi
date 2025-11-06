@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Accueil
+lang: fr
+permalink: /fr/
+alt: {"es": "/es/", "en": "/en/"}
+---
+<section class="hero">
+  <div>
+    <p class="kicker">Fustiñana · Navarre</p>
+    <h1>{{ i18n.fr.HeroTitle }}</h1>
+    <p class="lead">{{ i18n.fr.HeroSubtitle }}</p>
+    <div class="cta-row">
+      <a class="btn" href="/fr/carte/">{{ i18n.fr.CTA_SeeMenu }}</a>
+      <a class="btn alt" href="/fr/contact/">{{ i18n.fr.CTA_Contact }}</a>
+    </div>
+    <p class="lead-note" style="margin-top:10px">{{ i18n.fr.OpenHoursNote }}</p>
+  </div>
+  <div class="card">
+    <h3>Un classique depuis 1967</h3>
+    <p>Nous sommes nés comme bar musical et avons évolué vers un endroit décontracté pour <strong>sandwichs, rations, pizzas et plats combinés</strong>.</p>
+    <ul>
+      <li>Adresse : <strong>{{ site.address }}</strong></li>
+      <li>Tél. : <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Mobile : <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
+      <li>Instagram : <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
+    </ul>
+  </div>
+</section>
