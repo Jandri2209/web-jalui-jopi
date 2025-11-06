@@ -20,7 +20,7 @@ alt: {"es": "/es/carta/", "fr": "/fr/carte/"}
         {% for it in cat.items %}
           <div class="name">
             {{ it.name }}
-            {% if it.allergens and it.allergens.length %}
+            {% if it.allergens and (it.allergens | length) %}
               <span class="allergens">
                 {% for a in it.allergens %}<span class="a" title="{{ i18n.en.Allergens }}">{{ a }}</span>{% endfor %}
               </span>

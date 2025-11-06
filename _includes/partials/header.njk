@@ -1,16 +1,39 @@
 {% set T = i18n[lang] %}
+
+{# --- rutas por idioma --- #}
+{% set homeHref = '/' ~ lang ~ '/' %}
+{% if lang == 'en' %}
+  {% set menuHref = '/en/menu/' %}
+  {% set contactHref = '/en/contact/' %}
+  {% set mapHref = '/en/getting-here/' %}
+{% elif lang == 'fr' %}
+  {% set menuHref = '/fr/carte/' %}
+  {% set contactHref = '/fr/contact/' %}
+  {% set mapHref = '/fr/comment-arriver/' %}
+{% else %}
+  {% set menuHref = '/es/carta/' %}
+  {% set contactHref = '/es/contacto/' %}
+  {% set mapHref = '/es/como-llegar/' %}
+{% endif %}
+
+{# --- clases "active" --- #}
+{% set isHome = (page.url == '/' or page.url == '/' ~ lang ~ '/') %}
+{% set isMenu = ('/carta/' in page.url) or ('/menu/' in page.url) or ('/carte/' in page.url) %}
+{% set isContact = ('/contact' in page.url) or ('/contacto' in page.url) %}
+{% set isMap = ('/como-llegar' in page.url) or ('/getting-here' in page.url) or ('/comment-arriver' in page.url) %}
+
 <header class="site-header">
   <div class="container header-row">
-    <a class="brand" href="/{{ lang }}/" aria-label="Inicio">
+    <a class="brand" href="{{ homeHref }}" aria-label="Inicio">
       <img src="/images/logo.svg" alt="Bar Jalui Jopi" width="36" height="36">
       <span>Jalui Jopi</span>
     </a>
 
     <nav class="main-nav" aria-label="Primary">
-      <a href="/{{ lang }}/" class="{{ 'is-active' if page.url == '/' or page.url == '/' ~ lang ~ '/' else '' }}">{{ T['Inicio'] }}</a>
-      <a href="/{{ lang in ['en'] ? 'en/menu/' : (lang == 'fr' ? 'fr/carte/' : 'es/carta/') }}" class="{{ page.url contains '/carta/' or page.url contains '/menu/' or page.url contains '/carte/' ? 'is-active' : '' }}">{{ T['Carta'] }}</a>
-      <a href="/{{ lang in ['en'] ? 'en/contact/' : (lang == 'fr' ? 'fr/contact/' : 'es/contacto/') }}" class="{{ page.url contains '/contact' or page.url contains '/contacto' ? 'is-active' : '' }}">{{ T['Contacto'] }}</a>
-      <a href="/{{ lang in ['en'] ? 'en/getting-here/' : (lang == 'fr' ? 'fr/comment-arriver/' : 'es/como-llegar/') }}" class="{{ page.url contains '/como-llegar' or page.url contains '/getting-here' or page.url contains '/comment-arriver' ? 'is-active' : '' }}">{{ T['ComoLlegar'] }}</a>
+      <a href="{{ homeHref }}" class="{{ 'is-active' if isHome else '' }}">{{ T['Inicio'] }}</a>
+      <a href="{{ menuHref }}" class="{{ 'is-active' if isMenu else '' }}">{{ T['Carta'] }}</a>
+      <a href="{{ contactHref }}" class="{{ 'is-active' if isContact else '' }}">{{ T['Contacto'] }}</a>
+      <a href="{{ mapHref }}" class="{{ 'is-active' if isMap else '' }}">{{ T['ComoLlegar'] }}</a>
     </nav>
 
     <nav class="lang-nav" aria-label="Language">
