@@ -5,6 +5,9 @@
     "dev": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy"
   },
+  "dependencies": {
+    "nodemailer": "^6.9.15"
+  },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@quasibit/eleventy-plugin-sitemap": "^2.2.0"

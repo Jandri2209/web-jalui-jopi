@@ -9,6 +9,9 @@
 [functions]
   node_bundler = "esbuild"
 
+[functions."submission-created"]
+  external_node_modules = ["nodemailer"]
+
 # Pretty URLs para legales (ES + EN + FR)
 [[redirects]]
   from = "/es/privacidad.html"
