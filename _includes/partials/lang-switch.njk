@@ -4,10 +4,10 @@
 <nav class="lang-switch" aria-label="Language switcher">
   {% for code, url in all %}
     <a href="{{ url }}" lang="{{ code }}" hreflang="{{ code }}"
-       class="lang {{ code == lang ? 'is-active' : '' }}"
-       aria-current="{{ code == lang ? 'page' : undefined }}">
+       class="lang{% if code == lang %} is-active{% endif %}"
+       {% if code == lang %}aria-current="page"{% endif %}>
       <img
-        src="/assets/flags/{{ code == 'en' ? 'gb' : code }}.svg"
+        src="/assets/flags/{{ 'gb' if code == 'en' else code }}.svg"
         width="20" height="14"
         alt="{{ code | upper }}">
     </a>

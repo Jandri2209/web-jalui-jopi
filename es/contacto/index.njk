@@ -5,18 +5,34 @@ lang: es
 permalink: /es/contacto/
 alt: {"en": "/en/contact/", "fr": "/fr/contact/"}
 ---
+
 <section class="section">
   <h1>{{ i18n.es.FormTitle }}</h1>
   <p class="lead">{{ i18n.es.FormIntro }}</p>
-  <form class="contact-form card" name="contacto-jalui" method="POST" action="/es/gracias/" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8">
+
+  <form id="contact-form" class="contact-form card"
+        name="contacto-jalui"
+        method="POST"
+        action="/es/gracias/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        accept-charset="UTF-8"
+        autocomplete="off">
+
     <input type="hidden" name="form-name" value="contacto-jalui">
-    <p class="hidden"><label>¿Eres un robot? <input name="bot-field"></label></p>
+
+    {# Honeypot oculto: NO borrar #}
+    <p class="sr-only" aria-hidden="true">
+      <label>Si ves este campo, déjalo vacío
+        <input type="text" name="bot-field" tabindex="-1" autocomplete="off">
+      </label>
+    </p>
 
     <label for="name">{{ i18n.es.Name }}</label>
-    <input id="name" name="name" required>
+    <input id="name" name="name" required autocomplete="name">
 
     <label for="email">{{ i18n.es.Email }}</label>
-    <input id="email" type="email" name="email" required>
+    <input id="email" type="email" name="email" required autocomplete="email" inputmode="email">
 
     <label for="reason">{{ i18n.es.Reason }}</label>
     <select id="reason" name="reason">
@@ -28,6 +44,28 @@ alt: {"en": "/en/contact/", "fr": "/fr/contact/"}
     <label for="message">{{ i18n.es.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
 
+    <p class="inline">
+      <input id="privacy" name="privacy" type="checkbox" value="accepted" required>
+      <label for="privacy">He leído y acepto la <a href="/es/privacidad/">política de privacidad</a>.</label>
+    </p>
+
+    {# reCAPTCHA de Netlify #}
+    <div data-netlify-recaptcha="true"></div>
+
     <button class="btn" type="submit">{{ i18n.es.Send }}</button>
   </form>
 </section>
+
+<script>
+(() => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const btn = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', () => {
+    if (btn){ btn.dataset.txt = btn.textContent; btn.textContent = 'Enviando…'; btn.disabled = true; }
+  });
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && btn){ form.reset(); btn.disabled = false; btn.textContent = btn.dataset.txt || 'Enviar'; }
+  });
+})();
+</script>

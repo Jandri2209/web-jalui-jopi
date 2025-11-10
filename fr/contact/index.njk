@@ -8,15 +8,30 @@ alt: {"es": "/es/contacto/", "en": "/en/contact/"}
 <section class="section">
   <h1>{{ i18n.fr.FormTitle }}</h1>
   <p class="lead">{{ i18n.fr.FormIntro }}</p>
-  <form class="contact-form card" name="contact-jalui-fr" method="POST" action="/fr/merci/" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8">
+
+  <form id="contact-form-fr" class="contact-form card"
+        name="contact-jalui-fr"
+        method="POST"
+        action="/fr/merci/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        accept-charset="UTF-8"
+        autocomplete="off">
+
     <input type="hidden" name="form-name" value="contact-jalui-fr">
-    <p class="hidden"><label>Robot ? <input name="bot-field"></label></p>
+
+    {# Honeypot (caché) #}
+    <p class="sr-only" aria-hidden="true">
+      <label>Si vous voyez ce champ, laissez-le vide
+        <input type="text" name="bot-field" tabindex="-1" autocomplete="off">
+      </label>
+    </p>
 
     <label for="name">{{ i18n.fr.Name }}</label>
-    <input id="name" name="name" required>
+    <input id="name" name="name" required autocomplete="name">
 
     <label for="email">{{ i18n.fr.Email }}</label>
-    <input id="email" type="email" name="email" required>
+    <input id="email" type="email" name="email" required autocomplete="email" inputmode="email">
 
     <label for="reason">{{ i18n.fr.Reason }}</label>
     <select id="reason" name="reason">
@@ -27,6 +42,13 @@ alt: {"es": "/es/contacto/", "en": "/en/contact/"}
 
     <label for="message">{{ i18n.fr.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
+
+    <p class="inline">
+      <input id="privacy-fr" name="privacy" type="checkbox" value="accepted" required>
+      <label for="privacy-fr">J’ai lu et j’accepte la <a href="/fr/confidentialite/">politique de confidentialité</a>.</label>
+    </p>
+
+    <div data-netlify-recaptcha="true"></div>
 
     <button class="btn" type="submit">{{ i18n.fr.Send }}</button>
   </form>
