@@ -5,7 +5,7 @@
 {% if lang == 'en' %}
   {% set menuHref = '/en/menu/' %}
   {% set contactHref = '/en/contact/' %}
-  {% set mapHref = '/en/how-to-get-here/' %} {# o '/en/getting-here/' si ese es tu slug real #}
+  {% set mapHref = '/en/getting-here/' %}
 {% elif lang == 'fr' %}
   {% set menuHref = '/fr/carte/' %}
   {% set contactHref = '/fr/contact/' %}
@@ -26,13 +26,8 @@
 <header class="site-header">
   <div class="container">
     <div class="header-row">
-      <a href="{{ homeHref }}" class="brand" aria-label="Jalui Jopi">
-        <picture>
-          <source media="(prefers-color-scheme: dark)"
-                  srcset="/assets/brand/jalui_logo_kit/png/logo-dark@1x.png 1x,
-                          /assets/brand/jalui_logo_kit/png/logo-dark@2x.png 2x">
-          <img src="/assets/brand/jalui_logo_kit/png/logo-light@1x.png" width="40" height="40" alt="Jalui Jopi">
-        </picture>
+      <a href="{{ homeHref }}" class="brand" aria-label="Discobar Jalui Jopi">
+        <img src="/assets/brand/logo-jalui.png" alt="Discobar Jalui Jopi">
         <span>Jalui Jopi</span>
       </a>
 
@@ -44,10 +39,10 @@
       </button>
 
       <nav id="primary-nav" class="main-nav" aria-label="Primary">
-        <a href="{{ homeHref }}"    class="{{ 'is-active' if isHome else '' }}">{{ T.NavHome    or 'Inicio' }}</a>
-        <a href="{{ menuHref }}"    class="{{ 'is-active' if isMenu else '' }}">{{ T.NavMenu    or 'Carta' }}</a>
-        <a href="{{ contactHref }}" class="{{ 'is-active' if isContact else '' }}">{{ T.NavContact or 'Contacto' }}</a>
-        <a href="{{ mapHref }}"     class="{{ 'is-active' if isMap else '' }}">{{ T.NavHow     or 'Cómo llegar' }}</a>
+        <a href="{{ homeHref }}"    class="{{ 'is-active' if isHome else '' }}">{{ T.Inicio }}</a>
+        <a href="{{ menuHref }}"    class="{{ 'is-active' if isMenu else '' }}">{{ T.Carta }}</a>
+        <a href="{{ contactHref }}" class="{{ 'is-active' if isContact else '' }}">{{ T.Contacto }}</a>
+        <a href="{{ mapHref }}"     class="{{ 'is-active' if isMap else '' }}">{{ T.ComoLlegar }}</a>
       </nav>
 
       {% include "partials/lang-switch.njk" %}
