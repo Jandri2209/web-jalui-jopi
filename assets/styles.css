@@ -56,6 +56,23 @@ body {
 }
 .contact-form button { margin-top: 8px }
 .map-wrap { border:1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.brand .logo { height: auto; display: block; }
+.brand--glow .logo {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.6))
+          drop-shadow(0 0 18px rgba(255,255,255,.35));
+}
+.theme-dark .logo--swap { content: url("/assets/brand/jalui_logo_kit/png/logo-dark@1x.png"); }
+.theme-light .logo--swap { content: url("/assets/brand/jalui_logo_kit/png/logo-light@1x.png"); }
+.lang-switch{
+  display:flex; gap:.5rem; align-items:center;
+}
+.lang-switch img{
+  display:block; width:20px; height:auto; border-radius:2px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.25) inset;
+}
+.lang-switch .is-active img{
+  box-shadow:0 0 0 2px #a78bfa inset; /* morado activo */
+}
 @media (max-width: 840px) {
   .hero { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }

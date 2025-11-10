@@ -8,10 +8,18 @@ lang: es
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}{% if page.url != '/' %} — Bar Jalui Jopi{% endif %}</title>
-  <meta name="description" content="Bar Jalui Jopi — {{ site.tagline }}">
+  <title>{{ title }}{% if page.url != '/' %} - Bar Jalui Jopi{% endif %}</title>
+  <meta name="description" content="Bar Jalui Jopi - {{ site.tagline }}">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+  <!-- Favicons / PWA -->
+  <link rel="icon" href="/favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/favicons/site.webmanifest">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Social básico (opcional) -->
+  <meta property="og:image" content="/assets/brand/jalui_logo_kit/png/isotipo-dark-512.png">
+  <meta name="twitter:card" content="summary">
   <meta property="og:site_name" content="Bar Jalui Jopi">
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="Bar Jalui Jopi — {{ site.tagline }}">

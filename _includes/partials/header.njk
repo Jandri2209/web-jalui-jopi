@@ -23,10 +23,29 @@
 {% set isMap = ('/como-llegar' in page.url) or ('/getting-here' in page.url) or ('/comment-arriver' in page.url) %}
 
 <header class="site-header">
+  {% include "partials/lang-switch.njk" %}
   <div class="container header-row">
-    <a class="brand" href="{{ homeHref }}" aria-label="Inicio">
-      <img src="/images/logo.svg" alt="Bar Jalui Jopi" width="36" height="36">
-      <span>Jalui Jopi</span>
+    <a href="/" class="brand" aria-label="Discobar JaluiJopi">
+      <picture>
+        <!-- Modo oscuro -->
+        <source
+          media="(prefers-color-scheme: dark)"
+          srcset="/assets/brand/jalui_logo_kit/png/logo-dark@1x.png 1x,
+                  /assets/brand/jalui_logo_kit/png/logo-dark@2x.png 2x">
+        <!-- Modo claro -->
+        <source
+          media="(prefers-color-scheme: light)"
+          srcset="/assets/brand/jalui_logo_kit/png/logo-light@1x.png 1x,
+                  /assets/brand/jalui_logo_kit/png/logo-light@2x.png 2x">
+        <!-- Fallback (claro) -->
+        <img
+          src="/assets/brand/jalui_logo_kit/png/logo-light@1x.png"
+          alt="Discobar JaluiJopi"
+          width="220"
+          decoding="async"
+          fetchpriority="high"
+          class="logo">
+      </picture>
     </a>
 
     <nav class="main-nav" aria-label="Primary">
