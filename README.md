@@ -12,7 +12,7 @@ npm run build
 ```
 
 ## Estructura de idiomas
-- Español: `/es/`
+- Español: `/`
 - English: `/en/`
 - Français: `/fr/`
 

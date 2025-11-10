@@ -1,19 +1,21 @@
 {% set T = i18n[lang] %}
 
 {# rutas por idioma #}
-{% set homeHref = '/' ~ lang ~ '/' %}
 {% if lang == 'en' %}
+  {% set homeHref = '/en/' %}
   {% set menuHref = '/en/menu/' %}
   {% set contactHref = '/en/contact/' %}
   {% set mapHref = '/en/getting-here/' %}
 {% elif lang == 'fr' %}
+  {% set homeHref = '/fr/' %}
   {% set menuHref = '/fr/carte/' %}
   {% set contactHref = '/fr/contact/' %}
   {% set mapHref = '/fr/comment-arriver/' %}
 {% else %}
-  {% set menuHref = '/es/carta/' %}
-  {% set contactHref = '/es/contacto/' %}
-  {% set mapHref = '/es/como-llegar/' %}
+  {% set homeHref = '/' %}
+  {% set menuHref = '/carta/' %}
+  {% set contactHref = '/contacto/' %}
+  {% set mapHref = '/como-llegar/' %}
 {% endif %}
 
 {# helpers activos por prefijo #}

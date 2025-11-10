@@ -1,17 +1,15 @@
-{# Mapa por defecto a la home de cada idioma #}
-{% set defaults = { "es": "/es/", "en": "/en/", "fr": "/fr/" } %}
-{# Si la página define "alt" en el front matter, úsalo; si no, defaults #}
+{# _includes/partials/lang-switch.njk #}
+{% set defaults = { "es": "/", "en": "/en/", "fr": "/fr/" } %}
 {% set links = alt or defaults %}
-
 {% set order = ["es","en","fr"] %}
+
 <nav class="lang-switch" aria-label="Language switcher">
   {% for code in order %}
     {% set url = links[code] or defaults[code] %}
     <a href="{{ url }}" lang="{{ code }}" hreflang="{{ code }}"
        class="lang{% if code == lang %} is-active{% endif %}"
        {% if code == lang %}aria-current="page"{% endif %}>
-      <img src="/assets/flags/{{ 'gb' if code == 'en' else code }}.svg"
-           width="20" height="14" alt="{{ code | upper }}">
+      <img src="/assets/flags/{{ 'gb' if code == 'en' else code }}.svg" width="20" height="14" alt="{{ code | upper }}">
     </a>
   {% endfor %}
 </nav>
