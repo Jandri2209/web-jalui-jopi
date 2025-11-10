@@ -22,7 +22,7 @@ alt: {"es": "/es/contacto/", "fr": "/fr/contact/"}
 
     {# Honeypot (hidden) #}
     <p class="sr-only" aria-hidden="true">
-      <label>If you see this, leave it empty
+      <label>If you see this field, leave it empty
         <input type="text" name="bot-field" tabindex="-1" autocomplete="off">
       </label>
     </p>
@@ -43,13 +43,28 @@ alt: {"es": "/es/contacto/", "fr": "/fr/contact/"}
     <label for="message">{{ i18n.en.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
 
-    <p class="inline">
+    <div class="checkbox">
       <input id="privacy-en" name="privacy" type="checkbox" value="accepted" required>
       <label for="privacy-en">I have read and accept the <a href="/en/privacy/">privacy policy</a>.</label>
-    </p>
+    </div>
 
+    {# Netlify reCAPTCHA #}
     <div data-netlify-recaptcha="true"></div>
 
     <button class="btn" type="submit">{{ i18n.en.Send }}</button>
   </form>
 </section>
+
+<script>
+(() => {
+  const form = document.getElementById('contact-form-en');
+  if (!form) return;
+  const btn = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', () => {
+    if (btn){ btn.dataset.txt = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true; }
+  });
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && btn){ form.reset(); btn.disabled = false; btn.textContent = btn.dataset.txt || 'Send'; }
+  });
+})();
+</script>

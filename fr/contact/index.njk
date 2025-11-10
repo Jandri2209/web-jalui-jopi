@@ -43,13 +43,28 @@ alt: {"es": "/es/contacto/", "en": "/en/contact/"}
     <label for="message">{{ i18n.fr.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
 
-    <p class="inline">
+    <div class="checkbox">
       <input id="privacy-fr" name="privacy" type="checkbox" value="accepted" required>
       <label for="privacy-fr">J’ai lu et j’accepte la <a href="/fr/confidentialite/">politique de confidentialité</a>.</label>
-    </p>
+    </div>
 
+    {# reCAPTCHA Netlify #}
     <div data-netlify-recaptcha="true"></div>
 
     <button class="btn" type="submit">{{ i18n.fr.Send }}</button>
   </form>
 </section>
+
+<script>
+(() => {
+  const form = document.getElementById('contact-form-fr');
+  if (!form) return;
+  const btn = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', () => {
+    if (btn){ btn.dataset.txt = btn.textContent; btn.textContent = 'Envoi…'; btn.disabled = true; }
+  });
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && btn){ form.reset(); btn.disabled = false; btn.textContent = btn.dataset.txt || 'Envoyer'; }
+  });
+})();
+</script>

@@ -44,10 +44,10 @@ alt: {"en": "/en/contact/", "fr": "/fr/contact/"}
     <label for="message">{{ i18n.es.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
 
-    <p class="inline">
+    <div class="checkbox">
       <input id="privacy" name="privacy" type="checkbox" value="accepted" required>
       <label for="privacy">He leído y acepto la <a href="/es/privacidad/">política de privacidad</a>.</label>
-    </p>
+    </div>
 
     {# reCAPTCHA de Netlify #}
     <div data-netlify-recaptcha="true"></div>

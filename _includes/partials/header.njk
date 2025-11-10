@@ -1,11 +1,11 @@
 {% set T = i18n[lang] %}
 
-{# --- rutas por idioma --- #}
+{# rutas por idioma #}
 {% set homeHref = '/' ~ lang ~ '/' %}
 {% if lang == 'en' %}
   {% set menuHref = '/en/menu/' %}
   {% set contactHref = '/en/contact/' %}
-  {% set mapHref = '/en/getting-here/' %}
+  {% set mapHref = '/en/how-to-get-here/' %} {# o '/en/getting-here/' si ese es tu slug real #}
 {% elif lang == 'fr' %}
   {% set menuHref = '/fr/carte/' %}
   {% set contactHref = '/fr/contact/' %}
@@ -16,49 +16,63 @@
   {% set mapHref = '/es/como-llegar/' %}
 {% endif %}
 
-{# --- clases "active" --- #}
-{% set isHome = (page.url == '/' or page.url == '/' ~ lang ~ '/') %}
-{% set isMenu = ('/carta/' in page.url) or ('/menu/' in page.url) or ('/carte/' in page.url) %}
-{% set isContact = ('/contact' in page.url) or ('/contacto' in page.url) %}
-{% set isMap = ('/como-llegar' in page.url) or ('/getting-here' in page.url) or ('/comment-arriver' in page.url) %}
+{# helpers activos por prefijo #}
+{% set u = page.url %}
+{% set isHome = (u == homeHref) %}
+{% set isMenu = (u | slice(0, menuHref | length)) == menuHref %}
+{% set isContact = (u | slice(0, contactHref | length)) == contactHref %}
+{% set isMap = (u | slice(0, mapHref | length)) == mapHref %}
 
 <header class="site-header">
-  {% include "partials/lang-switch.njk" %}
-  <div class="container header-row">
-    <a href="/" class="brand" aria-label="Discobar JaluiJopi">
-      <picture>
-        <!-- Modo oscuro -->
-        <source
-          media="(prefers-color-scheme: dark)"
-          srcset="/assets/brand/jalui_logo_kit/png/logo-dark@1x.png 1x,
-                  /assets/brand/jalui_logo_kit/png/logo-dark@2x.png 2x">
-        <!-- Modo claro -->
-        <source
-          media="(prefers-color-scheme: light)"
-          srcset="/assets/brand/jalui_logo_kit/png/logo-light@1x.png 1x,
-                  /assets/brand/jalui_logo_kit/png/logo-light@2x.png 2x">
-        <!-- Fallback (claro) -->
-        <img
-          src="/assets/brand/jalui_logo_kit/png/logo-light@1x.png"
-          alt="Discobar JaluiJopi"
-          width="220"
-          decoding="async"
-          fetchpriority="high"
-          class="logo">
-      </picture>
-    </a>
+  <div class="container">
+    <div class="header-row">
+      <a href="{{ homeHref }}" class="brand" aria-label="Jalui Jopi">
+        <picture>
+          <source media="(prefers-color-scheme: dark)"
+                  srcset="/assets/brand/jalui_logo_kit/png/logo-dark@1x.png 1x,
+                          /assets/brand/jalui_logo_kit/png/logo-dark@2x.png 2x">
+          <img src="/assets/brand/jalui_logo_kit/png/logo-light@1x.png" width="40" height="40" alt="Jalui Jopi">
+        </picture>
+        <span>Jalui Jopi</span>
+      </a>
 
-    <nav class="main-nav" aria-label="Primary">
-      <a href="{{ homeHref }}" class="{{ 'is-active' if isHome else '' }}">{{ T['Inicio'] }}</a>
-      <a href="{{ menuHref }}" class="{{ 'is-active' if isMenu else '' }}">{{ T['Carta'] }}</a>
-      <a href="{{ contactHref }}" class="{{ 'is-active' if isContact else '' }}">{{ T['Contacto'] }}</a>
-      <a href="{{ mapHref }}" class="{{ 'is-active' if isMap else '' }}">{{ T['ComoLlegar'] }}</a>
-    </nav>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Abrir menú</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
 
-    <nav class="lang-nav" aria-label="Language">
-      {% if alt and alt.es %}<a href="{{ alt.es }}" hreflang="es" title="Español">🇪🇸</a>{% else %}<a href="/es/" hreflang="es" title="Español">🇪🇸</a>{% endif %}
-      {% if alt and alt.en %}<a href="{{ alt.en }}" hreflang="en" title="English">🇬🇧</a>{% else %}<a href="/en/" hreflang="en" title="English">🇬🇧</a>{% endif %}
-      {% if alt and alt.fr %}<a href="{{ alt.fr }}" hreflang="fr" title="Français">🇫🇷</a>{% else %}<a href="/fr/" hreflang="fr" title="Français">🇫🇷</a>{% endif %}
-    </nav>
+      <nav id="primary-nav" class="main-nav" aria-label="Primary">
+        <a href="{{ homeHref }}"    class="{{ 'is-active' if isHome else '' }}">{{ T.NavHome    or 'Inicio' }}</a>
+        <a href="{{ menuHref }}"    class="{{ 'is-active' if isMenu else '' }}">{{ T.NavMenu    or 'Carta' }}</a>
+        <a href="{{ contactHref }}" class="{{ 'is-active' if isContact else '' }}">{{ T.NavContact or 'Contacto' }}</a>
+        <a href="{{ mapHref }}"     class="{{ 'is-active' if isMap else '' }}">{{ T.NavHow     or 'Cómo llegar' }}</a>
+      </nav>
+
+      {% include "partials/lang-switch.njk" %}
+    </div>
   </div>
 </header>
+
+{# JS hamburguesa #}
+<script>
+(function(){
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  if(!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('is-open', !open);
+    document.body.classList.toggle('no-scroll', !open);
+  });
+  nav.addEventListener('click', e => {
+    if(e.target.tagName === 'A'){
+      btn.setAttribute('aria-expanded','false');
+      nav.classList.remove('is-open');
+      document.body.classList.remove('no-scroll');
+    }
+  });
+})();
+</script>
