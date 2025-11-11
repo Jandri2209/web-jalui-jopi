@@ -1,6 +1,6 @@
 {% set T = i18n[lang] %}
 
-{# --- rutas legales por idioma --- #}
+{# Rutas legales por idioma #}
 {% if lang == 'en' %}
   {% set legalHref = '/en/legal/' %}
   {% set privacyHref = '/en/privacy/' %}
@@ -15,38 +15,124 @@
   {% set cookiesHref = '/cookies/' %}
 {% endif %}
 
+{# Rutas de navegación por idioma #}
+{% if lang == 'en' %}
+  {% set homeHref = '/en/' %}{% set menuHref = '/en/menu/' %}
+  {% set contactHref = '/en/contact/' %}{% set mapHref = '/en/getting-here/' %}
+{% elif lang == 'fr' %}
+  {% set homeHref = '/fr/' %}{% set menuHref = '/fr/carte/' %}
+  {% set contactHref = '/fr/contact/' %}{% set mapHref = '/fr/comment-arriver/' %}
+{% else %}
+  {% set homeHref = '/' %}{% set menuHref = '/carta/' %}
+  {% set contactHref = '/contacto/' %}{% set mapHref = '/como-llegar/' %}
+{% endif %}
+
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <h4>Bar Jalui Jopi</h4>
-      <p>{{ site.address }}</p>
-      <p>
-        <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
-        {% if site.mobile %} · <a href="tel:{{ site.mobile | replace(' ', '') }}">{{ site.mobile }}</a>{% endif %}
-      </p>
-      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-    </div>
-
-    <div>
-      <h4>{{ T['FollowUs'] }}</h4>
-      <p>
-        <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a> ·
-        <a href="{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>
-      </p>
-    </div>
-
-    <div>
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="{{ legalHref }}">{{ T['Legal'] }}</a></li>
-        <li><a href="{{ privacyHref }}">{{ T['Privacy'] }}</a></li>
-        <li><a href="{{ cookiesHref }}">{{ T['Cookies'] }}</a></li>
+  <div class="container footer-grid pro">
+    <!-- Columna marca / contacto -->
+    <div class="footer-brand">
+      <a href="{{ homeHref }}" class="brand brand--footer" aria-label="Discobar Jalui Jopi">
+        <img src="/assets/brand/logo-jalui.png" alt="Discobar Jalui Jopi">
+        <span>Jalui Jopi</span>
+      </a>
+      <p class="tagline">{{ site.tagline or "Copas, música y comida rápida desde 1967." }}</p>
+      <ul class="contact-list">
+        <li>
+          <a href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">
+            {{ site.address }}
+          </a>
+        </li>
+        <li>
+          <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
+          {% if site.mobile %} · <a href="tel:{{ site.mobile | replace(' ', '') }}">{{ site.mobile }}</a>{% endif %}
+        </li>
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
       </ul>
+
+      {# Horario visible #}
+      <div class="footer-hours">
+        <h4>Horario</h4>
+        <ul class="hours">
+          <li><span>L–J</span> <strong>7:00–23:30</strong></li>
+          <li><span>V</span>   <strong>7:00–24:00</strong></li>
+          <li><span>S–D</span> <strong>7:00–24:00</strong></li>
+        </ul>
+      </div>
+
+      <p class="social">
+        {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>{% endif %}
+        {% if site.facebook %}{% if site.instagram %} · {% endif %}<a href="{{ site.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>{% endif %}
+      </p>
+      <p class="mini-cta">
+        <a class="btn alt" href="{{ contactHref }}">{{ T.CTA_Contact }}</a>
+        <a class="btn" href="{{ menuHref }}">{{ T.CTA_SeeMenu }}</a>
+      </p>
     </div>
+
+    <!-- Columna navegación -->
+    <nav class="footer-nav" aria-label="Navegación del sitio">
+      <h4>{{ T.Inicio }}</h4>
+      <ul>
+        <li><a href="{{ homeHref }}">{{ T.Inicio }}</a></li>
+        <li><a href="{{ menuHref }}">{{ T.Carta }}</a></li>
+        <li><a href="{{ contactHref }}">{{ T.Contacto }}</a></li>
+        <li><a href="{{ mapHref }}">{{ T.ComoLlegar }}</a></li>
+      </ul>
+    </nav>
+
+    <!-- Columna legal -->
+    <nav class="footer-legal" aria-label="Información legal">
+      <h4>{{ T.Legal }}</h4>
+      <ul>
+        <li><a href="{{ legalHref }}">{{ T.Legal }}</a></li>
+        <li><a href="{{ privacyHref }}">{{ T.Privacy }}</a></li>
+        <li><a href="{{ cookiesHref }}">{{ T.Cookies }}</a></li>
+      </ul>
+      <button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+    </nav>
   </div>
 
-  <div class="container copyright">
-    <p>© <span id="y"></span> Jalui Jopi · <small>Fustiñana</small></p>
+  <div class="container footer-meta">
+    <p>© <span id="y"></span> Jalui Jopi — Fustiñana</p>
   </div>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  {# JSON-LD SEO local #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    "name": "Jalui Jopi",
+    "image": "{{ site.url or 'https://jaluijopi.netlify.app' }}/favicons/android-chrome-512x512.png",
+    "url": "{{ site.url or 'https://jaluijopi.netlify.app/' }}",
+    "telephone": "{{ site.phone }}",
+    "email": "{{ site.email }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Plaza de los Fueros, 4",
+      "addressLocality": "Fustiñana",
+      "postalCode": "31510",
+      "addressRegion": "Navarra",
+      "addressCountry": "ES"
+    },
+    "servesCuisine": ["Sandwiches","Pizzas","Combinados"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"],
+        "opens": "07:00",
+        "closes": "23:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday","Saturday","Sunday"],
+        "opens": "07:00",
+        "closes": "23:59"
+      }
+    ],
+    "sameAs": [
+      {% if site.instagram %}"{{ site.instagram }}"{% endif %}{% if site.facebook %}{% if site.instagram %}, {% endif %}"{{ site.facebook }}"{% endif %}
+    ]
+  }
+  </script>
 </footer>

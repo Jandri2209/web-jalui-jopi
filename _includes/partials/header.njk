@@ -1,5 +1,3 @@
-{% set T = i18n[lang] %}
-
 {# rutas por idioma #}
 {% if lang == 'en' %}
   {% set homeHref = '/en/' %}
@@ -18,12 +16,12 @@
   {% set mapHref = '/como-llegar/' %}
 {% endif %}
 
-{# helpers activos por prefijo #}
-{% set u = page.url %}
-{% set isHome = (u == homeHref) %}
-{% set isMenu = (u | slice(0, menuHref | length)) == menuHref %}
-{% set isContact = (u | slice(0, contactHref | length)) == contactHref %}
-{% set isMap = (u | slice(0, mapHref | length)) == mapHref %}
+{# helpers activos robustos #}
+{% set u = page.url or '/' %}
+{% set isHome    = (u == homeHref) %}
+{% set isMenu    = (u.indexOf(menuHref) == 0) %}
+{% set isContact = (u.indexOf(contactHref) == 0) %}
+{% set isMap     = (u.indexOf(mapHref) == 0) %}
 
 <header class="site-header">
   <div class="container">
@@ -51,25 +49,3 @@
     </div>
   </div>
 </header>
-
-{# JS hamburguesa #}
-<script>
-(function(){
-  const btn = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('primary-nav');
-  if(!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('is-open', !open);
-    document.body.classList.toggle('no-scroll', !open);
-  });
-  nav.addEventListener('click', e => {
-    if(e.target.tagName === 'A'){
-      btn.setAttribute('aria-expanded','false');
-      nav.classList.remove('is-open');
-      document.body.classList.remove('no-scroll');
-    }
-  });
-})();
-</script>

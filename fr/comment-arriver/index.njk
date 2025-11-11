@@ -6,8 +6,11 @@ permalink: /fr/comment-arriver/
 alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
 ---
 
-{% set mapsHref   = "https://www.google.com/maps/search/?api=1&query=" + (site.address | replace(' ', '+')) %}
-{% set mapsIframe = "https://www.google.com/maps?q=" + (site.address | replace(' ', '+')) + "&output=embed" %}
+{% set addr = (site.address | replace("·"," ") | trim) %}
+{% set q = addr | urlencode %}
+
+{% set mapsHref   = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
+{% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
 
 <section class="section">
   <h1>{{ i18n.fr.HowToGetHere }}</h1>
