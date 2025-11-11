@@ -27,50 +27,55 @@
   {% set contactHref = '/contacto/' %}{% set mapHref = '/como-llegar/' %}
 {% endif %}
 
-<footer class="site-footer">
-  <div class="container footer-grid pro">
-    <!-- Columna marca / contacto -->
-    <div class="footer-brand">
+<footer class="site-footer pro">
+  <div class="container footer-wrap">
+    <!-- Marca / contacto -->
+    <section class="f-brand">
       <a href="{{ homeHref }}" class="brand brand--footer" aria-label="Discobar Jalui Jopi">
         <img src="/assets/brand/logo-jalui.png" alt="Discobar Jalui Jopi">
         <span>Jalui Jopi</span>
       </a>
       <p class="tagline">{{ site.tagline or "Copas, música y comida rápida desde 1967." }}</p>
-      <ul class="contact-list">
+
+      <ul class="f-contact">
         <li>
-          <a href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">
-            {{ site.address }}
-          </a>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-4.5-6-9a6 6 0 1 1 12 0c0 4.5-6 9-6 9Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <a href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">{{ site.address }}</a>
         </li>
         <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9a16 16 0 0 0 7 7l.6-.6a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <a href="tel:{{ site.phone | replace(' ', '') }}">{{ site.phone }}</a>
           {% if site.mobile %} · <a href="tel:{{ site.mobile | replace(' ', '') }}">{{ site.mobile }}</a>{% endif %}
         </li>
-        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </li>
       </ul>
 
-      {# Horario visible #}
-      <div class="footer-hours">
-        <h4>Horario</h4>
-        <ul class="hours">
-          <li><span>L–J</span> <strong>7:00–23:30</strong></li>
-          <li><span>V</span>   <strong>7:00–24:00</strong></li>
-          <li><span>S–D</span> <strong>7:00–24:00</strong></li>
-        </ul>
+      <div class="f-social">
+        {% if site.instagram %}
+          <a class="badge" href="{{ site.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+            <span>Instagram</span>
+          </a>
+        {% endif %}
+        {% if site.facebook %}
+          <a class="badge" href="{{ site.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h2.5l.5-3H14V9Z" fill="currentColor"/></svg>
+            <span>Facebook</span>
+          </a>
+        {% endif %}
       </div>
 
-      <p class="social">
-        {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>{% endif %}
-        {% if site.facebook %}{% if site.instagram %} · {% endif %}<a href="{{ site.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>{% endif %}
-      </p>
-      <p class="mini-cta">
+      <div class="f-ctas">
         <a class="btn alt" href="{{ contactHref }}">{{ T.CTA_Contact }}</a>
         <a class="btn" href="{{ menuHref }}">{{ T.CTA_SeeMenu }}</a>
-      </p>
-    </div>
+      </div>
+    </section>
 
-    <!-- Columna navegación -->
-    <nav class="footer-nav" aria-label="Navegación del sitio">
+    <!-- Navegación -->
+    <nav class="f-nav" aria-label="Navegación del sitio">
       <h4>{{ T.Inicio }}</h4>
       <ul>
         <li><a href="{{ homeHref }}">{{ T.Inicio }}</a></li>
@@ -80,15 +85,28 @@
       </ul>
     </nav>
 
-    <!-- Columna legal -->
-    <nav class="footer-legal" aria-label="Información legal">
+    <!-- Horario -->
+    <section class="f-hours" aria-label="Horario">
+      <h4>Horario</h4>
+      <ul class="hours">
+        <li><span>L–J</span><strong>7:00–23:30</strong></li>
+        <li><span>V</span><strong>7:00–24:00</strong></li>
+        <li><span>S–D</span><strong>7:00–24:00</strong></li>
+      </ul>
+      <p class="note">{{ T.OpenHoursNote }}</p>
+    </section>
+
+    <!-- Legal -->
+    <nav class="f-legal" aria-label="Información legal">
       <h4>{{ T.Legal }}</h4>
       <ul>
         <li><a href="{{ legalHref }}">{{ T.Legal }}</a></li>
         <li><a href="{{ privacyHref }}">{{ T.Privacy }}</a></li>
         <li><a href="{{ cookiesHref }}">{{ T.Cookies }}</a></li>
       </ul>
-      <button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+      <button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7h14l-7-7Z" fill="currentColor"/></svg>
+      </button>
     </nav>
   </div>
 
@@ -97,38 +115,20 @@
   </div>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  {# JSON-LD SEO local #}
+  {# JSON-LD LocalBusiness #}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BarOrPub",
     "name": "Jalui Jopi",
-    "image": "{{ site.url or 'https://jaluijopi.netlify.app' }}/favicons/android-chrome-512x512.png",
-    "url": "{{ site.url or 'https://jaluijopi.netlify.app/' }}",
+    "address": "{{ site.address | replace('"','') }}",
     "telephone": "{{ site.phone }}",
     "email": "{{ site.email }}",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Plaza de los Fueros, 4",
-      "addressLocality": "Fustiñana",
-      "postalCode": "31510",
-      "addressRegion": "Navarra",
-      "addressCountry": "ES"
-    },
-    "servesCuisine": ["Sandwiches","Pizzas","Combinados"],
+    "url": "{{ site.url or 'https://jaluijopi.netlify.app/' }}",
     "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"],
-        "opens": "07:00",
-        "closes": "23:30"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Friday","Saturday","Sunday"],
-        "opens": "07:00",
-        "closes": "23:59"
-      }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "07:00", "closes": "23:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "07:00", "closes": "23:59" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "07:00", "closes": "23:59" }
     ],
     "sameAs": [
       {% if site.instagram %}"{{ site.instagram }}"{% endif %}{% if site.facebook %}{% if site.instagram %}, {% endif %}"{{ site.facebook }}"{% endif %}
