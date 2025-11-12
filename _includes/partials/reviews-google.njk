@@ -1,5 +1,5 @@
 {# partials/reviews-google.njk #}
-{% set data = reviewsGoogle or {} %}   {# requiere _data/reviewsGoogle.json #}
+{% set data = reviewsGoogle or site.reviewsGoogle or {} %}
 {% set itemsRaw = data.items or [] %}
 {% set link = data.link or site.reviewsGoogleLink or '#' %}
 {% set write = data.writeReview or site.reviewsGoogleWrite or link %}
@@ -118,6 +118,7 @@
           <img class="logo-google" src="/images/brands/google.svg" width="18" height="18" alt="">
           <strong>Google</strong>
           <a href="{{ link }}" class="btn alt sm" target="_blank" rel="noopener ugc nofollow" style="margin-left:auto">{{ T.see }}</a>
+          <button class="rev-modal-close" aria-label="Cerrar">✕</button>
         </header>
 
         <nav class="drawer-filters" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 .6rem">

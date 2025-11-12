@@ -235,10 +235,15 @@ a:visited{ color:#a78bfa }
 .link.toggle-trans:hover{ color:#d6ccff }
 
 /* Modal */
+/* Modal */
 .rev-modal-backdrop{
   position:fixed; inset:0; background:rgba(0,0,0,.65);
-  display:block; z-index:60; padding:18px; backdrop-filter:blur(2px)
+  /* estaba display:block; => quítalo */
+  z-index:60; padding:18px; backdrop-filter:blur(2px)
 }
+/* cuando tenga [hidden], que no se muestre NUNCA */
+.rev-modal-backdrop[hidden]{ display:none !important; }
+
 .rev-modal{
   max-width:800px; margin:0 auto; background:var(--card);
   border:1px solid var(--border); border-radius:14px; padding:16px;
