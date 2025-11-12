@@ -59,7 +59,7 @@
           {% if r.text %}
             {% set full = (r.rating and (r.rating | round(0, 'floor'))) or 0 %}
             {% set transKey = 'text_' ~ pageLang %}
-            {% set transText = attribute(r, transKey) %}
+            {% set transText = (r[transKey] or '') %}
             {% set showTrans = (pageLang != (r.lang or 'es')) and transText %}
 
             <article class="review-card" data-stars="{{ full }}" {% if not loop.first %}hidden{% endif %}>
