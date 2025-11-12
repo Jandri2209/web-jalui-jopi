@@ -1,5 +1,5 @@
 {# partials/reviews-google.njk #}
-{% set data = reviewsGoogle or {} %}  {# <-- requiere _data/reviewsGoogle.json #}
+{% set data = reviews-google or {} %}   {# requiere _data/reviewsGoogle.json #}
 {% set itemsRaw = data.items or [] %}
 {% set link = data.link or site.reviewsGoogleLink or '#' %}
 {% set write = data.writeReview or site.reviewsGoogleWrite or link %}
@@ -7,22 +7,20 @@
 
 {% set pageLang = (lang or page.lang or 'es') %}
 {% set L = {
-  'es': {'reviews':'Reseñas','whatPeopleSay':'Lo que dicen en Google.','leave':'Dejar reseña','see':'Ver en Google','showOriginal':'Mostrar comentario original','showTranslation':'Mostrar traducción','all':'Todas'},
-  'en': {'reviews':'Reviews','whatPeopleSay':'What people say on Google.','leave':'Leave a review','see':'View on Google','showOriginal':'Show original comment','showTranslation':'Show translation','all':'All'},
-  'fr': {'reviews':'Avis','whatPeopleSay':'Ce qu’ils disent sur Google.','leave':'Laisser un avis','see':'Voir sur Google','showOriginal':'Afficher l’avis original','showTranslation':'Afficher la traduction','all':'Tous'}
+  'es': {'reviews':'Reseñas','whatPeopleSay':'Lo que dicen en Google.','leave':'Dejar reseña','see':'Ver en Google','showOriginal':'Mostrar comentario original','showTranslation':'Mostrar traducción','all':'Todas','label':'reseñas','viewAll':'Ver todas las reseñas'},
+  'en': {'reviews':'Reviews','whatPeopleSay':'What people say on Google.','leave':'Leave a review','see':'View on Google','showOriginal':'Show original comment','showTranslation':'Show translation','all':'All','label':'reviews','viewAll':'View all reviews'},
+  'fr': {'reviews':'Avis','whatPeopleSay':'Ce qu’ils disent sur Google.','leave':'Laisser un avis','see':'Voir sur Google','showOriginal':'Afficher l’avis original','showTranslation':'Afficher la traduction','all':'Tous','label':'avis','viewAll':'Voir tous les avis'}
 } %}
 {% set T = L[pageLang] %}
 
 {# media agregada / fallback a media local #}
 {% set sum = 0 %}{% set cnt = 0 %}
-{% for r in itemsRaw %}{% if r.rating %}{% set sum = sum + r.rating %}{% set cnt = cnt + 1 %}{% endif %}{% endfor %}
+{% for r in itemsRaw %}
+  {% if r.rating %}{% set sum = sum + r.rating %}{% set cnt = cnt + 1 %}{% endif %}
+{% endfor %}
 {% set avgLocal = (cnt and (sum / cnt)) or 0 %}
 {% set ratingValue = agg.ratingValue or (avgLocal and (avgLocal | round(1))) or 0 %}
 {% set reviewCount = agg.reviewCount or cnt %}
-
-{# sólo reseñas con texto #}
-{% set items = [] %}
-{% for r in itemsRaw %}{% if r.text %}{% set _ = items.push(r) %}{% endif %}{% endfor %}
 
 <section class="container" id="resenas" style="margin-top:2.2rem">
   <h2 class="font-primary" style="font-size:1.75rem;margin:0 0 .5rem">{{ T.reviews }}</h2>
@@ -33,7 +31,7 @@
       <div style="font-size:1.25rem">⭐</div>
       <div>
         <div class="value">{{ ratingValue }} / 5</div>
-        <div style="color:#6b7280">{{ reviewCount }} {{ pageLang == 'en' ? 'reviews' : (pageLang == 'fr' ? 'avis' : 'reseñas') }}</div>
+        <div style="color:#6b7280">{{ reviewCount }} {{ T.label }}</div>
       </div>
     </div>
     <div class="rating-cta">
@@ -44,7 +42,11 @@
     </div>
   </div>
 
-  {% if items | length %}
+  {# ===== Carrusel sólo con reseñas que tienen texto ===== #}
+  {% set hasItems = false %}
+  {% for r in itemsRaw %}{% if r.text %}{% set hasItems = true %}{% endif %}{% endfor %}
+
+  {% if hasItems %}
     <section class="platform-col card" data-platform="google" data-autoplay="3500" data-wrap="true" data-pause="true">
       <header class="plat-header" style="display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem">
         <img class="logo-google" src="/images/brands/google.svg" width="18" height="18" alt="">
@@ -53,41 +55,47 @@
       </header>
 
       <div class="slides">
-        {% for r in items %}
-          {% set full = (r.rating and (r.rating | round(0, 'floor'))) or 0 %}
-          {% set transKey = 'text_' ~ pageLang %}
-          {% set transText = attribute(r, transKey) %}
-          {% set showTrans = (pageLang != (r.lang or 'es')) and transText %}
-          <article class="review-card" data-stars="{{ full }}" {% if not loop.first %}hidden{% endif %}>
-            <header style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
-              <strong>{{ r.author or 'Anónimo' }}</strong>
-              {% if full > 0 %}
-                <div class="review-stars" aria-label="{{ full }} / 5">
-                  {% for i in [1,2,3,4,5] %}{% if i <= full %}<span>★</span>{% else %}<span class="empty">★</span>{% endif %}{% endfor %}
-                </div>
+        {% for r in itemsRaw %}
+          {% if r.text %}
+            {% set full = (r.rating and (r.rating | round(0, 'floor'))) or 0 %}
+            {% set transKey = 'text_' ~ pageLang %}
+            {% set transText = attribute(r, transKey) %}
+            {% set showTrans = (pageLang != (r.lang or 'es')) and transText %}
+
+            <article class="review-card" data-stars="{{ full }}" {% if not loop.first %}hidden{% endif %}>
+              <header style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
+                <strong>{{ r.author or 'Anónimo' }}</strong>
+                {% if full > 0 %}
+                  <div class="review-stars" aria-label="{{ full }} / 5">
+                    {% for i in [1,2,3,4,5] %}
+                      {% if i <= full %}<span>★</span>{% else %}<span class="empty">★</span>{% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </header>
+
+              {% if r.ago or r.date %}
+                <time datetime="{{ r.date or '' }}" style="color:#6b7280;font-size:.9rem">{{ r.ago or r.date }}</time>
               {% endif %}
-            </header>
 
-            {% if r.date or r.ago %}
-              <time datetime="{{ r.date or '' }}" style="color:#6b7280;font-size:.9rem">{{ r.ago or r.date }}</time>
-            {% endif %}
+              <div class="rev-body" style="margin-top:.25rem">
+                {% if showTrans %}
+                  <p class="rev-text tr" style="margin:.2rem 0 0;line-height:1.55">{{ transText }}</p>
+                  <p class="rev-text orig" style="margin:.2rem 0 0;line-height:1.55" hidden>{{ r.text }}</p>
+                  <div class="trans-note" style="color:#6b7280;font-size:.9rem;margin-top:.35rem">
+                    <button type="button" class="link toggle-trans"
+                      data-on="{{ T.showOriginal }}" data-off="{{ T.showTranslation }}">{{ T.showOriginal }}</button>
+                  </div>
+                {% else %}
+                  <p class="rev-text" style="margin:.2rem 0 0;line-height:1.55">{{ transText or r.text }}</p>
+                {% endif %}
+              </div>
 
-            <div class="rev-body" style="margin-top:.25rem">
-              {% if showTrans %}
-                <p class="rev-text tr" style="margin:.2rem 0 0;line-height:1.55">{{ transText }}</p>
-                <p class="rev-text orig" style="margin:.2rem 0 0;line-height:1.55" hidden>{{ r.text }}</p>
-                <div class="trans-note" style="color:#6b7280;font-size:.9rem;margin-top:.35rem">
-                  <button type="button" class="link toggle-trans" data-on="{{ T.showOriginal }}" data-off="{{ T.showTranslation }}">{{ T.showOriginal }}</button>
-                </div>
-              {% else %}
-                <p class="rev-text" style="margin:.2rem 0 0;line-height:1.55">{{ transText or r.text }}</p>
-              {% endif %}
-            </div>
-
-            <footer style="margin-top:.6rem;color:#6b7280;font-size:.9rem">
-              Google{% if r.lang %} · {{ r.lang | upper }}{% endif %}
-            </footer>
-          </article>
+              <footer style="margin-top:.6rem;color:#6b7280;font-size:.9rem">
+                Google{% if r.lang %} · {{ r.lang | upper }}{% endif %}
+              </footer>
+            </article>
+          {% endif %}
         {% endfor %}
       </div>
 
@@ -101,7 +109,7 @@
     <script src="/assets/review-google.js" defer></script>
 
     <p class="reviews-cta" style="text-align:center;margin-top:.8rem">
-      <button id="open-all-reviews" class="btn alt">{{ pageLang == 'en' ? 'View all reviews' : (pageLang == 'fr' ? 'Voir tous les avis' : 'Ver todas las reseñas') }}</button>
+      <button id="open-all-reviews" class="btn alt">{{ T.viewAll }}</button>
     </p>
 
     <div id="reviewsModal" class="rev-modal-backdrop" hidden>
@@ -125,7 +133,9 @@
       </div>
     </div>
   {% else %}
-    <div class="card">{{ pageLang == 'en' ? 'We will add verified Google reviews soon.' : (pageLang == 'fr' ? 'Nous ajouterons bientôt des avis Google vérifiés.' : 'Pronto añadiremos reseñas verificadas de Google.') }}</div>
+    <div class="card">
+      {% if pageLang == 'en' %}We will add verified Google reviews soon.{% elif pageLang == 'fr' %}Nous ajouterons bientôt des avis Google vérifiés.{% else %}Pronto añadiremos reseñas verificadas de Google.{% endif %}
+    </div>
   {% endif %}
 </section>
 
