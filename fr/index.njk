@@ -5,6 +5,7 @@ lang: fr
 permalink: /fr/
 alt: {"es": "/", "en": "/en/"}
 ---
+
 <section class="hero">
   <div>
     <p class="kicker">Fustiñana · Navarre</p>
@@ -16,13 +17,18 @@ alt: {"es": "/", "en": "/en/"}
     </div>
     <p class="lead-note" style="margin-top:10px">{{ i18n.fr.OpenHoursNote }}</p>
   </div>
+
   <div class="card">
     <h3>Un classique depuis 1967</h3>
-    <p>Nous sommes nés comme bar musical et avons évolué vers un endroit décontracté pour <strong>sandwichs, rations, pizzas et plats combinés</strong>.</p>
+    <p>
+      Né comme bar musical sur la place, nous sommes aujourd’hui un lieu décontracté
+      pour <strong>sandwichs</strong>, <strong>rations</strong>, <strong>pizzas</strong> et
+      <strong>plats combinés</strong>. Service rapide et ambiance conviviale.
+    </p>
     <ul>
-      <li>Adresse : <strong>{{ site.address }}</strong></li>
-      <li>Tél. : <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Mobile : <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
-      <li>Instagram : <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
+      <li><strong>Adresse&nbsp;:</strong> {{ site.address }}</li>
+      <li><strong>Tél.&nbsp;:</strong> <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
+      <li><strong>Instagram&nbsp;:</strong> <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
     </ul>
   </div>
 </section>
@@ -30,8 +36,54 @@ alt: {"es": "/", "en": "/en/"}
 <section class="section">
   <div class="grid-3">
     <div class="card"><h4>Sandwichs</h4><p>Classiques bien faits : jambon-fromage, lomo, tortilla, calamars…</p></div>
-    <div class="card"><h4>Rations & pintxos</h4><p>À partager au bar ou en terrasse.</p></div>
-    <div class="card"><h4>Pizzas & plats combinés</h4><p>Pour calmer la faim sans complications.</p></div>
+    <div class="card"><h4>Rations et "pintxos"</h4><p>À partager au bar ou en terrasse.</p></div>
+    <div class="card"><h4>Pizzas et plats combinés</h4><p>Pour calmer la faim simplement.</p></div>
   </div>
 </section>
 
+{% set pid = site.placeId %}
+{% set hasReviews = site.reviews and site.reviews.google_avg and site.reviews.google_count %}
+<section class="section">
+  <div class="card" style="display:grid;gap:.6rem;align-items:center">
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <span class="logo-google" aria-hidden="true" style="width:22px;height:22px;display:inline-block;background:linear-gradient(45deg,#4285F4,#34A853,#FBBC05,#EA4335);border-radius:4px"></span>
+      <strong>Google</strong>
+      {% if hasReviews %}
+        <span style="opacity:.8">·</span>
+        <span style="font-size:1.2rem">{{ site.reviews.google_avg }} / 5</span>
+        <span style="opacity:.8">({{ site.reviews.google_count }} avis)</span>
+      {% endif %}
+    </div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      {% if pid %}
+        <a class="btn" href="{{ 'https://search.google.com/local/writereview?placeid=' ~ pid }}" target="_blank" rel="noopener">Écrire un avis</a>
+        <a class="btn alt" href="{{ 'https://www.google.com/maps/search/?api=1&query=Jalui%20Jopi&query_place_id=' ~ pid }}" target="_blank" rel="noopener">Voir les avis</a>
+      {% else %}
+        <a class="btn alt" href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">Ouvrir dans Google</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid-3">
+    {% for n in [1,2,3] %}
+    <figure class="card" style="padding:0;overflow:hidden">
+      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — photo {{ n }}" width="800" height="600" loading="lazy">
+    </figure>
+    {% endfor %}
+  </div>
+  <p style="text-align:center;margin-top:.8rem">
+    <a class="btn alt" href="/fr/galerie/">Ouvrir la galerie</a>
+  </p>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Depuis 1967 sur la place</h2>
+    <p>
+      Même adresse, même esprit. On a troqué les vinyles pour les playlists,
+      mais pas l’accueil. Cuisine simple et soignée, service rapide et ambiance détendue.
+    </p>
+  </div>
+</section>

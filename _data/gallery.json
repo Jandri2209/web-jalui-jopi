@@ -1,0 +1,8 @@
+[
+  { "src": "/images/home/home-01.webp",
+    "alt": { "es": "Exterior", "en": "Bar counter", "fr": "Comptoir du bar" } },
+  { "src": "/images/home/home-02.webp",
+    "alt": { "es": "Terraza", "en": "Terrace", "fr": "Terrasse" } },
+  { "src": "/images/home/home-03.webp",
+    "alt": { "es": "Interior de Jalui Jopi", "en": "Dining room", "fr": "Salle intérieure" } }
+]

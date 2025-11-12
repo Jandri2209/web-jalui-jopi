@@ -1,0 +1,477 @@
+{
+  "aggregate": { "ratingValue": 4.3, "reviewCount": 144 },
+  "link": "https://maps.app.goo.gl/36RaWnUMr8GwGUpe8",
+  "writeReview": "https://search.google.com/local/writereview?placeid=ChIJa3rZRFc2Wg0RhTJ_jmKnzH0&hl=es-ES&gl=ES",
+  "items": [
+    {
+      "author": "Nadejda Kavazova",
+      "rating": 5,
+      "ago": "Hace 3 meses",
+      "lang": "es",
+      "text": "La mejor camarera en las fiestas nos atendió de maravilla Cristina, un amor de persona ❤️",
+      "text_es": "La mejor camarera en las fiestas nos atendió de maravilla Cristina, un amor de persona ❤️",
+      "text_en": "During the festivities, the best waitress took great care of us — Cristina is a lovely person ❤️",
+      "text_fr": "Pendant les fêtes, la meilleure serveuse nous a merveilleusement servis — Cristina est adorable ❤️"
+    },
+    {
+      "author": "ignacio salvatierra",
+      "rating": 5,
+      "ago": "Hace 1 año",
+      "lang": "es",
+      "text": "Bien ubicado, justo en la plaza de Fustiñana. Un clásico ya. Bar que da paso al restaurante no muy grande pero acogedor.",
+      "text_es": "Bien ubicado, justo en la plaza de Fustiñana. Un clásico ya. Bar que da paso al restaurante no muy grande pero acogedor.",
+      "text_en": "Well located, right in Fustiñana’s main square. A true classic. The bar leads to a small but cozy dining room.",
+      "text_fr": "Bien situé, sur la place principale de Fustiñana. Un grand classique. Le bar donne sur une petite salle chaleureuse."
+    },
+    {
+      "author": "SARA L.H",
+      "rating": 4,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Servicio y comida correctas, el sitio acogedor y moderno cuida los detalles. Lo mejor, el trato del camarero de barra/comedor.",
+      "text_es": "Servicio y comida correctas, el sitio acogedor y moderno cuida los detalles. Lo mejor, el trato del camarero de barra/comedor.",
+      "text_en": "Service and food were correct; the place is cozy and modern with attention to detail. Best part: the waiter’s service.",
+      "text_fr": "Service et cuisine corrects ; lieu moderne et chaleureux, attention aux détails. Le meilleur : le service du serveur."
+    },
+    {
+      "author": "Mar Cano Yelamo",
+      "rating": 5,
+      "ago": "Hace 1 año",
+      "lang": "es",
+      "text": "Sólo hacen pinchos y bocatas. Estuvimos al vermut y los pinchos que comimos estaban buenísimos. Mmmmmm, ¡volveremos!",
+      "text_es": "Sólo hacen pinchos y bocatas. Estuvimos al vermut y los pinchos que comimos estaban buenísimos. Mmmmmm, ¡volveremos!",
+      "text_en": "They serve pintxos and sandwiches. We went for vermouth and the pintxos were delicious. Mmm, we’ll be back!",
+      "text_fr": "Ils servent des pintxos et des sandwichs. Nous y sommes allés pour l’apéro, tout était délicieux. On reviendra !"
+    },
+    {
+      "author": "ELIANA VALENCIA GAVIRIA",
+      "rating": 5,
+      "ago": "Hace 2 años",
+      "lang": "es",
+      "text": "Son muy buenas personas los que atienden, su propietario y sus camareros. Te sientes muy bien y acogido.",
+      "text_es": "Son muy buenas personas los que atienden, su propietario y sus camareros. Te sientes muy bien y acogido.",
+      "text_en": "The owner and staff are truly kind. You feel welcomed and well looked after.",
+      "text_fr": "Le propriétaire et l’équipe sont très aimables. On se sent bien accueilli."
+    },
+    {
+      "author": "Alex L.",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Sitio estupendo para cenar o tomar una copa. Muy buen servicio y buenos precios.",
+      "text_es": "Sitio estupendo para cenar o tomar una copa. Muy buen servicio y buenos precios.",
+      "text_en": "Great place for dinner or drinks. Very good service and fair prices.",
+      "text_fr": "Excellent endroit pour dîner ou prendre un verre. Très bon service et prix corrects."
+    },
+    {
+      "author": "laura lopez",
+      "rating": 5,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Ambiente acogedor, muy buen trato y comida excepcional. ¡Repetiremos!",
+      "text_es": "Ambiente acogedor, muy buen trato y comida excepcional. ¡Repetiremos!",
+      "text_en": "Cozy atmosphere, great service and exceptional food. We’ll be back!",
+      "text_fr": "Ambiance chaleureuse, excellent service et cuisine remarquable. Nous reviendrons !"
+    },
+    {
+      "author": "Waleska Jimenez",
+      "rating": 2,
+      "ago": "Hace 1 año",
+      "lang": "es",
+      "text": "Pues más o menos; no me gustó mucho, no repetiría.",
+      "text_es": "Pues más o menos; no me gustó mucho, no repetiría.",
+      "text_en": "So-so; I didn’t like it much and wouldn’t return.",
+      "text_fr": "Bof ; je n’ai pas trop aimé et je n’y retournerais pas."
+    },
+    {
+      "author": "JUAN JORDAN",
+      "rating": 5,
+      "ago": "Hace 3 años",
+      "lang": "es",
+      "text": "Muy buena carta, servicio atento y agradable. Volveremos.",
+      "text_es": "Muy buena carta, servicio atento y agradable. Volveremos.",
+      "text_en": "Very good menu, attentive and friendly service. We’ll be back.",
+      "text_fr": "Très bonne carte, service attentionné et agréable. Nous reviendrons."
+    },
+    {
+      "author": "miquel mora molinas",
+      "rating": 4,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Buen servicio y buena comida. Eduardo, el camarero, un crack: amable y rápido.",
+      "text_es": "Buen servicio y buena comida. Eduardo, el camarero, un crack: amable y rápido.",
+      "text_en": "Good service and good food. Eduardo the waiter is great—kind and fast.",
+      "text_fr": "Bon service et bonne cuisine. Eduardo, le serveur, est top : aimable et rapide."
+    },
+    {
+      "author": "Olga Sada Aguirre",
+      "rating": 4,
+      "ago": "Hace 7 años",
+      "lang": "es",
+      "text": "Frente al ayuntamiento, en el centro del pueblo; ambiente continuo desde la mañana a la noche. Punto de referencia.",
+      "text_es": "Frente al ayuntamiento, en el centro del pueblo; ambiente continuo desde la mañana a la noche. Punto de referencia.",
+      "text_en": "Opposite the town hall, right in the center; lively atmosphere all day. A local reference point.",
+      "text_fr": "En face de la mairie, en plein centre ; ambiance continue toute la journée. Une référence locale."
+    },
+    {
+      "author": "Blanca Aguirre Sala",
+      "rating": 4,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Buen ambiente. Ideal para el vermú y para cenar.",
+      "text_es": "Buen ambiente. Ideal para el vermú y para cenar.",
+      "text_en": "Nice vibe. Ideal for a pre-lunch drink and for dinner.",
+      "text_fr": "Bonne ambiance. Idéal pour l’apéritif et pour dîner."
+    },
+    {
+      "author": "María Carmen Litago",
+      "rating": 4,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Sitio con terraza. Agradable. Buen servicio.",
+      "text_es": "Sitio con terraza. Agradable. Buen servicio.",
+      "text_en": "Place with a terrace. Pleasant. Good service.",
+      "text_fr": "Endroit avec terrasse. Agréable. Bon service."
+    },
+    {
+      "author": "Alfonso Sanmiguel P.",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Un gran establecimiento con varios ambientes: desayunos, almuerzos y por la noche copas.",
+      "text_es": "Un gran establecimiento con varios ambientes: desayunos, almuerzos y por la noche copas.",
+      "text_en": "A great spot with different areas: breakfast, lunch and drinks at night.",
+      "text_fr": "Un excellent établissement avec plusieurs ambiances : petits-déjeuners, déjeuners et verres le soir."
+    },
+    {
+      "author": "santi galindo",
+      "rating": 4,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Buenos bocatas y buen ambiente en un pueblo entre el Ebro y las Bardenas Reales.",
+      "text_es": "Buenos bocatas y buen ambiente en un pueblo entre el Ebro y las Bardenas Reales.",
+      "text_en": "Good sandwiches and a nice vibe in a town between the Ebro River and the Bardenas.",
+      "text_fr": "Bons sandwichs et bonne ambiance dans un village entre l’Èbre et les Bardenas."
+    },
+    {
+      "author": "antonio san jose rodriguez",
+      "rating": 5,
+      "ago": "Hace 7 años",
+      "lang": "es",
+      "text": "Montonazo de personas, muy familiar; interesante cómo se divierten a base de castañazos jiji.",
+      "text_es": "Montonazo de personas, muy familiar; interesante cómo se divierten a base de castañazos jiji.",
+      "text_en": "Lots of people, very family-friendly; funny how they have a blast, haha.",
+      "text_fr": "Beaucoup de monde, ambiance très familiale ; amusant de les voir s’éclater, haha."
+    },
+    {
+      "author": "Juan Mar “Tano”",
+      "rating": 5,
+      "ago": "Hace 2 años",
+      "lang": "es",
+      "text": "Buen trato, instalaciones modernas, bien situado.",
+      "text_es": "Buen trato, instalaciones modernas, bien situado.",
+      "text_en": "Good service, modern facilities, well located.",
+      "text_fr": "Bon accueil, installations modernes, bien situé."
+    },
+    {
+      "author": "Fina Izquierdo",
+      "rating": 5,
+      "ago": "Hace 7 años",
+      "lang": "es",
+      "text": "Me encanta; lo peor es que no puedo ir siempre que quiero.",
+      "text_es": "Me encanta; lo peor es que no puedo ir siempre que quiero.",
+      "text_en": "I love it; the only downside is I can’t go as often as I’d like.",
+      "text_fr": "J’adore ; dommage que je ne puisse pas y aller aussi souvent que je veux."
+    },
+    {
+      "author": "Marina Gil",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Buen sitio tanto para tomar algo como para cenar.",
+      "text_es": "Buen sitio tanto para tomar algo como para cenar.",
+      "text_en": "Good place both for drinks and for dinner.",
+      "text_fr": "Bon endroit pour boire un verre ou dîner."
+    },
+    {
+      "author": "Encarna Perez",
+      "rating": 5,
+      "ago": "Hace 2 años",
+      "lang": "es",
+      "text": "Muy bien y rápido.",
+      "text_es": "Muy bien y rápido.",
+      "text_en": "Very good and fast.",
+      "text_fr": "Très bien et rapide."
+    },
+    {
+      "author": "Runner Ignus",
+      "rating": 4,
+      "ago": "Hace 8 años",
+      "lang": "es",
+      "text": "Amplio y asequible, moderno y con buen ambiente.",
+      "text_es": "Amplio y asequible, moderno y con buen ambiente.",
+      "text_en": "Spacious and affordable, modern, with a good vibe.",
+      "text_fr": "Spacieux et abordable, moderne, bonne ambiance."
+    },
+    {
+      "author": "Manuel Arrondo",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Excelente sitio para ir; trato excelente.",
+      "text_es": "Excelente sitio para ir; trato excelente.",
+      "text_en": "Excellent place to go; excellent service.",
+      "text_fr": "Excellent endroit ; service excellent."
+    },
+    {
+      "author": "Jesus Ramirez",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "La camarera una joya, el camarero un artista y se cena de primera.",
+      "text_es": "La camarera una joya, el camarero un artista y se cena de primera.",
+      "text_en": "The waitress is a gem, the waiter an artist, and dinner is top-notch.",
+      "text_fr": "La serveuse est un bijou, le serveur un artiste, et on dîne très bien."
+    },
+    {
+      "author": "Susana Pérez Domínguez",
+      "rating": 3,
+      "ago": "Hace 1 año",
+      "lang": "es",
+      "text": "Bastante animado a la hora del aperitivo.",
+      "text_es": "Bastante animado a la hora del aperitivo.",
+      "text_en": "Quite lively around aperitif time.",
+      "text_fr": "Assez animé à l’heure de l’apéritif."
+    },
+    {
+      "author": "Neftali Gutierrez",
+      "rating": 4,
+      "ago": "Hace 2 años",
+      "lang": "es",
+      "text": "Comimos muy bien allí.",
+      "text_es": "Comimos muy bien allí.",
+      "text_en": "We ate very well there.",
+      "text_fr": "Nous y avons très bien mangé."
+    },
+    {
+      "author": "Pepe Pepito",
+      "rating": 1,
+      "ago": "Hace 3 años",
+      "lang": "es",
+      "text": "Le doy una estrella porque no se puede poner 0.",
+      "text_es": "Le doy una estrella porque no se puede poner 0.",
+      "text_en": "I give it one star because zero isn’t possible.",
+      "text_fr": "Je mets une étoile parce qu’on ne peut pas mettre zéro."
+    },
+    {
+      "author": "ANTONIO CRUZ SALVADOR",
+      "rating": 5,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Un lugar en el centro de Fustiñana, muy bien atendido.",
+      "text_es": "Un lugar en el centro de Fustiñana, muy bien atendido.",
+      "text_en": "A centrally located place in Fustiñana, very well attended.",
+      "text_fr": "Un lieu au centre de Fustiñana, très bien servi."
+    },
+    {
+      "author": "Pascual Donlo Gil",
+      "rating": 4,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Buen ambiente para estar en familia.",
+      "text_es": "Buen ambiente para estar en familia.",
+      "text_en": "Good atmosphere for spending time with family.",
+      "text_fr": "Bonne ambiance pour être en famille."
+    },
+    {
+      "author": "Sergio Borja",
+      "rating": 4,
+      "ago": "Hace 8 años",
+      "lang": "es",
+      "text": "Rapidez, trato agradable y buena calidad.",
+      "text_es": "Rapidez, trato agradable y buena calidad.",
+      "text_en": "Fast service, friendly staff and good quality.",
+      "text_fr": "Rapide, personnel agréable et bonne qualité."
+    },
+    {
+      "author": "José A.",
+      "rating": 4,
+      "ago": "Hace 4 años",
+      "lang": "es",
+      "text": "Atractivo, cordial y familiar.",
+      "text_es": "Atractivo, cordial y familiar.",
+      "text_en": "Attractive, friendly and family-style.",
+      "text_fr": "Attrayant, convivial et familial."
+    },
+    {
+      "author": "Félix Serrano",
+      "rating": 4,
+      "ago": "Hace 4 años",
+      "lang": "es",
+      "text": "Buen sitio, bien situado.",
+      "text_es": "Buen sitio, bien situado.",
+      "text_en": "Good place, well located.",
+      "text_fr": "Bon endroit, bien situé."
+    },
+    {
+      "author": "Jose Luis Alfaro",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Un sitio donde poder disfrutar.",
+      "text_es": "Un sitio donde poder disfrutar.",
+      "text_en": "A place to truly enjoy.",
+      "text_fr": "Un endroit où profiter."
+    },
+    {
+      "author": "Anuncia Erro Ayensa",
+      "rating": 5,
+      "ago": "Hace 3 años",
+      "lang": "es",
+      "text": "Buena comida y presentación.",
+      "text_es": "Buena comida y presentación.",
+      "text_en": "Good food and presentation.",
+      "text_fr": "Bonne cuisine et belle présentation."
+    },
+    {
+      "author": "Domingo Rufo Lancho",
+      "rating": 4,
+      "ago": "Hace 7 años",
+      "lang": "es",
+      "text": "Buen ambiente.",
+      "text_es": "Buen ambiente.",
+      "text_en": "Good atmosphere.",
+      "text_fr": "Bonne ambiance."
+    },
+    {
+      "author": "angel alvite rodriguez",
+      "rating": 4,
+      "ago": "Hace 8 años",
+      "lang": "es",
+      "text": "Lugar agradable y familiar.",
+      "text_es": "Lugar agradable y familiar.",
+      "text_en": "Pleasant, family-friendly place.",
+      "text_fr": "Endroit agréable et familial."
+    },
+    {
+      "author": "Vicente Izaguirre",
+      "rating": 5,
+      "ago": "Hace 4 años",
+      "lang": "es",
+      "text": "Muy correcto.",
+      "text_es": "Muy correcto.",
+      "text_en": "Very good overall.",
+      "text_fr": "Très correct."
+    },
+    {
+      "author": "Rafa Palomares",
+      "rating": 5,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Comida para celíacos.",
+      "text_es": "Comida para celíacos.",
+      "text_en": "Food options for celiacs.",
+      "text_fr": "Options pour les coeliaques."
+    },
+    {
+      "author": "Merindad La Voz",
+      "rating": 5,
+      "ago": "Hace 7 años",
+      "lang": "es",
+      "text": "Buena gente.",
+      "text_es": "Buena gente.",
+      "text_en": "Good people.",
+      "text_fr": "Des gens bien."
+    },
+    {
+      "author": "Raul Belio",
+      "rating": 5,
+      "ago": "Hace 8 años",
+      "lang": "es",
+      "text": "Una gran familia.",
+      "text_es": "Una gran familia.",
+      "text_en": "A great family.",
+      "text_fr": "Une grande famille."
+    },
+    {
+      "author": "Isabel Beltrán Pardo",
+      "rating": 5,
+      "ago": "Hace 3 años",
+      "lang": "es",
+      "text": "Ricos pinchos.",
+      "text_es": "Ricos pinchos.",
+      "text_en": "Tasty pintxos.",
+      "text_fr": "De bons pintxos."
+    },
+    {
+      "author": "Nieves Garijo",
+      "rating": 5,
+      "ago": "Hace 6 años",
+      "lang": "es",
+      "text": "Acogedor.",
+      "text_es": "Acogedor.",
+      "text_en": "Cozy.",
+      "text_fr": "Chaleureux."
+    },
+    {
+      "author": "Ana Marta Torres",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "Muy familiar.",
+      "text_es": "Muy familiar.",
+      "text_en": "Very family-friendly.",
+      "text_fr": "Très familial."
+    },
+    {
+      "author": "J.A.L",
+      "rating": 5,
+      "ago": "Hace 5 años",
+      "lang": "es",
+      "text": "De lo mejor de Fustiñana.",
+      "text_es": "De lo mejor de Fustiñana.",
+      "text_en": "One of the best in Fustiñana.",
+      "text_fr": "Parmi les meilleurs à Fustiñana."
+    },
+    {
+      "author": "Natacha girardi",
+      "rating": 5,
+      "ago": "Hace 1 año",
+      "lang": "fr",
+      "text": "Rien à ajouter, tout s'est très bien passé : rapidité de service, bienveillance, bonne prestation et repas très correct.",
+      "text_es": "Nada que añadir: todo salió muy bien; rapidez en el servicio, amabilidad, buena atención y comida muy correcta.",
+      "text_en": "Nothing to add: everything went very well — quick service, kindness, good service and a very decent meal.",
+      "text_fr": "Rien à ajouter, tout s'est très bien passé : rapidité de service, bienveillance, bonne prestation et repas très correct."
+    },
+    {
+      "author": "Coco",
+      "rating": 5,
+      "ago": "Hace 3 años",
+      "lang": "fr",
+      "text": "Des gens adorables et c'est simplement impeccable et magnifique. Bravo ! 🫶🫶🫶🌹🌹👏👏",
+      "text_es": "Gente encantadora y todo impecable y precioso. ¡Bravo! 🫶🫶🫶🌹🌹👏👏",
+      "text_en": "Lovely people and everything is spotless and beautiful. Bravo! 🫶🫶🫶🌹🌹👏👏",
+      "text_fr": "Des gens adorables et c'est simplement impeccable et magnifique. Bravo ! 🫶🫶🫶🌹🌹👏👏"
+    },
+    {
+      "author": "Miguel Angel Fernandez",
+      "rating": 4,
+      "ago": "Hace 6 días",
+      "lang": "es",
+      "text": "Todo correcto.",
+      "text_es": "Todo correcto.",
+      "text_en": "Everything ok.",
+      "text_fr": "Tout correct."
+    },
+    {
+      "author": "Jordi J",
+      "rating": 5,
+      "ago": "Hace 2 meses",
+      "lang": "es",
+      "text": "Muy bien.",
+      "text_es": "Muy bien.",
+      "text_en": "Very good.",
+      "text_fr": "Très bien."
+    }
+  ]
+}

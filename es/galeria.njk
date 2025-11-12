@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Galería
+lang: es
+permalink: /galeria/
+alt: {"en": "/en/gallery/", "fr": "/fr/galerie/"}
+---
+<section class="section container">
+  <h1>Galería</h1>
+  <div class="gallery-grid">
+    {% for img in gallery %}
+      <figure class="g-item">
+        <img src="{{ img.src }}" alt="{{ (img.alt and img.alt['es']) or 'Foto del bar' }}">
+      </figure>
+    {% endfor %}
+  </div>
+</section>

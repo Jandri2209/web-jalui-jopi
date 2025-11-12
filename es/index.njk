@@ -5,6 +5,8 @@ lang: es
 permalink: /
 alt: {"en": "/en/", "fr": "/fr/"}
 ---
+
+{# ==== HERO ==== #}
 <section class="hero">
   <div>
     <p class="kicker">Fustiñana · Navarra</p>
@@ -16,11 +18,15 @@ alt: {"en": "/en/", "fr": "/fr/"}
     </div>
     <p class="lead-note" style="margin-top:10px">{{ i18n.es.OpenHoursNote }}</p>
   </div>
+
   <div class="card">
     <h3>Un clásico desde 1967</h3>
-    <p>Jalui Jopi nació como local de copas y música en la Plaza de los Fueros. Con el tiempo
-    fuimos ampliando a <strong>bocadillos, raciones, pizzas y platos combinados</strong>. Hoy seguimos siendo ese punto de encuentro
-    para tomar algo y comer sencillo, rico y rápido.</p>
+    <p>
+      Nacimos como discobar en los sesenta y seguimos en la <strong>Plaza de los Fueros</strong>,
+      convertidos en un lugar de encuentro para tomar algo y comer fácil: <strong>bocadillos</strong>,
+      <strong>raciones</strong>, <strong>pizzas</strong> y <strong>platos combinados</strong>.
+      Ambiente cercano, servicio rápido y recetas sin complicaciones.
+    </p>
     <ul>
       <li>Ubicación: <strong>{{ site.address }}</strong></li>
       <li>Tel.: <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Móvil: <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
@@ -29,10 +35,63 @@ alt: {"en": "/en/", "fr": "/fr/"}
   </div>
 </section>
 
+{# ==== DESTACADOS RÁPIDOS ==== #}
 <section class="section">
   <div class="grid-3">
     <div class="card"><h4>Bocadillos</h4><p>Clásicos bien resueltos: jamón y queso, lomo, tortilla, calamares…</p></div>
-    <div class="card"><h4>Raciones & pintxos</h4><p>Para compartir en la barra o en la terraza.</p></div>
-    <div class="card"><h4>Pizzas & combinados</h4><p>Para saciar el hambre sin complicaciones.</p></div>
+    <div class="card"><h4>Raciones y pintxos</h4><p>Para compartir en barra o en terraza.</p></div>
+    <div class="card"><h4>Pizzas y combinados</h4><p>Para saciar el hambre sin complicaciones.</p></div>
+  </div>
+</section>
+
+{# ==== RESEÑAS GOOGLE (ligero, sin API) ==== #}
+{% set pid = site.placeId %}
+{% set hasReviews = site.reviews and site.reviews.google_avg and site.reviews.google_count %}
+<section class="section">
+  <div class="card" style="display:grid;gap:.6rem;align-items:center">
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <span class="logo-google" aria-hidden="true" style="width:22px;height:22px;display:inline-block;background:linear-gradient(45deg,#4285F4,#34A853,#FBBC05,#EA4335);border-radius:4px"></span>
+      <strong>Google</strong>
+      {% if hasReviews %}
+        <span style="opacity:.8">·</span>
+        <span style="font-size:1.2rem">{{ site.reviews.google_avg }} / 5</span>
+        <span style="opacity:.8">({{ site.reviews.google_count }} reseñas)</span>
+      {% endif %}
+    </div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      {% if pid %}
+        <a class="btn" href="{{ 'https://search.google.com/local/writereview?placeid=' ~ pid }}" target="_blank" rel="noopener">Escribir reseña</a>
+        <a class="btn alt" href="{{ 'https://www.google.com/maps/search/?api=1&query=Jalui%20Jopi&query_place_id=' ~ pid }}" target="_blank" rel="noopener">Ver reseñas</a>
+      {% else %}
+        <a class="btn alt" href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">Ver en Google</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{# ==== GALERÍA BREVE (pon /images/home/home-01.jpg ... 03.jpg) ==== #}
+<section class="section">
+  <div class="grid-3">
+    {% for n in [1,2,3] %}
+    <figure class="card" style="padding:0;overflow:hidden">
+      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — foto {{ n }}" width="800" height="600" loading="lazy">
+    </figure>
+    {% endfor %}
+  </div>
+  <p style="text-align:center;margin-top:.8rem">
+    <a class="btn alt" href="/galeria/">Abrir galería</a>
+  </p>
+</section>
+
+{% include "partials/reviews-google.njk" %}
+
+{# ==== HISTORIA BREVE ==== #}
+<section class="section">
+  <div class="card">
+    <h2>Desde 1967 en la plaza</h2>
+    <p>
+      Seguimos donde empezamos: en la plaza de Fustiñana. Cambió la cabina de DJ por playlists,
+      pero no el trato ni el ritmo. Cocina sencilla hecha con cariño, para comer bien y salir rápido.
+    </p>
   </div>
 </section>

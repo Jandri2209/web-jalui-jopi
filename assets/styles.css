@@ -51,7 +51,7 @@ a:visited{ color:#a78bfa }
 }
 .main-nav a:hover,.main-nav a.is-active{ background:var(--card); border-color:var(--border) }
 /* En nav NO queremos morado visitado */
-/* .site-header .main-nav a:visited{ color:var(--fg) } */
+.site-header .main-nav a:visited{ color:var(--fg) }
 
 /* Panel móvil */
 @media (max-width:899px){
@@ -91,7 +91,7 @@ a:visited{ color:#a78bfa }
 .btn.alt{ background:transparent; color:var(--fg); border:1px solid var(--border) }
 .btn.wide{ width:100%; justify-content:center }
 /* En botones tampoco morado visitado */
-/* .btn:visited{ color:#000 } .btn.alt:visited{ color:var(--fg) } */
+.btn:visited{ color:#000 } .btn.alt:visited{ color:var(--fg) }
 
 .card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px }
 .section{ padding:22px 0 }
@@ -181,6 +181,78 @@ a:visited{ color:#a78bfa }
   padding:10px 0 28px; color:var(--muted);
   display:flex; justify-content:space-between; align-items:center
 }
+
+/* Badge reseñas Google */
+.rating-badge{ display:flex; align-items:center; gap:14px; }
+.rating-badge .gmark{
+  width:36px; height:36px; border-radius:10px; background:#111; border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; font-weight:800; color:#34a853;
+}
+.rating-badge .rating-copy .score{ font-size:1.25rem; font-weight:800 }
+.rating-badge .muted{ color:var(--muted) }
+
+/* Galería simple */
+.gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
+.gallery-grid .g-item img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--border) }
+@media (max-width:760px){ .gallery-grid{ grid-template-columns:1fr 1fr } }
+
+/* ===== Reseñas Google ===== */
+.platform-col{ display:block }
+.plat-header{ display:flex; align-items:center; gap:.5rem; margin-bottom:.4rem }
+.platform-badge{ display:inline-flex; align-items:center; gap:.4rem }
+.platform-badge .icon{ width:18px; height:18px; border-radius:4px; background:#181818; border:1px solid var(--border) }
+
+/* “G” simple para el icono */
+.logo-google{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:4px; background:#111; border:1px solid var(--border); font-weight:800; color:#4285f4 }
+.logo-google::before{ content:"G" }
+
+/* Carrusel */
+.platform-col .slides{ position:relative; min-height:140px }
+.review-card{ display:block }
+.review-stars{ font-size:16px; letter-spacing:.05em }
+.review-stars span{ color:var(--accent) }
+.review-stars .empty{ color:#555 }
+
+.controls{ display:flex; align-items:center; justify-content:center; gap:.4rem; margin-top:.6rem }
+.dots{ display:flex; gap:.35rem; align-items:center }
+.dot{ width:8px; height:8px; border-radius:50%; background:#333; border:1px solid var(--border) }
+.dot.is-active{ background:var(--accent); border-color:var(--accent) }
+
+/* Panel superior: media agregada + botones */
+.rating-panel{ display:flex; align-items:center; justify-content:space-between; gap:.8rem; flex-wrap:wrap }
+.rating-big{ display:flex; align-items:center; gap:.6rem }
+.rating-big .value{ font-size:1.25rem; font-weight:800 }
+.rating-cta{ display:flex; gap:.5rem; flex-wrap:wrap }
+.btn.sm{ padding:.35rem .6rem; font-size:.9rem }
+
+/* Nota de traducción + toggle */
+.trans-note{ color:var(--muted); font-size:.9rem; margin-top:.35rem }
+.link.toggle-trans{ background:none; border:0; color:#a78bfa; text-decoration:underline; cursor:pointer }
+.link.toggle-trans:hover{ color:#d6ccff }
+
+/* Modal */
+.rev-modal-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.65);
+  display:block; z-index:60; padding:18px; backdrop-filter:blur(2px)
+}
+.rev-modal{
+  max-width:800px; margin:0 auto; background:var(--card);
+  border:1px solid var(--border); border-radius:14px; padding:16px;
+  max-height:85vh; overflow:auto
+}
+.rev-modal-header{ display:flex; align-items:center; justify-content:space-between; gap:.5rem }
+.rev-modal-close{ background:transparent; color:var(--fg); border:1px solid var(--border); border-radius:10px; padding:.2rem .5rem; cursor:pointer }
+.drawer-filters{ margin:.2rem 0 .6rem }
+.chip{
+  background:#121212; color:var(--fg); border:1px solid var(--border);
+  padding:.35rem .6rem; border-radius:999px; cursor:pointer
+}
+.chip.is-active{ background:var(--accent); color:#000; border-color:var(--accent) }
+
+/* Enlaces dentro de cabecera de reseñas sin morado visitado */
+.plat-header a:visited{ color:var(--fg) }
+
+.logo-google{ display:inline-block; vertical-align:-3px }
 
 /* ========== Responsive ========== */
 @media (max-width:900px){ .gethere-grid{ grid-template-columns:1fr } }

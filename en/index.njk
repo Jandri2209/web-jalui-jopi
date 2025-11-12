@@ -5,9 +5,10 @@ lang: en
 permalink: /en/
 alt: {"es": "/", "fr": "/fr/"}
 ---
+
 <section class="hero">
   <div>
-    <p class="kicker">Fustiñana · Navarra</p>
+    <p class="kicker">Fustiñana · Navarre</p>
     <h1>{{ i18n.en.HeroTitle }}</h1>
     <p class="lead">{{ i18n.en.HeroSubtitle }}</p>
     <div class="cta-row">
@@ -16,20 +17,73 @@ alt: {"es": "/", "fr": "/fr/"}
     </div>
     <p class="lead-note" style="margin-top:10px">{{ i18n.en.OpenHoursNote }}</p>
   </div>
+
   <div class="card">
-    <h3>A local icon since 1967</h3>
-    <p>We started as a music & drinks bar and evolved into a casual spot for <strong>sandwiches, sharing plates, pizzas and combo dishes</strong>.</p>
+    <h3>A local classic since 1967</h3>
+    <p>
+      Born as a music bar on the main square, today we’re a laid-back spot for
+      <strong>sandwiches</strong>, <strong>sharing plates</strong>, <strong>pizzas</strong> and
+      <strong>combos</strong>. Friendly service, quick turnaround, no fuss.
+    </p>
     <ul>
-      <li>Address: <strong>{{ site.address }}</strong></li>
-      <li>Phone: <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · Mobile: <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
-      <li>Instagram: <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
+      <li><strong>Address:</strong> {{ site.address }}</li>
+      <li><strong>Tel.:</strong> <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
+      <li><strong>Instagram:</strong> <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
     </ul>
   </div>
 </section>
+
 <section class="section">
   <div class="grid-3">
-    <div class="card"><h4>Sandwiches</h4><p>Well-done classics: ham & cheese, lomo, tortilla, calamari…</p></div>
-    <div class="card"><h4>Sharing plates & pintxos</h4><p>For the bar or the terrace.</p></div>
-    <div class="card"><h4>Pizzas & combo plates</h4><p>To satisfy hunger without fuss.</p></div>
+    <div class="card"><h4>Sandwiches</h4><p>Well-done classics: ham and cheese, pork loin, tortilla, calamari…</p></div>
+    <div class="card"><h4>Rations and pintxos</h4><p>To share at the bar or on the terrace.</p></div>
+    <div class="card"><h4>Pizzas and combos</h4><p>For a quick, satisfying bite.</p></div>
+  </div>
+</section>
+
+{% set pid = site.placeId %}
+{% set hasReviews = site.reviews and site.reviews.google_avg and site.reviews.google_count %}
+<section class="section">
+  <div class="card" style="display:grid;gap:.6rem;align-items:center">
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <span class="logo-google" aria-hidden="true" style="width:22px;height:22px;display:inline-block;background:linear-gradient(45deg,#4285F4,#34A853,#FBBC05,#EA4335);border-radius:4px"></span>
+      <strong>Google</strong>
+      {% if hasReviews %}
+        <span style="opacity:.8">·</span>
+        <span style="font-size:1.2rem">{{ site.reviews.google_avg }} / 5</span>
+        <span style="opacity:.8">({{ site.reviews.google_count }} reviews)</span>
+      {% endif %}
+    </div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      {% if pid %}
+        <a class="btn" href="{{ 'https://search.google.com/local/writereview?placeid=' ~ pid }}" target="_blank" rel="noopener">Write a review</a>
+        <a class="btn alt" href="{{ 'https://www.google.com/maps/search/?api=1&query=Jalui%20Jopi&query_place_id=' ~ pid }}" target="_blank" rel="noopener">See reviews</a>
+      {% else %}
+        <a class="btn alt" href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">Open in Google</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid-3">
+    {% for n in [1,2,3] %}
+    <figure class="card" style="padding:0;overflow:hidden">
+      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — photo {{ n }}" width="800" height="600" loading="lazy">
+    </figure>
+    {% endfor %}
+  </div>
+  <p style="text-align:center;margin-top:.8rem">
+    <a class="btn alt" href="/en/gallery/">Open gallery</a>
+  </p>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Since 1967 on the square</h2>
+    <p>
+      Same spot, same spirit. From vinyl to playlists, the goal hasn’t changed:
+      simple food made with care, fast service, and a friendly vibe.
+    </p>
   </div>
 </section>

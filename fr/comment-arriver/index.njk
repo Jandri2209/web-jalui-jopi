@@ -8,8 +8,15 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
 
 {% set addr = (site.address | replace("·"," ") | trim) %}
 {% set q = addr | urlencode %}
+{% set pid = site.placeId %}
 
-{% set mapsHref   = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
+{% if pid %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q ~ "&query_place_id=" ~ pid %}
+  {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
+{% else %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
+  {% set writeReviewHref = mapsHref %}
+{% endif %}
 {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
 
 <section class="section">
