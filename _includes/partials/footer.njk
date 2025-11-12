@@ -67,23 +67,12 @@
           </a>
         {% endif %}
       </div>
-
-      <div class="f-ctas">
-        <a class="btn alt" href="{{ contactHref }}">{{ T.CTA_Contact }}</a>
-        <a class="btn" href="{{ menuHref }}">{{ T.CTA_SeeMenu }}</a>
-      </div>
     </section>
 
-    <!-- Navegación -->
-    <nav class="f-nav" aria-label="Navegación del sitio">
-      <h4>{{ T.Inicio }}</h4>
-      <ul>
-        <li><a href="{{ homeHref }}">{{ T.Inicio }}</a></li>
-        <li><a href="{{ menuHref }}">{{ T.Carta }}</a></li>
-        <li><a href="{{ contactHref }}">{{ T.Contacto }}</a></li>
-        <li><a href="{{ mapHref }}">{{ T.ComoLlegar }}</a></li>
-      </ul>
-    </nav>
+    <div class="f-ctas">
+      <a class="btn alt" href="/contacto/">{{ i18n.es.CTA_Contact }}</a>
+      <a class="btn" href="/carta/">{{ i18n.es.CTA_SeeMenu }}</a>
+    </div>
 
     <!-- Horario -->
     <section class="f-hours" aria-label="Horario">

@@ -41,44 +41,20 @@ alt: {"es": "/", "fr": "/fr/"}
   </div>
 </section>
 
-{% set pid = site.placeId %}
-{% set hasReviews = site.reviews and site.reviews.google_avg and site.reviews.google_count %}
-<section class="section">
-  <div class="card" style="display:grid;gap:.6rem;align-items:center">
-    <div style="display:flex;align-items:center;gap:.8rem">
-      <span class="logo-google" aria-hidden="true" style="width:22px;height:22px;display:inline-block;background:linear-gradient(45deg,#4285F4,#34A853,#FBBC05,#EA4335);border-radius:4px"></span>
-      <strong>Google</strong>
-      {% if hasReviews %}
-        <span style="opacity:.8">·</span>
-        <span style="font-size:1.2rem">{{ site.reviews.google_avg }} / 5</span>
-        <span style="opacity:.8">({{ site.reviews.google_count }} reviews)</span>
-      {% endif %}
-    </div>
-    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-      {% if pid %}
-        <a class="btn" href="{{ 'https://search.google.com/local/writereview?placeid=' ~ pid }}" target="_blank" rel="noopener">Write a review</a>
-        <a class="btn alt" href="{{ 'https://www.google.com/maps/search/?api=1&query=Jalui%20Jopi&query_place_id=' ~ pid }}" target="_blank" rel="noopener">See reviews</a>
-      {% else %}
-        <a class="btn alt" href="https://maps.google.com/?q={{ site.address | urlencode }}" target="_blank" rel="noopener">Open in Google</a>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-{% include "partials/reviews-google.njk" %}
-
 <section class="section">
   <div class="grid-3">
     {% for n in [1,2,3] %}
-    <figure class="card" style="padding:0;overflow:hidden">
-      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — photo {{ n }}" width="800" height="600" loading="lazy">
-    </figure>
+    <div class="g-item card" style="padding:0">
+      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — foto {{ n }}" width="1200" height="900" loading="lazy" decoding="async">
+    </div>
     {% endfor %}
   </div>
   <p style="text-align:center;margin-top:.8rem">
     <a class="btn alt" href="/en/gallery/">Open gallery</a>
   </p>
 </section>
+
+{% include "partials/reviews-google.njk" %}
 
 <section class="section">
   <div class="card">

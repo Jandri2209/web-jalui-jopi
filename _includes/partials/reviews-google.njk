@@ -1,5 +1,5 @@
 {# partials/reviews-google.njk #}
-{% set data = reviews-google or {} %}   {# requiere _data/reviewsGoogle.json #}
+{% set data = reviewsGoogle or {} %}   {# requiere _data/reviewsGoogle.json #}
 {% set itemsRaw = data.items or [] %}
 {% set link = data.link or site.reviewsGoogleLink or '#' %}
 {% set write = data.writeReview or site.reviewsGoogleWrite or link %}

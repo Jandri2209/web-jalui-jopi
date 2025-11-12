@@ -52,6 +52,12 @@ a:visited{ color:#a78bfa }
 .main-nav a:hover,.main-nav a.is-active{ background:var(--card); border-color:var(--border) }
 /* En nav NO queremos morado visitado */
 .site-header .main-nav a:visited{ color:var(--fg) }
+.site-header a.brand:link,
+.site-header a.brand:visited { 
+  color: var(--fg);
+}
+.site-header a.brand span { color: inherit; }
+
 
 /* Panel móvil */
 @media (max-width:899px){
@@ -176,11 +182,8 @@ a:visited{ color:#a78bfa }
   border:1px solid var(--border); border-radius:999px; padding:.35rem .6rem
 }
 
-.footer-meta{
-  border-top:1px solid var(--border);
-  padding:10px 0 28px; color:var(--muted);
-  display:flex; justify-content:space-between; align-items:center
-}
+.footer-meta{ border-top:1px solid var(--border); padding:10px 0 28px; color:var(--muted);
+  display:flex; justify-content:center; align-items:center; text-align:center }
 
 /* Badge reseñas Google */
 .rating-badge{ display:flex; align-items:center; gap:14px; }
@@ -193,7 +196,8 @@ a:visited{ color:#a78bfa }
 
 /* Galería simple */
 .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
-.gallery-grid .g-item img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--border) }
+.gallery-grid .g-item{ aspect-ratio:4/3; overflow:hidden; border-radius:10px; border:1px solid var(--border) }
+.gallery-grid .g-item img{ width:100%; height:100%; object-fit:cover; display:block }
 @media (max-width:760px){ .gallery-grid{ grid-template-columns:1fr 1fr } }
 
 /* ===== Reseñas Google ===== */
