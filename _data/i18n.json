@@ -27,6 +27,7 @@
     "Write": "Escribir correo",
     "FollowUs": "Síguenos",
     "Legal": "Aviso legal",
+    "Info": "Términos de Uso",
     "Privacy": "Privacidad",
     "Cookies": "Cookies"
   },
@@ -58,6 +59,7 @@
     "Write": "Send email",
     "FollowUs": "Follow us",
     "Legal": "Legal",
+    "Info": "Terms of Use",
     "Privacy": "Privacy",
     "Cookies": "Cookies"
   },
@@ -89,6 +91,7 @@
     "Write": "Envoyer un email",
     "FollowUs": "Suivez‑nous",
     "Legal": "Mentions légales",
+    "Info": "Conditions d'utilisation",
     "Privacy": "Confidentialité",
     "Cookies": "Cookies"
   }
