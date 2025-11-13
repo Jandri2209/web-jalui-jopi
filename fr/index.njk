@@ -42,15 +42,15 @@ alt: {"es": "/", "en": "/en/"}
 </section>
 
 <section class="section">
-  <div class="grid-3">
+  <div class="home-gallery">
     {% for n in [1,2,3] %}
-    <div class="g-item card" style="padding:0">
-      <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — foto {{ n }}" width="1200" height="900" loading="lazy" decoding="async">
-    </div>
+      <figure class="g-item">
+        <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — foto {{ n }}" loading="lazy">
+      </figure>
     {% endfor %}
   </div>
   <p style="text-align:center;margin-top:.8rem">
-    <a class="btn alt" href="/fr/galerie/">Ouvrir la galerie</a>
+    <a class="btn alt" href="/galeria/">Abrir galería</a>
   </p>
 </section>
 

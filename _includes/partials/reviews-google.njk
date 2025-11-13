@@ -54,9 +54,10 @@
         <a href="{{ link }}" class="btn alt sm" target="_blank" rel="noopener" style="margin-left:auto">{{ T.see }}</a>
       </header>
 
+      {% set maxItems = 6 %}
       <div class="slides">
         {% for r in itemsRaw %}
-          {% if r.text %}
+          {% if r.text and loop.index0 < maxItems %}
             {% set full = (r.rating and (r.rating | round(0, 'floor'))) or 0 %}
             {% set transKey = 'text_' ~ pageLang %}
             {% set transText = (r[transKey] or '') %}

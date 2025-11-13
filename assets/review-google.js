@@ -110,4 +110,10 @@
   openBtn?.addEventListener('click', () => { populate(); modal.hidden = false; modal.focus(); });
   closeBtn?.addEventListener('click', () => { modal.hidden = true; });
   modal?.addEventListener('click', (e) => { if (e.target === modal) modal.hidden = true; });
+    // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal && !modal.hidden){
+      modal.hidden = true;
+    }
+  });
 })();
