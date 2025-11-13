@@ -4,7 +4,10 @@ const site = require("./_data/site.json");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("images");
-  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("favicon-light-16.png");
+  eleventyConfig.addPassthroughCopy("favicon-light-32.png");
+  eleventyConfig.addPassthroughCopy("favicon-dark-16.png");
+  eleventyConfig.addPassthroughCopy("favicon-dark-32.png");
   eleventyConfig.addPassthroughCopy("site.webmanifest");
 
   eleventyConfig.addPlugin(pluginSitemap, {
