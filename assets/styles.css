@@ -221,7 +221,7 @@ a:visited{ color:#a78bfa }
 /* “G” simple para el icono */
 .logo-google{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:4px; background:#111; border:1px solid var(--border); font-weight:800; color:#4285f4 }
 .logo-google::before{ content:"G" }
-
+.btn, button, .rev-modal-close, .dots .dot, .chip, .controls .prev, .controls .next { cursor: pointer }
 /* Carrusel */
 .platform-col .slides{ position:relative; min-height:140px }
 .review-card{ display:block }
@@ -229,9 +229,10 @@ a:visited{ color:#a78bfa }
 .review-stars span{ color:var(--accent) }
 .review-stars .empty{ color:#555 }
 /* Legibilidad en reseñas */
-.review-card header strong{ font-weight:800; font-size:1.05rem; }
-.review-card time{ color:#9ca3af; }
-.review-card .rev-text{ margin-top:.35rem; line-height:1.6; }
+.review-card header strong{ font-size:1.1rem; font-weight:800 }
+.review-card .review-stars{ font-size:16px; letter-spacing:.05em }
+.review-card .rev-text{ margin:.35rem 0 0; line-height:1.6; font-size:1.02rem }
+.review-card .rev-time{ color:#6b7280; font-size:.9rem; display:block; margin-top:.2rem }
 
 
 .controls{ display:flex; align-items:center; justify-content:center; gap:.4rem; margin-top:.6rem }
@@ -260,6 +261,9 @@ a:visited{ color:#a78bfa }
 }
 /* cuando tenga [hidden], que no se muestre NUNCA */
 .rev-modal-backdrop[hidden]{ display:none !important; }
+
+/* Asegura que el atributo hidden realmente oculta */
+[hidden]{ display:none !important }
 
 .rev-modal{
   max-width:800px; margin:0 auto; background:var(--card);
@@ -296,3 +300,12 @@ a:visited{ color:#a78bfa }
   .f-ctas .btn{ width:100% }
 }
 @media(max-width:760px){ .home-gallery{ grid-template-columns:1fr 1fr; } }
+/* Footer: normaliza CTAs en desktop */
+@media (min-width:1024px){
+  .site-footer.pro .footer-wrap{ align-items:start } /* evita estirar filas */
+  .site-footer.pro .f-ctas{ display:flex; flex-direction:column; gap:.6rem }
+  .site-footer.pro .f-ctas .btn{
+    width:auto; height:auto; padding:12px 18px;
+    border-radius:999px; line-height:1.2; font-weight:700;
+  }
+}

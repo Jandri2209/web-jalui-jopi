@@ -54,16 +54,20 @@
         <a href="{{ link }}" class="btn alt sm" target="_blank" rel="noopener" style="margin-left:auto">{{ T.see }}</a>
       </header>
 
-      {% set maxItems = 6 %}
+      {% set PAGE = 6 %}
       <div class="slides">
         {% for r in itemsRaw %}
-          {% if r.text and loop.index0 < maxItems %}
+          {% if r.text %}
             {% set full = (r.rating and (r.rating | round(0, 'floor'))) or 0 %}
             {% set transKey = 'text_' ~ pageLang %}
             {% set transText = (r[transKey] or '') %}
             {% set showTrans = (pageLang != (r.lang or 'es')) and transText %}
 
-            <article class="review-card" data-stars="{{ full }}" {% if not loop.first %}hidden{% endif %}>
+            {# Solo la PRIMERA página visible en HTML; el resto lo esconde JS #}
+            <article class="review-card"
+                    data-stars="{{ full }}"
+                    {% if loop.index0 >= PAGE %}hidden{% endif %}>
+
               <header style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
                 <strong>{{ r.author or 'Anónimo' }}</strong>
                 {% if full > 0 %}
@@ -74,10 +78,6 @@
                   </div>
                 {% endif %}
               </header>
-
-              {% if r.ago or r.date %}
-                <time datetime="{{ r.date or '' }}" style="color:#6b7280;font-size:.9rem">{{ r.ago or r.date }}</time>
-              {% endif %}
 
               <div class="rev-body" style="margin-top:.25rem">
                 {% if showTrans %}
@@ -91,6 +91,10 @@
                   <p class="rev-text" style="margin:.2rem 0 0;line-height:1.55">{{ transText or r.text }}</p>
                 {% endif %}
               </div>
+
+              {% if r.ago or r.date %}
+                <time datetime="{{ r.date or '' }}" style="color:#6b7280;font-size:.9rem">{{ r.ago or r.date }}</time>
+              {% endif %}
 
               <footer style="margin-top:.6rem;color:#6b7280;font-size:.9rem">
                 Google{% if r.lang %} · {{ r.lang | upper }}{% endif %}

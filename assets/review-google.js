@@ -2,37 +2,41 @@
   const $ = (s, el=document) => el.querySelector(s);
   const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
 
-  // ===== Carrusel =====
+  // ===== Carrusel por páginas =====
   $$('.platform-col').forEach(col => {
-    const slides = $$('.review-card', col);
-    if (!slides.length) return;
+    const pool = $$('.review-card', col);
+    if (!pool.length) return;
 
-    let i = 0, timer = null;
+    const PAGE = 6;
+    const pages = Math.ceil(pool.length / PAGE);
+    let p = 0, timer = null;
     const dots = $('.dots', col);
 
-    const makeActive = (idx) => {
-      slides.forEach((sl, k) => sl.hidden = k !== idx);
-      if (dots) $$('.dot', dots).forEach((d, k) => d.classList.toggle('is-active', k === idx));
-      i = idx;
+    const render = () => {
+      pool.forEach((el, i) => {
+        const show = (i >= p*PAGE) && (i < (p+1)*PAGE);
+        el.hidden = !show;
+      });
+      if (dots) $$('.dot', dots).forEach((d, i) => d.classList.toggle('is-active', i === p));
     };
 
-    // Dots
+    // Dots = páginas
     if (dots) {
-      slides.forEach((_, k) => {
+      for (let i=0;i<pages;i++){
         const b = document.createElement('button');
         b.className = 'dot';
-        b.setAttribute('aria-label', `Go to review ${k+1}`);
-        b.addEventListener('click', () => { makeActive(k); reset(); });
+        b.setAttribute('aria-label', `Ir a página ${i+1}`);
+        b.addEventListener('click', () => { p = i; reset(); render(); });
         dots.appendChild(b);
-      });
+      }
     }
 
-    const next = () => makeActive((i+1)%slides.length);
-    const prev = () => makeActive((i-1+slides.length)%slides.length);
+    const next = () => { p = (p+1) % pages; render(); };
+    const prev = () => { p = (p-1+pages) % pages; render(); };
     $('.next', col)?.addEventListener('click', () => { next(); reset(); });
     $('.prev', col)?.addEventListener('click', () => { prev(); reset(); });
 
-    // Autoplay + pausa al hover
+    // Autoplay + pausa
     const delay = parseInt(col.dataset.autoplay||'0',10);
     const shouldPause = col.dataset.pause === 'true';
     const start = () => { if (delay>0) timer = setInterval(next, delay); };
@@ -40,8 +44,8 @@
     const reset = () => { stop(); start(); };
     if (shouldPause) { col.addEventListener('mouseenter', stop); col.addEventListener('mouseleave', start); }
 
-    // Toggle traducción/original dentro de cada slide
-    slides.forEach(sl => {
+    // Toggle traducción/original por tarjeta (igual que tenías)
+    pool.forEach(sl => {
       const btn = $('.toggle-trans', sl);
       if (!btn) return;
       btn.addEventListener('click', () => {
@@ -50,14 +54,14 @@
         if (!tr || !orig) return;
         const showingOrig = !orig.hasAttribute('hidden');
         if (showingOrig) {
-          orig.hidden = true; tr.hidden = false; btn.textContent = btn.dataset.on; // volver a "Mostrar original"
+          orig.hidden = true; tr.hidden = false; btn.textContent = btn.dataset.on;
         } else {
-          tr.hidden = true; orig.hidden = false; btn.textContent = btn.dataset.off; // "Mostrar traducción"
+          tr.hidden = true; orig.hidden = false; btn.textContent = btn.dataset.off;
         }
       });
     });
 
-    makeActive(0); start();
+    render(); start();
   });
 
   // ===== Modal =====
@@ -112,7 +116,9 @@
   modal?.addEventListener('click', (e) => { if (e.target === modal) modal.hidden = true; });
     // Cerrar con ESC
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && modal && !modal.hidden){
+    if (e.key === 'Escape' && modal && !modal.hidden) {
+      e.stopPropagation();
+      e.preventDefault();
       modal.hidden = true;
     }
   });
