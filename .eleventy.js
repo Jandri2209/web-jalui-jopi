@@ -4,6 +4,8 @@ const site = require("./_data/site.json");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("site.webmanifest.json");
 
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: { hostname: site.url || "https://example.com" }

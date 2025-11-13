@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: "Página no encontrada"
+permalink: "/404.html"
+eleventyExcludeFromCollections: true
+---
+{% set path = page.url or '/' %}
+{% set langFromPath = path.startsWith('/en/') ? 'en' : (path.startsWith('/fr/') ? 'fr' : 'es') %}
+{% set L = i18n[langFromPath] %}
+
+<section class="prose">
+  <h1>{{ L.NotFoundTitle or "Página no encontrada" }}</h1>
+  <p>{{ L.NotFoundCopy or "Lo sentimos, no encontramos lo que buscabas." }}</p>
+  <p><a class="btn" href="{{ langFromPath == 'en' ? '/en/' : (langFromPath == 'fr' ? '/fr/' : '/') }}">
+    {{ L.VolverInicio or "Volver al inicio" }}
+  </a></p>
+</section>

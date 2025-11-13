@@ -303,7 +303,7 @@ a:visited{ color:#a78bfa }
 /* Footer: normaliza CTAs en desktop */
 @media (min-width:1024px){
   .site-footer.pro .footer-wrap{ align-items:start } /* evita estirar filas */
-  .site-footer.pro .f-ctas{ display:flex; flex-direction:column; gap:.6rem; align-self:center}
+  .site-footer.pro .f-ctas{ display:flex; flex-direction:column; gap:.6rem; align-self:center; justify-self: center;align-items: center;}
   .site-footer.pro .f-ctas .btn{
     width:auto; height:auto; padding:12px 18px;
     border-radius:999px; line-height:1.2; font-weight:700;
