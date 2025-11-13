@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("favicon.ico");
-  eleventyConfig.addPassthroughCopy("site.webmanifest.json");
+  eleventyConfig.addPassthroughCopy("site.webmanifest");
 
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: { hostname: site.url || "https://example.com" }

@@ -4,14 +4,49 @@ title: "Página no encontrada"
 permalink: "/404.html"
 eleventyExcludeFromCollections: true
 ---
-{% set path = page.url or '/' %}
-{% set langFromPath = path.startsWith('/en/') ? 'en' : (path.startsWith('/fr/') ? 'fr' : 'es') %}
-{% set L = i18n[langFromPath] %}
 
-<section class="prose">
-  <h1>{{ L.NotFoundTitle or "Página no encontrada" }}</h1>
-  <p>{{ L.NotFoundCopy or "Lo sentimos, no encontramos lo que buscabas." }}</p>
-  <p><a class="btn" href="{{ langFromPath == 'en' ? '/en/' : (langFromPath == 'fr' ? '/fr/' : '/') }}">
-    {{ L.VolverInicio or "Volver al inicio" }}
-  </a></p>
+<section class="prose" id="i18n-404">
+  <h1 data-es="Página no encontrada"
+      data-en="Page not found"
+      data-fr="Page introuvable">
+    Página no encontrada
+  </h1>
+
+  <p data-es="Lo sentimos, no encontramos lo que buscabas."
+     data-en="Sorry, we couldn't find what you were looking for."
+     data-fr="Désolé, nous n'avons pas trouvé ce que vous cherchiez.">
+    Lo sentimos, no encontramos lo que buscabas.
+  </p>
+
+  <p>
+    <a class="btn"
+       id="back-home"
+       href="/">
+      Volver al inicio
+    </a>
+  </p>
 </section>
+
+<script>
+(function () {
+  var p = (location.pathname || "/");
+  var lang = p.indexOf("/en/") === 0 ? "en" : (p.indexOf("/fr/") === 0 ? "fr" : "es");
+  var root = lang === "en" ? "/en/" : (lang === "fr" ? "/fr/" : "/");
+
+  var box = document.getElementById("i18n-404");
+  if (!box) return;
+
+  // Cambia textos leyendo data-attrs
+  box.querySelectorAll("[data-es]").forEach(function (el) {
+    var text = el.getAttribute("data-" + lang);
+    if (text) el.textContent = text;
+  });
+
+  // Botón a home correcto
+  var back = document.getElementById("back-home");
+  if (back) {
+    back.href = root;
+    back.textContent = (lang === "en" ? "Back to home" : (lang === "fr" ? "Retour à l’accueil" : "Volver al inicio"));
+  }
+})();
+</script>
