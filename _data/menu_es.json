@@ -3,125 +3,146 @@
     {
       "key": "bocadillos",
       "title": "Bocadillos",
-      "image": "https://placehold.co/1200x500?text=Bocadillos",
       "items": [
-        {
-          "name": "Jamón y queso",
-          "price": 4.5,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        },
-        {
-          "name": "Lomo con queso",
-          "price": 5.0,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        },
-        {
-          "name": "Tortilla",
-          "price": 4.0,
-          "allergens": [
-            "huevo"
-          ]
-        },
-        {
-          "name": "Calamares",
-          "price": 5.5,
-          "allergens": [
-            "gluten",
-            "pescado"
-          ]
-        }
+        { "name": "Lomo, queso, york y alioli", "price": 7.00,
+          "ingredients": ["pan","lomo","jamón york","queso","alioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Vegetal (lechuga, tomate, atún, espárrago, huevo duro, mayonesa)", "price": 7.00,
+          "ingredients": ["pan","lechuga","tomate","atún","espárrago","huevo","mayonesa"],
+          "allergens": ["gluten","pescado","huevo"] },
+        { "name": "Pechuga, lechuga, bacon, queso y alioli", "price": 7.00,
+          "ingredients": ["pan","pechuga","bacon","queso","alioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Jamón de bodega, huevo y pimiento verde", "price": 8.00,
+          "ingredients": ["pan","jamón","huevo","pimiento verde"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Solomillo, queso y pimiento rojo", "price": 7.50,
+          "ingredients": ["pan","solomillo","queso","pimiento rojo"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Ternera, huevo y pimiento verde", "price": 7.50,
+          "ingredients": ["pan","ternera","huevo","pimiento verde"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Tortilla al gusto (jamón, atún, queso, chistorra, patata)", "price": 7.00,
+          "ingredients": ["pan","huevo","(opciones: jamón, atún, queso, chistorra, patata)"],
+          "allergens": ["gluten","huevo","lácteos"] },
+        { "name": "Calamares a la romana", "price": 6.50,
+          "ingredients": ["pan","calamares","harina"],
+          "allergens": ["gluten","moluscos"] },
+        { "name": "Sándwich mixto (york y queso)", "price": 5.50,
+          "ingredients": ["pan de molde","jamón york","queso"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Bikini (york, bacon, queso y alioli)", "price": 6.50,
+          "ingredients": ["pan de molde","jamón york","bacon","queso","alioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Sándwich vegetal (lechuga, tomate, huevo, espárrago, atún, mayonesa)", "price": 6.50,
+          "ingredients": ["pan de molde","lechuga","tomate","huevo","espárrago","atún","mayonesa"],
+          "allergens": ["gluten","pescado","huevo"] }
       ]
     },
     {
-      "key": "raciones",
-      "title": "Raciones",
-      "image": "https://placehold.co/1200x500?text=Raciones",
+      "key": "ensaladas",
+      "title": "Ensaladas",
       "items": [
-        {
-          "name": "Patatas bravas",
-          "price": 6.0,
-          "allergens": []
-        },
-        {
-          "name": "Croquetas caseras (jamón)",
-          "price": 7.0,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        },
-        {
-          "name": "Torreznos",
-          "price": 7.5,
-          "allergens": []
-        },
-        {
-          "name": "Ensaladilla rusa",
-          "price": 6.5,
-          "allergens": [
-            "huevo",
-            "lácteos"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "platos",
-      "title": "Platos combinados",
-      "image": "https://placehold.co/1200x500?text=Platos+Combinados",
-      "items": [
-        {
-          "name": "Lomo, huevo y patatas",
-          "price": 9.5,
-          "allergens": [
-            "huevo"
-          ]
-        },
-        {
-          "name": "Escalope, ensalada y patatas",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "huevo"
-          ]
-        }
+        { "name": "Templada (lechuga, hongos calientes, bacon, reducción de módena)", "price": 9.50,
+          "ingredients": ["lechuga","setas/hongos","bacon","vinagre balsámico"],
+          "allergens": ["sulfitos"] },
+        { "name": "Frutos secos (lechuga, nuez, almendra, pasas, manzana)", "price": 9.00,
+          "ingredients": ["lechuga","nuez","almendra","pasas","manzana"],
+          "allergens": ["frutos de cáscara"] },
+        { "name": "César (lechuga, pechuga, picatostes, salsa césar)", "price": 9.00,
+          "ingredients": ["lechuga","pollo","pan","queso","huevo","anchoa"],
+          "allergens": ["gluten","lácteos","huevo","pescado"] },
+        { "name": "Mixta (lechuga, tomate, atún, espárrago, huevo duro, olivas)", "price": 8.50,
+          "ingredients": ["lechuga","tomate","atún","espárrago","huevo","olivas"],
+          "allergens": ["pescado","huevo"] },
+        { "name": "Ensaladilla rusa", "price": 8.00,
+          "ingredients": ["patata","mayonesa","atún (a veces)","huevo (según receta)"],
+          "allergens": ["huevo"] },
+        { "name": "Veraniega (tomate, anchoas, atún y olivas)", "price": 8.00,
+          "ingredients": ["tomate","anchoas","atún","olivas"],
+          "allergens": ["pescado"] }
       ]
     },
     {
       "key": "pizzas",
       "title": "Pizzas",
-      "image": "https://placehold.co/1200x500?text=Pizzas",
       "items": [
-        {
-          "name": "Margarita",
-          "price": 8.5,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        },
-        {
-          "name": "Cuatro quesos",
-          "price": 9.5,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        },
-        {
-          "name": "Barbacoa",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "lácteos"
-          ]
-        }
+        { "name": "Jamón, champiñón, tomate, mozzarella", "price": 9.90,
+          "ingredients": ["harina","tomate","mozzarella","jamón","champiñón"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Cuatro quesos", "price": 9.90,
+          "ingredients": ["harina","tomate","quesos variados"],
+          "allergens": ["gluten","lácteos"] }
+      ]
+    },
+    {
+      "key": "menu_ninos",
+      "title": "Menú niños",
+      "items": [
+        { "name": "Nuggets con patatas", "price": 7.00,
+          "ingredients": ["pollo rebozado","patatas"], "allergens": ["gluten","huevo"] },
+        { "name": "Sándwich con patatas", "price": 7.00,
+          "ingredients": ["pan de molde","jamón york","queso","patatas"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Pechugas con patatas", "price": 7.00,
+          "ingredients": ["pollo","patatas"], "allergens": [] }
+      ]
+    },
+    {
+      "key": "para_picar",
+      "title": "Para picar",
+      "items": [
+        { "name": "Tabla de Ibéricos", "price": 19.00, "ingredients": ["embutidos ibéricos"], "allergens": ["sulfitos"] },
+        { "name": "Patatas Bravas", "price": 6.00, "ingredients": ["patata","salsa brava"], "allergens": [] },
+        { "name": "Bratwurst", "price": 6.00, "ingredients": ["salchicha"], "allergens": [] },
+        { "name": "Patatas Cheddar", "price": 7.00, "ingredients": ["patata","cheddar"], "allergens": ["lácteos"] },
+        { "name": "Alitas de Pollo", "price": 7.00, "ingredients": ["pollo"], "allergens": [] },
+        { "name": "Pincho Moruno", "price": 7.00, "ingredients": ["carne adobada"], "allergens": [] },
+        { "name": "Pulpo a la Gallega", "price": 17.00, "ingredients": ["pulpo","aceite","pimentón"], "allergens": ["moluscos"] },
+        { "name": "Calamares a la Romana", "price": 8.50, "ingredients": ["calamares","harina"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chistorra, pimiento y patata dólar", "price": 8.00, "ingredients": ["chistorra","pimiento","patata"], "allergens": ["sulfitos"] },
+        { "name": "Patatas Teja con Alioli", "price": 6.00, "ingredients": ["patata","alioli"], "allergens": ["huevo"] },
+        { "name": "Sepia a la Plancha", "price": 12.00, "ingredients": ["sepia"], "allergens": ["moluscos"] },
+        { "name": "Croquetas", "price": 7.00, "ingredients": ["harina","leche"], "allergens": ["gluten","lácteos"] },
+        { "name": "Rabas de calamar", "price": 8.50, "ingredients": ["calamar","harina"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chopitos con Pimiento del Padrón", "price": 10.00, "ingredients": ["chopitos","harina","padrón"], "allergens": ["gluten","moluscos"] },
+        { "name": "Bandidos (fingers)", "price": 7.00, "ingredients": ["pollo rebozado"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "platos",
+      "title": "Platos combinados",
+      "items": [
+        { "name": "Lomo, huevo, patatas, bacon y ensalada", "price": 10.00,
+          "ingredients": ["lomo","huevo","patatas","bacon","ensalada"], "allergens": ["huevo"] },
+        { "name": "Solomillo, patatas, huevo y pimiento verde", "price": 13.00,
+          "ingredients": ["solomillo","patatas","huevo","pimiento verde"], "allergens": ["huevo"] },
+        { "name": "Sepia a la plancha, patatas y ensalada", "price": 15.00,
+          "ingredients": ["sepia","patatas"], "allergens": ["moluscos"] },
+        { "name": "Pechuga, pimiento rojo, huevo y ensalada", "price": 10.00,
+          "ingredients": ["pollo","pimiento rojo","huevo","ensalada"], "allergens": ["huevo"] },
+        { "name": "Ternera, patatas, pimiento verde y ensalada", "price": 12.00,
+          "ingredients": ["ternera","patatas","pimiento verde"], "allergens": [] },
+        { "name": "Hamburguesa, huevo, cebolla, lechuga, tomate y patatas", "price": 10.00,
+          "ingredients": ["pan","carne de vacuno","huevo","cebolla","lechuga","tomate","patatas"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Escalope de pechuga, huevo y patatas", "price": 11.00,
+          "ingredients": ["pollo empanado","huevo","patatas"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "hamburguesas",
+      "title": "Hamburguesas",
+      "items": [
+        { "name": "Hamburguesa con queso (pan, vacuno, queso, tomate, lechuga, cebolla, mayonesa)", "price": 8.50,
+          "ingredients": ["pan","carne de vacuno","queso","tomate","lechuga","cebolla","mayonesa"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Hamburguesa con bacon", "price": 8.50,
+          "ingredients": ["pan","carne de vacuno","bacon","queso (opcional)"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Hamburguesa de pollo", "price": 8.00,
+          "ingredients": ["pan","carne de pollo","queso","mayonesa"],
+          "allergens": ["gluten","lácteos","huevo"] }
       ]
     }
   ]

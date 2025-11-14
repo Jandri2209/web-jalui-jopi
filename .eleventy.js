@@ -24,6 +24,43 @@ module.exports = function(eleventyConfig) {
     return new Intl.DateTimeFormat(locale, opts).format(d);
   });
 
+  eleventyConfig.addFilter("inferAllergens", (ingredients = []) => {
+    const map = {
+      // cereales con gluten
+      pan: "gluten", harina: "gluten", trigo: "gluten", cebada: "gluten", centeno: "gluten", avena: "gluten",
+      // huevo y derivados
+      huevo: "huevo", huevos: "huevo", alioli: "huevo", mayonesa: "huevo",
+      // lácteos
+      leche: "lácteos", queso: "lácteos", cheddar: "lácteos", mantequilla: "lácteos", nata: "lácteos",
+      // pescado / moluscos / crustáceos
+      atún: "pescado", anchoas: "pescado", bacalao: "pescado",
+      calamar: "moluscos", calamares: "moluscos", sepia: "moluscos", pulpo: "moluscos",
+      gambas: "crustáceos", langostino: "crustáceos",
+      // otros EU-14
+      cacahuete: "cacahuetes", cacahuetes: "cacahuetes",
+      almendra: "frutos de cáscara", almendras: "frutos de cáscara", nuez: "frutos de cáscara",
+      avellana: "frutos de cáscara", pistacho: "frutos de cáscara",
+      soja: "soja", sésamo: "sésamo", mostaza: "mostaza", apio: "apio",
+      sulfito: "sulfitos", sulfitos: "sulfitos"
+    };
+
+    const found = new Set();
+    (ingredients || []).forEach(x => {
+      const w = String(x).toLowerCase();
+      Object.keys(map).forEach(k => { if (w.includes(k)) found.add(map[k]); });
+    });
+    return [...found];
+  });
+  eleventyConfig.addFilter("currency", (value, lang = "es") => {
+    if (value == null) return "";
+    const locale = lang === "en" ? "en-GB" : (lang === "fr" ? "fr-FR" : "es-ES");
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2
+    }).format(value);
+  });
+
   return {
     dir: {
       input: ".",

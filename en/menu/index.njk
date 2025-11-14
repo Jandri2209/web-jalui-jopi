@@ -5,28 +5,43 @@ lang: en
 permalink: /en/menu/
 alt: {"es": "/carta/", "fr": "/fr/carte/"}
 ---
-{% set MENU = menu_en %}
+{% set MENUS = { 'es': menu_es, 'en': menu_en, 'fr': menu_fr } %}
+{% set T = i18n[lang] or i18n.en %}
+{% set MENU = MENUS[lang] or menu_en %}
+
 <article>
   <header class="menu-hero">
-    <img src="https://placehold.co/1600x600?text=Bar+Jalui+Jopi" alt="Bar Jalui Jopi">
-    <h1 style="margin-top:10px">{{ i18n.en.Carta }}</h1>
-    <p class="lead-note">{{ i18n.en.PricesNote }} <time>{{ "now" | date("en-GB") }}</time></p>
+    <img src="/images/menu-hero.jpg" alt="Jalui Jopi">
+    <h1 style="margin-top:10px">{{ T.Carta }}</h1>
+    <p class="lead-note">
+      {{ T.PricesNote }}
+      <time>{{ "now" | date("en-GB") }}</time>
+    </p>
   </header>
+
   {% for cat in MENU.categories %}
     <section class="menu-cat">
-      <img src="{{ cat.image }}" alt="{{ cat.title }}">
+      {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.title }}">{% endif %}
       <h3>{{ cat.title }}</h3>
       <div class="menu-items">
         {% for it in cat.items %}
+          {% set allergens = it.allergens or (it.ingredients | inferAllergens) %}
           <div class="name">
             {{ it.name }}
-            {% if it.allergens and (it.allergens | length) %}
+            {% if it.ingredients %}
+              <span class="ingredients">— {{ it.ingredients | join(", ") }}</span>
+            {% endif %}
+            {% if (allergens | length) %}
               <span class="allergens">
-                {% for a in it.allergens %}<span class="a" title="{{ i18n.en.Allergens }}">{{ a }}</span>{% endfor %}
+                {% for a in allergens %}
+                  <span class="a" title="{{ T.AllergenNames[a] or a }}">{{ a }}</span>
+                {% endfor %}
               </span>
             {% endif %}
           </div>
-          <div class="price">{{ it.price | round(2) }} €</div>
+          {% if it.price %}
+            <div class="price">{{ it.price | currency(lang) }}</div>
+          {% endif %}
         {% endfor %}
       </div>
     </section>

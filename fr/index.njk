@@ -1,67 +1,49 @@
 ---
 layout: base.njk
-title: Accueil
+title: Carte
 lang: fr
-permalink: /fr/
-alt: {"es": "/", "en": "/en/"}
+permalink: /fr/carte/
+alt: {"es": "/carta/", "en": "/en/menu/"}
 ---
+{% set MENUS = { 'es': menu_es, 'en': menu_en, 'fr': menu_fr } %}
+{% set T = i18n[lang] or i18n.fr %}
+{% set MENU = MENUS[lang] or menu_fr %}
 
-<section class="hero">
-  <div>
-    <p class="kicker">Fustiñana · Navarre</p>
-    <h1>{{ i18n.fr.HeroTitle }}</h1>
-    <p class="lead">{{ i18n.fr.HeroSubtitle }}</p>
-    <div class="cta-row">
-      <a class="btn" href="/fr/carte/">{{ i18n.fr.CTA_SeeMenu }}</a>
-      <a class="btn alt" href="/fr/contact/">{{ i18n.fr.CTA_Contact }}</a>
-    </div>
-    <p class="lead-note" style="margin-top:10px">{{ i18n.fr.OpenHoursNote }}</p>
-  </div>
-
-  <div class="card">
-    <h3>Un classique depuis 1967</h3>
-    <p>
-      Né comme bar musical sur la place, nous sommes aujourd’hui un lieu décontracté
-      pour <strong>sandwichs</strong>, <strong>rations</strong>, <strong>pizzas</strong> et
-      <strong>plats combinés</strong>. Service rapide et ambiance conviviale.
+<article>
+  <header class="menu-hero">
+    <img src="/images/menu-hero.jpg" alt="Jalui Jopi">
+    <h1 style="margin-top:10px">{{ T.Carta }}</h1>
+    <p class="lead-note">
+      {{ T.PricesNote }}
+      <time>{{ "now" | date("fr-FR") }}</time>
     </p>
-    <ul>
-      <li><strong>Adresse&nbsp;:</strong> {{ site.address }}</li>
-      <li><strong>Tél.&nbsp;:</strong> <a href="tel:+34948840496">{{ site.phone }}</a>{% if site.mobile %} · <a href="tel:+34687420569">{{ site.mobile }}</a>{% endif %}</li>
-      <li><strong>Instagram&nbsp;:</strong> <a href="{{ site.instagram }}" target="_blank" rel="noopener">bar_jalui_jopi_</a></li>
-    </ul>
-  </div>
-</section>
+  </header>
 
-<section class="section">
-  <div class="grid-3">
-    <div class="card"><h4>Sandwichs</h4><p>Classiques bien faits : jambon-fromage, lomo, tortilla, calamars…</p></div>
-    <div class="card"><h4>Rations et "pintxos"</h4><p>À partager au bar ou en terrasse.</p></div>
-    <div class="card"><h4>Pizzas et plats combinés</h4><p>Pour calmer la faim simplement.</p></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="home-gallery">
-    {% for n in [1,2,3] %}
-      <figure class="g-item">
-        <img src="/images/home/home-0{{ n }}.webp" alt="Jalui Jopi — foto {{ n }}" loading="lazy">
-      </figure>
-    {% endfor %}
-  </div>
-  <p style="text-align:center;margin-top:.8rem">
-    <a class="btn alt" href="/galeria/">Abrir galería</a>
-  </p>
-</section>
-
-{% include "partials/reviews-google.njk" %}
-
-<section class="section">
-  <div class="card">
-    <h2>Depuis 1967 sur la place</h2>
-    <p>
-      Même adresse, même esprit. On a troqué les vinyles pour les playlists,
-      mais pas l’accueil. Cuisine simple et soignée, service rapide et ambiance détendue.
-    </p>
-  </div>
-</section>
+  {% for cat in MENU.categories %}
+    <section class="menu-cat">
+      {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.title }}">{% endif %}
+      <h3>{{ cat.title }}</h3>
+      <div class="menu-items">
+        {% for it in cat.items %}
+          {% set allergens = it.allergens or (it.ingredients | inferAllergens) %}
+          <div class="name">
+            {{ it.name }}
+            {% if it.ingredients %}
+              <span class="ingredients">— {{ it.ingredients | join(", ") }}</span>
+            {% endif %}
+            {% if (allergens | length) %}
+              <span class="allergens">
+                {% for a in allergens %}
+                  <span class="a" title="{{ T.AllergenNames[a] or a }}">{{ a }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          {% if it.price %}
+            <div class="price">{{ it.price | currency(lang) }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</article>

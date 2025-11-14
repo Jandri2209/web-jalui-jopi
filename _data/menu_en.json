@@ -3,125 +3,146 @@
     {
       "key": "bocadillos",
       "title": "Sandwiches",
-      "image": "https://placehold.co/1200x500?text=Sandwiches",
       "items": [
-        {
-          "name": "Ham & Cheese",
-          "price": 4.5,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        },
-        {
-          "name": "Pork Loin & Cheese",
-          "price": 5.0,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        },
-        {
-          "name": "Spanish Omelette",
-          "price": 4.0,
-          "allergens": [
-            "egg"
-          ]
-        },
-        {
-          "name": "Fried Calamari",
-          "price": 5.5,
-          "allergens": [
-            "gluten",
-            "fish"
-          ]
-        }
+        { "name": "Pork loin, cheese, cooked ham & aioli", "price": 7.00,
+          "ingredients": ["bread","pork loin","cooked ham","cheese","aioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Vegetal (lettuce, tomato, tuna, asparagus, boiled egg, mayo)", "price": 7.00,
+          "ingredients": ["bread","lettuce","tomato","tuna","asparagus","egg","mayonnaise"],
+          "allergens": ["gluten","pescado","huevo"] },
+        { "name": "Chicken breast, lettuce, bacon, cheese & aioli", "price": 7.00,
+          "ingredients": ["bread","chicken breast","bacon","cheese","aioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Cured ham, egg & green pepper", "price": 8.00,
+          "ingredients": ["bread","cured ham","egg","green pepper"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Sirloin, cheese & red pepper", "price": 7.50,
+          "ingredients": ["bread","sirloin","cheese","red pepper"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Beef, egg & green pepper", "price": 7.50,
+          "ingredients": ["bread","beef","egg","green pepper"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Spanish omelette your way (ham, tuna, cheese, chistorra, potato)", "price": 7.00,
+          "ingredients": ["bread","egg","(options: ham, tuna, cheese, chistorra, potato)"],
+          "allergens": ["gluten","huevo","lácteos"] },
+        { "name": "Calamari (battered)", "price": 6.50,
+          "ingredients": ["bread","squid","flour"],
+          "allergens": ["gluten","moluscos"] },
+        { "name": "Ham & cheese sandwich", "price": 5.50,
+          "ingredients": ["sandwich bread","cooked ham","cheese"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Bikini (ham, bacon, cheese & aioli)", "price": 6.50,
+          "ingredients": ["sandwich bread","cooked ham","bacon","cheese","aioli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Vegetal sandwich (lettuce, tomato, egg, asparagus, tuna, mayo)", "price": 6.50,
+          "ingredients": ["sandwich bread","lettuce","tomato","egg","asparagus","tuna","mayonnaise"],
+          "allergens": ["gluten","pescado","huevo"] }
       ]
     },
     {
-      "key": "raciones",
-      "title": "Sharing plates",
-      "image": "https://placehold.co/1200x500?text=Sharing+Plates",
+      "key": "ensaladas",
+      "title": "Salads",
       "items": [
-        {
-          "name": "Patatas bravas",
-          "price": 6.0,
-          "allergens": []
-        },
-        {
-          "name": "Homemade croquettes (ham)",
-          "price": 7.0,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        },
-        {
-          "name": "Torreznos (crispy pork)",
-          "price": 7.5,
-          "allergens": []
-        },
-        {
-          "name": "Russian salad",
-          "price": 6.5,
-          "allergens": [
-            "egg",
-            "dairy"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "platos",
-      "title": "Combo plates",
-      "image": "https://placehold.co/1200x500?text=Combo+Plates",
-      "items": [
-        {
-          "name": "Pork loin, fried egg & fries",
-          "price": 9.5,
-          "allergens": [
-            "egg"
-          ]
-        },
-        {
-          "name": "Breaded steak, salad & fries",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "egg"
-          ]
-        }
+        { "name": "Warm salad (lettuce, sautéed mushrooms, bacon, balsamic glaze)", "price": 9.50,
+          "ingredients": ["lettuce","mushrooms","bacon","balsamic vinegar"],
+          "allergens": ["sulfitos"] },
+        { "name": "Nuts & fruit (lettuce, walnut, almond, raisins, apple)", "price": 9.00,
+          "ingredients": ["lettuce","walnut","almond","raisins","apple"],
+          "allergens": ["frutos de cáscara"] },
+        { "name": "Caesar (lettuce, chicken, croutons, Caesar dressing)", "price": 9.00,
+          "ingredients": ["lettuce","chicken","bread","cheese","egg","anchovy"],
+          "allergens": ["gluten","lácteos","huevo","pescado"] },
+        { "name": "Mixed (lettuce, tomato, tuna, asparagus, boiled egg, olives)", "price": 8.50,
+          "ingredients": ["lettuce","tomato","tuna","asparagus","egg","olives"],
+          "allergens": ["pescado","huevo"] },
+        { "name": "Russian salad", "price": 8.00,
+          "ingredients": ["potato","mayonnaise","tuna (optional)","egg (varies)"],
+          "allergens": ["huevo"] },
+        { "name": "Summer (tomato, anchovies, tuna & olives)", "price": 8.00,
+          "ingredients": ["tomato","anchovies","tuna","olives"],
+          "allergens": ["pescado"] }
       ]
     },
     {
       "key": "pizzas",
       "title": "Pizzas",
-      "image": "https://placehold.co/1200x500?text=Pizzas",
       "items": [
-        {
-          "name": "Margherita",
-          "price": 8.5,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        },
-        {
-          "name": "Four cheeses",
-          "price": 9.5,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        },
-        {
-          "name": "Barbecue",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "dairy"
-          ]
-        }
+        { "name": "Ham, mushroom, tomato & mozzarella", "price": 9.90,
+          "ingredients": ["flour","tomato","mozzarella","ham","mushroom"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Four cheese", "price": 9.90,
+          "ingredients": ["flour","tomato","assorted cheeses"],
+          "allergens": ["gluten","lácteos"] }
+      ]
+    },
+    {
+      "key": "menu_ninos",
+      "title": "Kids' menu",
+      "items": [
+        { "name": "Nuggets with fries", "price": 7.00,
+          "ingredients": ["breaded chicken","fries"], "allergens": ["gluten","huevo"] },
+        { "name": "Sandwich with fries", "price": 7.00,
+          "ingredients": ["sandwich bread","cooked ham","cheese","fries"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Chicken breast with fries", "price": 7.00,
+          "ingredients": ["chicken","fries"], "allergens": [] }
+      ]
+    },
+    {
+      "key": "para_picar",
+      "title": "To share",
+      "items": [
+        { "name": "Iberian cold cuts board", "price": 19.00, "ingredients": ["Iberian cold cuts"], "allergens": ["sulfitos"] },
+        { "name": "Patatas bravas", "price": 6.00, "ingredients": ["potato","brava sauce"], "allergens": [] },
+        { "name": "Bratwurst", "price": 6.00, "ingredients": ["sausage"], "allergens": [] },
+        { "name": "Cheddar fries", "price": 7.00, "ingredients": ["potato","cheddar"], "allergens": ["lácteos"] },
+        { "name": "Chicken wings", "price": 7.00, "ingredients": ["chicken"], "allergens": [] },
+        { "name": "Moorish skewer", "price": 7.00, "ingredients": ["marinated meat"], "allergens": [] },
+        { "name": "Galician-style octopus", "price": 17.00, "ingredients": ["octopus","olive oil","paprika"], "allergens": ["moluscos"] },
+        { "name": "Calamari (battered)", "price": 8.50, "ingredients": ["squid","flour"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chistorra, pepper & dollar-cut potatoes", "price": 8.00, "ingredients": ["chistorra","pepper","potato"], "allergens": ["sulfitos"] },
+        { "name": "Teja fries with aioli", "price": 6.00, "ingredients": ["potato","aioli"], "allergens": ["huevo"] },
+        { "name": "Cuttlefish a la plancha", "price": 12.00, "ingredients": ["cuttlefish"], "allergens": ["moluscos"] },
+        { "name": "Croquettes", "price": 7.00, "ingredients": ["flour","milk"], "allergens": ["gluten","lácteos"] },
+        { "name": "Fried squid strips", "price": 8.50, "ingredients": ["squid","flour"], "allergens": ["gluten","moluscos"] },
+        { "name": "Baby squid with Padrón peppers", "price": 10.00, "ingredients": ["baby squid","flour","Padrón pepper"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chicken fingers", "price": 7.00, "ingredients": ["breaded chicken"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "platos",
+      "title": "Combo plates",
+      "items": [
+        { "name": "Pork loin, egg, fries, bacon & salad", "price": 10.00,
+          "ingredients": ["pork loin","egg","fries","bacon","salad"], "allergens": ["huevo"] },
+        { "name": "Sirloin, fries, egg & green pepper", "price": 13.00,
+          "ingredients": ["sirloin","fries","egg","green pepper"], "allergens": ["huevo"] },
+        { "name": "Cuttlefish a la plancha, fries & salad", "price": 15.00,
+          "ingredients": ["cuttlefish","fries"], "allergens": ["moluscos"] },
+        { "name": "Chicken breast, red pepper, egg & salad", "price": 10.00,
+          "ingredients": ["chicken","red pepper","egg","salad"], "allergens": ["huevo"] },
+        { "name": "Beef, fries, green pepper & salad", "price": 12.00,
+          "ingredients": ["beef","fries","green pepper"], "allergens": [] },
+        { "name": "Hamburger, egg, onion, lettuce, tomato & fries", "price": 10.00,
+          "ingredients": ["bun","beef patty","egg","onion","lettuce","tomato","fries"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Breaded chicken escalope, egg & fries", "price": 11.00,
+          "ingredients": ["breaded chicken","egg","fries"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "hamburguesas",
+      "title": "Burgers",
+      "items": [
+        { "name": "Cheeseburger (bun, beef, cheese, tomato, lettuce, onion, mayo)", "price": 8.50,
+          "ingredients": ["bun","beef patty","cheese","tomato","lettuce","onion","mayonnaise"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Bacon burger", "price": 8.50,
+          "ingredients": ["bun","beef patty","bacon","cheese (optional)"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Chicken burger", "price": 8.00,
+          "ingredients": ["bun","chicken patty","cheese","mayonnaise"],
+          "allergens": ["gluten","lácteos","huevo"] }
       ]
     }
   ]

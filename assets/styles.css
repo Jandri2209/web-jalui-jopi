@@ -213,9 +213,24 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 
 .tagline{ color:var(--muted); margin:.25rem 0 1rem }
 
-.f-contact{ list-style:none; padding:0; margin:.5rem 0 1rem; display:grid; gap:.4rem; text-align:center; }
-.f-contact li{ display:flex; gap:.55rem; justify-content:center; align-items:center }
-.f-contact .ico{ width:18px; height:18px; flex:0 0 18px; color:var(--muted) }
+/* Lista de contacto: centrada, icono a la IZQUIERDA del texto */
+.f-contact{
+  list-style:none; padding:0; margin:.5rem 0 1rem;
+  display:grid; gap:.6rem; justify-items:center;  /* la fila queda centrada */
+  text-align:center;
+}
+.f-contact li{
+  display:grid;
+  grid-template-columns: auto 1fr;  /* [icono] [texto] */
+  column-gap:.55rem;
+  align-items:start;                 /* icono se alinea al inicio de la multi-línea */
+  justify-content:center;
+}
+.f-contact .ico{
+  width:18px; height:18px; color:var(--muted);
+  justify-self:end;                 /* icono pegado al texto */
+  margin-top:.15rem;                /* pequeño ajuste vertical */
+}
 .f-contact a{ text-align:center; }
 
 /* Horario centrado */
@@ -336,6 +351,13 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 .review-card .rev-text{ margin:.35rem 0 0; line-height:1.6; font-size:1.02rem }
 .review-card .rev-time{ color:#6b7280; font-size:.9rem; display:block; margin-top:.2rem }
 
+.menu-cat > img {
+  width: 100%;
+  aspect-ratio: 12 / 5;   /* o fija height: 220px; */
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
 
 .controls{ display:flex; align-items:center; justify-content:center; gap:.4rem; margin-top:.6rem }
 .dots{ display:flex; gap:.35rem; align-items:center }

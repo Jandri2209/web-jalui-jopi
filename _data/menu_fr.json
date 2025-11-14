@@ -3,125 +3,146 @@
     {
       "key": "bocadillos",
       "title": "Sandwichs",
-      "image": "https://placehold.co/1200x500?text=Sandwichs",
       "items": [
-        {
-          "name": "Jambon & fromage",
-          "price": 4.5,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        },
-        {
-          "name": "Longe de porc & fromage",
-          "price": 5.0,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        },
-        {
-          "name": "Tortilla espagnole",
-          "price": 4.0,
-          "allergens": [
-            "œuf"
-          ]
-        },
-        {
-          "name": "Calamars frits",
-          "price": 5.5,
-          "allergens": [
-            "gluten",
-            "poisson"
-          ]
-        }
+        { "name": "Longe de porc, fromage, jambon blanc et aïoli", "price": 7.00,
+          "ingredients": ["pain","longe de porc","jambon blanc","fromage","aïoli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Végétal (laitue, tomate, thon, asperge, œuf dur, mayo)", "price": 7.00,
+          "ingredients": ["pain","laitue","tomate","thon","asperge","œuf","mayonnaise"],
+          "allergens": ["gluten","pescado","huevo"] },
+        { "name": "Blanc de poulet, laitue, bacon, fromage & aïoli", "price": 7.00,
+          "ingredients": ["pain","blanc de poulet","bacon","fromage","aïoli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Jambon affiné, œuf & poivron vert", "price": 8.00,
+          "ingredients": ["pain","jambon affiné","œuf","poivron vert"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Filet, fromage & poivron rouge", "price": 7.50,
+          "ingredients": ["pain","filet","fromage","poivron rouge"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Bœuf, œuf & poivron vert", "price": 7.50,
+          "ingredients": ["pain","bœuf","œuf","poivron vert"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Omelette au choix (jambon, thon, fromage, chistorra, pomme de terre)", "price": 7.00,
+          "ingredients": ["pain","œuf","(options : jambon, thon, fromage, chistorra, pomme de terre)"],
+          "allergens": ["gluten","huevo","lácteos"] },
+        { "name": "Calamars à la romaine", "price": 6.50,
+          "ingredients": ["pain","calamars","farine"],
+          "allergens": ["gluten","moluscos"] },
+        { "name": "Sandwich mixte (jambon-fromage)", "price": 5.50,
+          "ingredients": ["pain de mie","jambon blanc","fromage"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Bikini (jambon, bacon, fromage & aïoli)", "price": 6.50,
+          "ingredients": ["pain de mie","jambon blanc","bacon","fromage","aïoli"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Sandwich végétal (laitue, tomate, œuf, asperge, thon, mayo)", "price": 6.50,
+          "ingredients": ["pain de mie","laitue","tomate","œuf","asperge","thon","mayonnaise"],
+          "allergens": ["gluten","pescado","huevo"] }
       ]
     },
     {
-      "key": "raciones",
-      "title": "Rations à partager",
-      "image": "https://placehold.co/1200x500?text=Rations",
+      "key": "ensaladas",
+      "title": "Salades",
       "items": [
-        {
-          "name": "Patatas bravas",
-          "price": 6.0,
-          "allergens": []
-        },
-        {
-          "name": "Croquettes maison (jambon)",
-          "price": 7.0,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        },
-        {
-          "name": "Torreznos (porc croustillant)",
-          "price": 7.5,
-          "allergens": []
-        },
-        {
-          "name": "Salade russe",
-          "price": 6.5,
-          "allergens": [
-            "œuf",
-            "lait"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "platos",
-      "title": "Assiettes combinées",
-      "image": "https://placehold.co/1200x500?text=Assiettes",
-      "items": [
-        {
-          "name": "Longe, œuf & frites",
-          "price": 9.5,
-          "allergens": [
-            "œuf"
-          ]
-        },
-        {
-          "name": "Escalope panée, salade & frites",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "œuf"
-          ]
-        }
+        { "name": "Tiède (laitue, champignons sautés, bacon, réduction balsamique)", "price": 9.50,
+          "ingredients": ["laitue","champignons","bacon","vinaigre balsamique"],
+          "allergens": ["sulfitos"] },
+        { "name": "Fruits à coque (laitue, noix, amande, raisins secs, pomme)", "price": 9.00,
+          "ingredients": ["laitue","noix","amande","raisins secs","pomme"],
+          "allergens": ["frutos de cáscara"] },
+        { "name": "César (laitue, poulet, croûtons, sauce césar)", "price": 9.00,
+          "ingredients": ["laitue","poulet","pain","fromage","œuf","anchois"],
+          "allergens": ["gluten","lácteos","huevo","pescado"] },
+        { "name": "Mixte (laitue, tomate, thon, asperge, œuf dur, olives)", "price": 8.50,
+          "ingredients": ["laitue","tomate","thon","asperge","œuf","olives"],
+          "allergens": ["pescado","huevo"] },
+        { "name": "Salade russe", "price": 8.00,
+          "ingredients": ["pomme de terre","mayonnaise","thon (parfois)","œuf (selon recette)"],
+          "allergens": ["huevo"] },
+        { "name": "Estivale (tomate, anchois, thon & olives)", "price": 8.00,
+          "ingredients": ["tomate","anchois","thon","olives"],
+          "allergens": ["pescado"] }
       ]
     },
     {
       "key": "pizzas",
       "title": "Pizzas",
-      "image": "https://placehold.co/1200x500?text=Pizzas",
       "items": [
-        {
-          "name": "Margherita",
-          "price": 8.5,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        },
-        {
-          "name": "Quatre fromages",
-          "price": 9.5,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        },
-        {
-          "name": "Barbecue",
-          "price": 10.0,
-          "allergens": [
-            "gluten",
-            "lait"
-          ]
-        }
+        { "name": "Jambon, champignon, tomate & mozzarella", "price": 9.90,
+          "ingredients": ["farine","tomate","mozzarella","jambon","champignon"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Quatre fromages", "price": 9.90,
+          "ingredients": ["farine","tomate","fromages variés"],
+          "allergens": ["gluten","lácteos"] }
+      ]
+    },
+    {
+      "key": "menu_ninos",
+      "title": "Menu enfants",
+      "items": [
+        { "name": "Nuggets avec frites", "price": 7.00,
+          "ingredients": ["poulet pané","frites"], "allergens": ["gluten","huevo"] },
+        { "name": "Sandwich avec frites", "price": 7.00,
+          "ingredients": ["pain de mie","jambon blanc","fromage","frites"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Filets de poulet avec frites", "price": 7.00,
+          "ingredients": ["poulet","frites"], "allergens": [] }
+      ]
+    },
+    {
+      "key": "para_picar",
+      "title": "À partager",
+      "items": [
+        { "name": "Planche d’Ibériques", "price": 19.00, "ingredients": ["charcuteries ibériques"], "allergens": ["sulfitos"] },
+        { "name": "Patatas bravas", "price": 6.00, "ingredients": ["pomme de terre","sauce brava"], "allergens": [] },
+        { "name": "Bratwurst", "price": 6.00, "ingredients": ["saucisse"], "allergens": [] },
+        { "name": "Frites au cheddar", "price": 7.00, "ingredients": ["pomme de terre","cheddar"], "allergens": ["lácteos"] },
+        { "name": "Ailes de poulet", "price": 7.00, "ingredients": ["poulet"], "allergens": [] },
+        { "name": "Brochette « moruna »", "price": 7.00, "ingredients": ["viande marinée"], "allergens": [] },
+        { "name": "Poulpe à la galicienne", "price": 17.00, "ingredients": ["poulpe","huile d’olive","paprika"], "allergens": ["moluscos"] },
+        { "name": "Calamars à la romaine", "price": 8.50, "ingredients": ["calamar","farine"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chistorra, poivron & pommes « dollar »", "price": 8.00, "ingredients": ["chistorra","poivron","pomme de terre"], "allergens": ["sulfitos"] },
+        { "name": "Frites « teja » à l’aïoli", "price": 6.00, "ingredients": ["pomme de terre","aïoli"], "allergens": ["huevo"] },
+        { "name": "Seiche à la plancha", "price": 12.00, "ingredients": ["seiche"], "allergens": ["moluscos"] },
+        { "name": "Croquettes", "price": 7.00, "ingredients": ["farine","lait"], "allergens": ["gluten","lácteos"] },
+        { "name": "Rabas de calamar (lamelles frites)", "price": 8.50, "ingredients": ["calamar","farine"], "allergens": ["gluten","moluscos"] },
+        { "name": "Chopitos aux piments de Padrón", "price": 10.00, "ingredients": ["chopitos","farine","piment de Padrón"], "allergens": ["gluten","moluscos"] },
+        { "name": "Doigts de poulet", "price": 7.00, "ingredients": ["poulet pané"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "platos",
+      "title": "Plats combinés",
+      "items": [
+        { "name": "Longe de porc, œuf, frites, bacon & salade", "price": 10.00,
+          "ingredients": ["longe de porc","œuf","frites","bacon","salade"], "allergens": ["huevo"] },
+        { "name": "Filet, frites, œuf & poivron vert", "price": 13.00,
+          "ingredients": ["filet","frites","œuf","poivron vert"], "allergens": ["huevo"] },
+        { "name": "Seiche à la plancha, frites & salade", "price": 15.00,
+          "ingredients": ["seiche","frites"], "allergens": ["moluscos"] },
+        { "name": "Blanc de poulet, poivron rouge, œuf & salade", "price": 10.00,
+          "ingredients": ["poulet","poivron rouge","œuf","salade"], "allergens": ["huevo"] },
+        { "name": "Bœuf, frites, poivron vert & salade", "price": 12.00,
+          "ingredients": ["bœuf","frites","poivron vert"], "allergens": [] },
+        { "name": "Hamburger, œuf, oignon, laitue, tomate & frites", "price": 10.00,
+          "ingredients": ["pain","steak haché","œuf","oignon","laitue","tomate","frites"],
+          "allergens": ["gluten","huevo"] },
+        { "name": "Escalope de poulet panée, œuf & frites", "price": 11.00,
+          "ingredients": ["poulet pané","œuf","frites"], "allergens": ["gluten","huevo"] }
+      ]
+    },
+    {
+      "key": "hamburguesas",
+      "title": "Hamburgers",
+      "items": [
+        { "name": "Cheeseburger (pain, bœuf, fromage, tomate, laitue, oignon, mayo)", "price": 8.50,
+          "ingredients": ["pain","steak haché","fromage","tomate","laitue","oignon","mayonnaise"],
+          "allergens": ["gluten","lácteos","huevo"] },
+        { "name": "Burger au bacon", "price": 8.50,
+          "ingredients": ["pain","steak haché","bacon","fromage (optionnel)"],
+          "allergens": ["gluten","lácteos"] },
+        { "name": "Burger de poulet", "price": 8.00,
+          "ingredients": ["pain","steak de poulet","fromage","mayonnaise"],
+          "allergens": ["gluten","lácteos","huevo"] }
       ]
     }
   ]
