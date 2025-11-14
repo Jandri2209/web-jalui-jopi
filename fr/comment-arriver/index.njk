@@ -10,19 +10,24 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
 {% set qAddr = addr | urlencode %}
 {% set pid = site.placeId %}
 {% set hasCoords = site.lat and site.lng %}
-{% set qCoords = hasCoords ? (site.lat ~ "," ~ site.lng) : "" %}
 {% set zoom = 16 %}
 
-{# Liens externes: utiliser place_id si présent #}
+{% if hasCoords %}
+  {% set qCoords = site.lat ~ "," ~ site.lng %}
+{% else %}
+  {% set qCoords = "" %}
+{% endif %}
+
+{# Enlace externo: preferimos place_id si existe #}
 {% if pid %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) ~ "&query_place_id=" ~ pid %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) ~ "&query_place_id=" ~ pid %}
   {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
 {% else %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) %}
   {% set writeReviewHref = mapsHref %}
 {% endif %}
 
-{# Iframe (sans clé): mapsEmbed > coords > adresse #}
+{# Iframe sin API key: prioridad -> site.mapsEmbed > coords > dirección #}
 {% if site.mapsEmbed %}
   {% set mapsIframe = site.mapsEmbed %}
 {% elif hasCoords %}
