@@ -11,7 +11,7 @@ alt: {"en": "/en/menu/", "fr": "/fr/carte/"}
 
 <article>
   <header class="menu-hero">
-    <img src="/images/menu-hero.webp" alt="Jalui Jopi">
+    <img src="/images/home/menu-hero.webp" alt="Jalui Jopi">
     <h1 style="margin-top:10px">{{ T.Carta }}</h1>
     <p class="lead-note">
       {{ T.PricesNote }}
@@ -26,20 +26,20 @@ alt: {"en": "/en/menu/", "fr": "/fr/carte/"}
       <h3>{{ cat.title }}</h3>
 
       {% set ICON = {
-      'gluten':'/images/icons/allergens/gluten.svg',
-      'huevo':'/images/icons/allergens/huevo.svg',
-      'lácteos':'/images/icons/allergens/lácteos.svg',
-      'pescado':'/images/icons/allergens/pescado.svg',
-      'moluscos':'/images/icons/allergens/moluscos.svg',
-      'crustáceos':'/images/icons/allergens/crustáceos.svg',
-      'soja':'/images/icons/allergens/soja.svg',
-      'sésamo':'/images/icons/allergens/sésamo.svg',
-      'mostaza':'/images/icons/allergens/mostaza.svg',
-      'apio':'/images/icons/allergens/apio.svg',
-      'cacahuetes':'/images/icons/allergens/cacahuetes.svg',
-      'frutos de cáscara':'/images/icons/allergens/frutos_de_cascara.svg',
-      'sulfitos':'/images/icons/allergens/sulfitos.svg'
-    } %}
+        'gluten':'/images/icons/allergens/gluten.svg',
+        'huevo':'/images/icons/allergens/huevo.svg',
+        'lácteos':'/images/icons/allergens/lacteos.svg',
+        'pescado':'/images/icons/allergens/pescado.svg',
+        'moluscos':'/images/icons/allergens/moluscos.svg',
+        'crustáceos':'/images/icons/allergens/crustaceos.svg',
+        'soja':'/images/icons/allergens/soja.svg',
+        'sésamo':'/images/icons/allergens/sesamo.svg',
+        'mostaza':'/images/icons/allergens/mostaza.svg',
+        'apio':'/images/icons/allergens/apio.svg',
+        'cacahuetes':'/images/icons/allergens/cacahuetes.svg',
+        'frutos de cáscara':'/images/icons/allergens/frutos_de_cascara.svg',
+        'sulfitos':'/images/icons/allergens/sulfitos.svg'
+      } %}
 
     <div class="menu-items">
       {% for it in cat.items %}

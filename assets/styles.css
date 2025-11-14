@@ -147,28 +147,64 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 
 /* ========== Carta ========== */
 .menu-hero img{ width:100%; border-radius:12px; border:1px solid var(--border) }
-.menu-cat{ margin:32px 0 }
-.menu-cat h3{ margin:6px 0 10px; font-size:22px }
-.menu-items{ display:grid; grid-template-columns:1fr auto; gap:8px 16px }
-.menu-items .name{ color:var(--fg) }
-.menu-items .price{ color:var(--fg); font-weight:700 }
-.allergens{ display:flex; flex-wrap:wrap; gap:6px }
-.allergens .a{ font-size:12px; border:1px solid var(--border); background:#181818; padding:2px 6px; border-radius:6px; color:var(--muted) }
-.lead-note{ color:var(--muted); font-size:14px }
-.menu-row { display: grid; grid-template-columns: 1fr auto minmax(2rem,1fr) auto; align-items: center; column-gap: .6rem; }
-.menu-row .name { font-weight: 500; }
-.menu-row .ingredients { color: #9ca3af; font-weight: 400; }
-.menu-row .icons { display: inline-flex; gap: .3rem; }
-.menu-row .ico { width: 22px; height: 22px; display: inline-block; }
-.menu-row .dots { border-bottom: 1px dotted rgba(148,163,184,.55); height: .5rem; width: 100%; }
-.menu-row .price { font-variant-numeric: tabular-nums; white-space: nowrap; }
-@media (max-width: 640px){
-  .menu-row { grid-template-columns: 1fr auto auto; grid-template-rows: auto auto; }
-  .menu-row .dots { display: none; }
-  .menu-row .price { justify-self: end; }
-  .menu-row .icons { order: 2; grid-column: 1 / -1; margin-top: .15rem; }
+/* --- MENU ROW LAYOUT --- */
+.menu-cat .menu-items{
+  display: flex;               /* una columna de filas */
+  flex-direction: column;
+  gap: .6rem;
 }
 
+.menu-cat .menu-row{
+  display: flex;               /* cada fila en una sola línea */
+  align-items: flex-end;       /* que el texto y el precio asienten parejo */
+  gap: .6rem;
+  width: 100%;
+  flex-wrap: nowrap;           /* NO romper en dos líneas */
+}
+
+.menu-cat .menu-row .name{
+  flex: 0 1 auto;              /* tamaño según contenido */
+  min-width: 0;
+  font-weight: 600;
+}
+.menu-cat .menu-row .ingredients{
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.menu-cat .menu-row .icons{
+  flex: 0 0 auto;              /* bloque compacto de iconos */
+  display: inline-flex;
+  gap: .28rem;
+  align-items: center;
+}
+.menu-cat .menu-row .ico{
+  width: 20px; height: 20px; display: inline-block;
+}
+
+.menu-cat .menu-row .dots{
+  flex: 1 1 auto;              /* la línea ocupa todo lo que queda */
+  min-width: 2rem;
+  border-bottom: 1px dotted rgba(148,163,184,.55);
+  height: .6rem;
+  margin: 0 .2rem .2rem;
+}
+
+.menu-cat .menu-row .price{
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive: en móvil escondemos puntos y dejamos iconos debajo */
+@media (max-width: 640px){
+  .menu-cat .menu-row{ flex-wrap: wrap; align-items: center; }
+  .menu-cat .menu-row .dots{ display: none; }
+  .menu-cat .menu-row .price{ margin-left: auto; }
+  .menu-cat .menu-row .icons{
+    width: 100%; order: 3; margin-top: .15rem;
+  }
+}
 
 /* ========== Formulario ========== */
 .contact-form{ max-width:640px; margin:0 auto }
