@@ -18,9 +18,13 @@ alt: {"es": "/contacto/", "fr": "/fr/contact/"}
         accept-charset="UTF-8"
         autocomplete="off">
 
+    <!-- Netlify requires this -->
     <input type="hidden" name="form-name" value="contact-jalui-en">
+    <!-- Útil para enrutado/plantillas de correo -->
+    <input type="hidden" name="subject" value="New message from the website (EN)">
+    <input type="hidden" name="lang" value="en">
 
-    {# Honeypot (hidden) #}
+    {# Honeypot #}
     <p class="sr-only" aria-hidden="true">
       <label>If you see this field, leave it empty
         <input type="text" name="bot-field" tabindex="-1" autocomplete="off">
@@ -28,17 +32,40 @@ alt: {"es": "/contacto/", "fr": "/fr/contact/"}
     </p>
 
     <label for="name">{{ i18n.en.Name }}</label>
-    <input id="name" name="name" required autocomplete="name">
+    <input id="name" name="name" required autocomplete="name" inputmode="text">
 
     <label for="email">{{ i18n.en.Email }}</label>
     <input id="email" type="email" name="email" required autocomplete="email" inputmode="email">
 
     <label for="reason">{{ i18n.en.Reason }}</label>
-    <select id="reason" name="reason">
-      <option>General inquiry</option>
-      <option>Group booking</option>
-      <option>Suggestion</option>
+    <select id="reason" name="reason" autocomplete="off">
+      <option value="General inquiry">General inquiry</option>
+      <option value="Group booking">Group booking</option>
+      <option value="Suggestion">Suggestion</option>
     </select>
+
+    <!-- ===== Group booking extra fields (present at build, hidden by default) ===== -->
+    <fieldset id="group-fields" hidden aria-hidden="true">
+      <legend class="sr-only">Group booking details</legend>
+
+      <label for="guests">Number of guests</label>
+      <select id="guests" name="guests" autocomplete="off">
+        <option value="">Select…</option>
+        {% for n in [6,8,10,12,15,20,25,30] %}
+          <option value="{{ n }}">{{ n }}</option>
+        {% endfor %}
+        <option value="30+">30+</option>
+      </select>
+
+      <label for="date">Preferred date</label>
+      <input id="date" name="preferred_date" type="date" inputmode="numeric" autocomplete="off">
+
+      <label for="time">Preferred time</label>
+      <input id="time" name="preferred_time" type="time" inputmode="numeric" autocomplete="off">
+
+      <label for="budget">Approx. budget per person (€)</label>
+      <input id="budget" name="budget_pp" type="number" min="0" step="1" inputmode="numeric" autocomplete="off">
+    </fieldset>
 
     <label for="message">{{ i18n.en.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
@@ -48,9 +75,10 @@ alt: {"es": "/contacto/", "fr": "/fr/contact/"}
       <label for="privacy-en">I have read and accept the <a href="/en/privacy/">privacy policy</a>.</label>
     </div>
 
-    {# Netlify reCAPTCHA #}
+    <!-- Netlify reCAPTCHA -->
     <div data-netlify-recaptcha="true"></div>
 
+    <div id="form-status" class="sr-only" aria-live="polite"></div>
     <button class="btn" type="submit">{{ i18n.en.Send }}</button>
   </form>
 </section>
@@ -59,12 +87,57 @@ alt: {"es": "/contacto/", "fr": "/fr/contact/"}
 (() => {
   const form = document.getElementById('contact-form-en');
   if (!form) return;
+
+  const reasonSel = form.querySelector('#reason');
+  const groupBox  = form.querySelector('#group-fields');
+  const guests    = form.querySelector('#guests');
+  const date      = form.querySelector('#date');
+  const time      = form.querySelector('#time');
+
+  function isGroup() {
+    return reasonSel && reasonSel.value === 'Group booking';
+  }
+
+  function toggleGroupFields() {
+    const on = isGroup();
+    groupBox.hidden = !on;
+    groupBox.setAttribute('aria-hidden', String(!on));
+
+    // Solo pedirlos como obligatorios si es “Group booking”
+    [guests, date, time].forEach(el => {
+      if (!el) return;
+      if (on) el.setAttribute('required', 'required');
+      else el.removeAttribute('required');
+    });
+  }
+
+  reasonSel.addEventListener('change', toggleGroupFields);
+  toggleGroupFields(); // estado inicial
+
+  // UX al enviar
   const btn = form.querySelector('button[type="submit"]');
+  const status = form.querySelector('#form-status');
+
   form.addEventListener('submit', () => {
-    if (btn){ btn.dataset.txt = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true; }
+    if (btn){
+      btn.dataset.txt = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+    }
+    if (status){
+      status.textContent = 'Submitting your message…';
+    }
   });
+
+  // Volver a estado normal al navegar atrás con BFCache
   window.addEventListener('pageshow', (e) => {
-    if (e.persisted && btn){ form.reset(); btn.disabled = false; btn.textContent = btn.dataset.txt || 'Send'; }
+    if (e.persisted && btn){
+      form.reset();
+      toggleGroupFields();
+      btn.disabled = false;
+      btn.textContent = btn.dataset.txt || 'Send';
+      if (status) status.textContent = '';
+    }
   });
 })();
 </script>

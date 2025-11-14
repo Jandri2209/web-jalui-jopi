@@ -7,17 +7,28 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
 ---
 
 {% set addr = (site.address | replace("·"," ") | trim) %}
-{% set q = addr | urlencode %}
+{% set qAddr = addr | urlencode %}
 {% set pid = site.placeId %}
+{% set hasCoords = site.lat and site.lng %}
+{% set qCoords = hasCoords ? (site.lat ~ "," ~ site.lng) : "" %}
+{% set zoom = 16 %}
 
+{# Liens externes: utiliser place_id si présent #}
 {% if pid %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q ~ "&query_place_id=" ~ pid %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) ~ "&query_place_id=" ~ pid %}
   {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=place_id:" ~ pid %}
 {% else %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) %}
   {% set writeReviewHref = mapsHref %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
+{% endif %}
+
+{# Iframe (sans clé): mapsEmbed > coords > adresse #}
+{% if site.mapsEmbed %}
+  {% set mapsIframe = site.mapsEmbed %}
+{% elif hasCoords %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qCoords ~ "&z=" ~ zoom %}
+{% else %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qAddr ~ "&z=" ~ zoom %}
 {% endif %}
 
 <section class="section">
@@ -26,7 +37,7 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
   <div class="gethere-grid">
     <div class="card contact-box">
       <h3>{{ i18n.fr.Address }}</h3>
-      <p>{{ site.address }}</p>
+      <p>📍 {{ site.address }}</p>
 
       <div class="cta-row">
         <a class="btn" href="tel:+34948840496">📞 {{ i18n.fr.Call }}</a>
@@ -34,20 +45,20 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
       </div>
 
       <a class="btn wide" href="{{ mapsHref }}" target="_blank" rel="noopener">
-        {{ i18n.fr.OpenInMaps or "Abrir en Google Maps" }}
+        {{ i18n.fr.OpenInMaps or "Ouvrir dans Google Maps" }}
       </a>
     </div>
 
     <div class="map-card">
       <div class="map-embed">
         <iframe
-          src="{{ site.mapsEmbed or mapsIframe }}"
+          src="{{ mapsIframe }}"
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa — {{ site.address }}"></iframe>
+          title="Carte — {{ site.address }}"></iframe>
       </div>
-      <p class="map-note">{{ i18n.fr.MapNote or "Amplía el mapa para ver accesos y aparcamiento." }}</p>
+      <p class="map-note">{{ i18n.fr.MapNote or "Zoomez la carte pour voir les accès et le stationnement." }}</p>
     </div>
   </div>
 </section>

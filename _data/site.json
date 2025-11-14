@@ -7,8 +7,11 @@
   "phone": "+34 948 84 04 96",
   "mobile": "+34 687 42 05 69",
   "address": "Plaza de los Fueros, 4 - 31510 Fustiñana (Navarra)",
+  "lat": 42.0197864,
+  "lng": -1.4888204,
   "instagram": "https://www.instagram.com/bar_jalui_jopi_",
   "facebook": "https://www.facebook.com/Barjaluijopi.es/",
   "placeId": "ChIJN8qEQlc2Wg0RYMv5G_xUk3Y",
+  "mapsEmbed":"!1m18!1m12!1m3!1d2964.090712905768!2d-1.4888204227398885!3d42.019786356529494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5a36574284ca37%3A0x769354fc1bf9cb60!2sBrava%20Jalui%20S.L.!5e0!3m2!1ses!2ses!4v1763127156031!5m2!1ses!2ses",
   "reviews": { "google_avg": 4.3, "google_count": 144 }
 }

@@ -18,7 +18,10 @@ alt: {"es": "/contacto/", "en": "/en/contact/"}
         accept-charset="UTF-8"
         autocomplete="off">
 
+    <!-- Netlify -->
     <input type="hidden" name="form-name" value="contact-jalui-fr">
+    <input type="hidden" name="subject" value="Nouveau message du site (FR)">
+    <input type="hidden" name="lang" value="fr">
 
     {# Honeypot (caché) #}
     <p class="sr-only" aria-hidden="true">
@@ -34,11 +37,34 @@ alt: {"es": "/contacto/", "en": "/en/contact/"}
     <input id="email" type="email" name="email" required autocomplete="email" inputmode="email">
 
     <label for="reason">{{ i18n.fr.Reason }}</label>
-    <select id="reason" name="reason">
-      <option>Demande générale</option>
-      <option>Réservation de groupe</option>
-      <option>Suggestion</option>
+    <select id="reason" name="reason" autocomplete="off">
+      <option value="Demande générale">Demande générale</option>
+      <option value="Réservation de groupe">Réservation de groupe</option>
+      <option value="Suggestion">Suggestion</option>
     </select>
+
+    <!-- ===== Champs supplémentaires pour "Réservation de groupe" ===== -->
+    <fieldset id="group-fields-fr" hidden aria-hidden="true">
+      <legend class="sr-only">Détails de la réservation de groupe</legend>
+
+      <label for="guests-fr">Nombre de convives</label>
+      <select id="guests-fr" name="guests" autocomplete="off">
+        <option value="">Sélectionnez…</option>
+        {% for n in [6,8,10,12,15,20,25,30] %}
+          <option value="{{ n }}">{{ n }}</option>
+        {% endfor %}
+        <option value="30+">30+</option>
+      </select>
+
+      <label for="date-fr">Date souhaitée</label>
+      <input id="date-fr" name="preferred_date" type="date" inputmode="numeric" autocomplete="off">
+
+      <label for="time-fr">Heure souhaitée</label>
+      <input id="time-fr" name="preferred_time" type="time" inputmode="numeric" autocomplete="off">
+
+      <label for="budget-fr">Budget approx. par personne (€)</label>
+      <input id="budget-fr" name="budget_pp" type="number" min="0" step="1" inputmode="numeric" autocomplete="off">
+    </fieldset>
 
     <label for="message">{{ i18n.fr.Message }}</label>
     <textarea id="message" name="message" rows="6" required></textarea>
@@ -51,6 +77,7 @@ alt: {"es": "/contacto/", "en": "/en/contact/"}
     {# reCAPTCHA Netlify #}
     <div data-netlify-recaptcha="true"></div>
 
+    <div id="form-status-fr" class="sr-only" aria-live="polite"></div>
     <button class="btn" type="submit">{{ i18n.fr.Send }}</button>
   </form>
 </section>
@@ -59,12 +86,55 @@ alt: {"es": "/contacto/", "en": "/en/contact/"}
 (() => {
   const form = document.getElementById('contact-form-fr');
   if (!form) return;
+
+  const reasonSel = form.querySelector('#reason');
+  const groupBox  = form.querySelector('#group-fields-fr');
+  const guests    = form.querySelector('#guests-fr');
+  const date      = form.querySelector('#date-fr');
+  const time      = form.querySelector('#time-fr');
+
+  function isGroup() {
+    return reasonSel && reasonSel.value === 'Réservation de groupe';
+  }
+
+  function toggleGroupFields() {
+    const on = isGroup();
+    groupBox.hidden = !on;
+    groupBox.setAttribute('aria-hidden', String(!on));
+    [guests, date, time].forEach(el => {
+      if (!el) return;
+      if (on) el.setAttribute('required', 'required');
+      else el.removeAttribute('required');
+    });
+  }
+
+  reasonSel.addEventListener('change', toggleGroupFields);
+  toggleGroupFields(); // état initial
+
+  // UX envoi
   const btn = form.querySelector('button[type="submit"]');
+  const status = form.querySelector('#form-status-fr');
+
   form.addEventListener('submit', () => {
-    if (btn){ btn.dataset.txt = btn.textContent; btn.textContent = 'Envoi…'; btn.disabled = true; }
+    if (btn){
+      btn.dataset.txt = btn.textContent;
+      btn.textContent = 'Envoi…';
+      btn.disabled = true;
+    }
+    if (status){
+      status.textContent = 'Envoi de votre message…';
+    }
   });
+
+  // BFCache
   window.addEventListener('pageshow', (e) => {
-    if (e.persisted && btn){ form.reset(); btn.disabled = false; btn.textContent = btn.dataset.txt || 'Envoyer'; }
+    if (e.persisted && btn){
+      form.reset();
+      toggleGroupFields();
+      btn.disabled = false;
+      btn.textContent = btn.dataset.txt || 'Envoyer';
+      if (status) status.textContent = '';
+    }
   });
 })();
 </script>

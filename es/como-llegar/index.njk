@@ -6,18 +6,30 @@ permalink: /como-llegar/
 alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
 ---
 
+{# ===== Datos base ===== #}
 {% set addr = (site.address | replace("·"," ") | trim) %}
-{% set q = addr | urlencode %}
+{% set qAddr = addr | urlencode %}
 {% set pid = site.placeId %}
+{% set hasCoords = site.lat and site.lng %}
+{% set qCoords = hasCoords ? (site.lat ~ "," ~ site.lng) : "" %}
+{% set zoom = 16 %}
 
+{# ===== Enlaces externos =====
+   Para abrir en Google Maps usamos place_id si existe; si no, dirección o coords #}
 {% if pid %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q ~ "&query_place_id=" ~ pid %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) ~ "&query_place_id=" ~ pid %}
   {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=place_id:" ~ pid %}
 {% else %}
-  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
+  {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords ? qCoords : qAddr) %}
   {% set writeReviewHref = mapsHref %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
+{% endif %}
+
+{% if site.mapsEmbed %}
+  {% set mapsIframe = site.mapsEmbed %}
+{% elif hasCoords %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qCoords ~ "&z=" ~ zoom %}
+{% else %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qAddr ~ "&z=" ~ zoom %}
 {% endif %}
 
 <section class="section">
@@ -26,7 +38,7 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
   <div class="gethere-grid">
     <div class="card contact-box">
       <h3>{{ i18n.es.Address }}</h3>
-      <p>{{ site.address }}</p>
+      <p>📍 {{ site.address }}</p>
 
       <div class="cta-row">
         <a class="btn" href="tel:+34948840496">📞 {{ i18n.es.Call }}</a>
@@ -41,7 +53,7 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
     <div class="map-card">
       <div class="map-embed">
         <iframe
-          src="{{ site.mapsEmbed or mapsIframe }}"
+          src="{{ mapsIframe }}"
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"

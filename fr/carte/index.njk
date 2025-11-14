@@ -8,6 +8,25 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
 {% set MENUS = { 'es': menu_es, 'en': menu_en, 'fr': menu_fr } %}
 {% set T = i18n[lang] or i18n.fr %}
 {% set MENU = MENUS[lang] or menu_fr %}
+{% set LOCALE = { 'es': 'es-ES', 'en': 'en-GB', 'fr': 'fr-FR' } %}
+
+{# PDF_CODE sin ternarios #}
+{% if lang == 'en' %}
+  {% set PDF_CODE = 'en' %}
+{% elif lang == 'fr' %}
+  {% set PDF_CODE = 'fr' %}
+{% else %}
+  {% set PDF_CODE = 'es' %}
+{% endif %}
+
+{# CONTACT_URL sin ternarios #}
+{% if lang == 'en' %}
+  {% set CONTACT_URL = '/en/contact/' %}
+{% elif lang == 'fr' %}
+  {% set CONTACT_URL = '/fr/contact/' %}
+{% else %}
+  {% set CONTACT_URL = '/contacto/' %}
+{% endif %}
 
 {% set ICON = {
         'gluten':'/images/icons/allergens/gluten.svg',
