@@ -11,11 +11,10 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
 
 <article>
   <header class="menu-hero">
-    <img src="/images/menu-hero.jpg" alt="Jalui Jopi">
+    <img src="/images/menu-hero.webp" alt="Jalui Jopi">
     <h1 style="margin-top:10px">{{ T.Carta }}</h1>
     <p class="lead-note">
-      {{ T.PricesNote }}
-      <time>{{ "now" | date("fr-FR") }}</time>
+      {{ T.PricesNote }} <time>{{ "now" | date("fr-FR") }}</time>
     </p>
   </header>
 
@@ -23,25 +22,44 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
     <section class="menu-cat">
       {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.title }}">{% endif %}
       <h3>{{ cat.title }}</h3>
+
+      {% set ICON = {
+        'gluten':'/images/icons/allergens/gluten.svg',
+        'huevo':'/images/icons/allergens/huevo.svg',
+        'lácteos':'/images/icons/allergens/lacteos.svg',
+        'pescado':'/images/icons/allergens/pescado.svg',
+        'moluscos':'/images/icons/allergens/moluscos.svg',
+        'crustáceos':'/images/icons/allergens/crustaceos.svg',
+        'soja':'/images/icons/allergens/soja.svg',
+        'sésamo':'/images/icons/allergens/sesamo.svg',
+        'mostaza':'/images/icons/allergens/mostaza.svg',
+        'apio':'/images/icons/allergens/apio.svg',
+        'cacahuetes':'/images/icons/allergens/cacahuetes.svg',
+        'frutos de cáscara':'/images/icons/allergens/frutos_de_cascara.svg',
+        'sulfitos':'/images/icons/allergens/sulfitos.svg'
+      } %}
+
       <div class="menu-items">
         {% for it in cat.items %}
           {% set allergens = it.allergens or (it.ingredients | inferAllergens) %}
-          <div class="name">
-            {{ it.name }}
-            {% if it.ingredients %}
-              <span class="ingredients">— {{ it.ingredients | join(", ") }}</span>
-            {% endif %}
-            {% if (allergens | length) %}
-              <span class="allergens">
-                {% for a in allergens %}
-                  <span class="a" title="{{ T.AllergenNames[a] or a }}">{{ a }}</span>
-                {% endfor %}
-              </span>
-            {% endif %}
+          <div class="menu-row">
+            <div class="name">
+              {{ it.name }}
+              {% if it.ingredients %}
+                <span class="ingredients">— {{ it.ingredients | join(", ") }}</span>
+              {% endif %}
+            </div>
+
+            <div class="icons">
+              {% for a in allergens %}
+                <img class="ico" src="{{ ICON[a] }}" alt="{{ T.AllergenNames[a] or a }}" title="{{ T.AllergenNames[a] or a }}">
+              {% endfor %}
+            </div>
+
+            <span class="dots" aria-hidden="true"></span>
+
+            {% if it.price %}<div class="price">{{ it.price | currency(lang) }}</div>{% endif %}
           </div>
-          {% if it.price %}
-            <div class="price">{{ it.price | currency(lang) }}</div>
-          {% endif %}
         {% endfor %}
       </div>
     </section>

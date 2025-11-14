@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img">
+  <title>Sésamo</title>
+  <defs>
+    <clipPath id="clipCircle"><circle cx="32" cy="32" r="28"/></clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="white" stroke="#D39B2A" stroke-width="4"/>
+  <g clip-path="url(#clipCircle)">
+    <rect x="14" y="14" width="36" height="36" rx="6" ry="6" fill="#8C5E3C22"/>
+    <ellipse cx="20" cy="28" rx="1.6" ry="2.1" fill="#D39B2A"/><ellipse cx="24" cy="32" rx="1.6" ry="2.1" fill="#D39B2A"/><ellipse cx="28" cy="28" rx="1.6" ry="2.1" fill="#D39B2A"/><ellipse cx="32" cy="36" rx="1.6" ry="2.1" fill="#D39B2A"/><ellipse cx="36" cy="32" rx="1.6" ry="2.1" fill="#D39B2A"/><ellipse cx="40" cy="36" rx="1.6" ry="2.1" fill="#D39B2A"/>
+  </g>
+</svg>

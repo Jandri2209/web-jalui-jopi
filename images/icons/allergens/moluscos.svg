@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img">
+  <title>Moluscos</title>
+  <defs>
+    <clipPath id="clipCircle"><circle cx="32" cy="32" r="28"/></clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="white" stroke="#5A5A5A" stroke-width="4"/>
+  <g clip-path="url(#clipCircle)">
+    <rect x="14" y="14" width="36" height="36" rx="6" ry="6" fill="#8C5E3C22"/>
+    <path d="M20 38c0-8 6-14 12-14s12 6 12 14H20z" fill="#DADADA" stroke="#6B6B6B" stroke-width="1.5"/><path d="M24 38c0-5 4-9 8-9s8 4 8 9" fill="none" stroke="#6B6B6B" stroke-width="1"/>
+  </g>
+</svg>

@@ -15,11 +15,14 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("date", (value, locale = "es-ES", options = {}) => {
-    if (!value) return "";
-    const d = value instanceof Date ? value : new Date(value);
+    let d;
+    if (value === "now" || value === undefined || value === null) d = new Date();
+    else if (value instanceof Date) d = value;
+    else if (typeof value === "number") d = new Date(value);
+    else d = new Date(String(value));
+
     if (isNaN(d)) return "";
-    const opts = Object.keys(options).length
-      ? options
+    const opts = Object.keys(options).length ? options
       : { year: "numeric", month: "long", day: "2-digit" };
     return new Intl.DateTimeFormat(locale, opts).format(d);
   });

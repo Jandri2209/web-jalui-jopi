@@ -4,5 +4,7 @@
   { "src": "/images/home/home-02.webp",
     "alt": { "es": "Terraza", "en": "Terrace", "fr": "Terrasse" } },
   { "src": "/images/home/home-03.webp",
-    "alt": { "es": "Interior de Jalui Jopi", "en": "Dining room", "fr": "Salle intérieure" } }
+    "alt": { "es": "Interior de Jalui Jopi", "en": "Dining room", "fr": "Salle intérieure" } },
+    { "src": "/images/home/menu-hero.webp",
+    "alt": { "es": "Barra de Jalui Jopi", "en": "Jalui Jopi Bar", "fr": "Barre de Jalui Jopi" } }
 ]
