@@ -15,9 +15,8 @@ alt: {"en": "/en/menu/", "fr": "/fr/carte/"}
     <h1 style="margin-top:10px">{{ T.Carta }}</h1>
     <p class="lead-note">
       {{ T.PricesNote }}
-      <time>
-        {{ "now" | date(lang == "en" ? "en-GB" : (lang == "fr" ? "fr-FR" : "es-ES")) }}
-      </time>
+      {% set LOCALE = { 'es': 'es-ES', 'en': 'en-GB', 'fr': 'fr-FR' } %}
+      <time>{{ "now" | date(LOCALE[lang] or "es-ES") }}</time>
     </p>
   </header>
 
