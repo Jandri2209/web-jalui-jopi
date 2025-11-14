@@ -1,36 +1,60 @@
+// scripts/generate-pdfs.js
 const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
 
-async function go() {
-  const outDir = path.join(__dirname, "..", "_site", "assets", "pdf");
-  fs.mkdirSync(outDir, { recursive: true });
+async function ensureDir(p) {
+  await fs.promises.mkdir(p, { recursive: true });
+}
 
-  const pages = [
-    { url: path.join(__dirname, "..", "_site", "carta", "index.html"), out: "menu-es.pdf" },
-    { url: path.join(__dirname, "..", "_site", "en", "menu", "index.html"), out: "menu-en.pdf" },
-    { url: path.join(__dirname, "..", "_site", "fr", "carte", "index.html"), out: "menu-fr.pdf" },
-  ];
+async function makePDF(pagePath, outPath, lang) {
+  const url = `file://${path.resolve("_site", pagePath, "index.html")}`;
+  console.log(`[PDF] ${lang.toUpperCase()} -> ${url}`);
 
+  // Lanza Chromium de Puppeteer (con flags para Netlify)
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--no-sandbox","--disable-setuid-sandbox"]
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
+  try {
+    const page = await browser.newPage();
 
-  const page = await browser.newPage();
-  for (const p of pages) {
-    const fileUrl = "file://" + p.url.replace(/\\/g, "/");
-    await page.goto(fileUrl, { waitUntil: "networkidle0" });
+    // Un CSS rápido para vista print (si no lo tenías ya en tu CSS)
     await page.emulateMediaType("screen");
-    // Usa el CSS @media print que ya tienes
+
+    await page.goto(url, { waitUntil: "networkidle0" });
+
     await page.pdf({
-      path: path.join(outDir, p.out),
+      path: outPath,
       format: "A4",
       printBackground: true,
-      margin: { top: "10mm", bottom: "12mm", left: "10mm", right: "10mm" }
+      margin: { top: "10mm", right: "10mm", bottom: "10mm", left: "10mm" },
+      preferCSSPageSize: true
     });
-    console.log("PDF generado:", p.out);
+
+    console.log(`[PDF] guardado: ${outPath}`);
+  } finally {
+    await browser.close();
   }
-  await browser.close();
 }
-go().catch(err => { console.error(err); process.exit(1); });
+
+async function go() {
+  const outDir = path.resolve("assets", "pdf");
+  await ensureDir(outDir);
+
+  // ES / EN / FR
+  const jobs = [
+    { page: "carta", out: path.join(outDir, "menu-es.pdf"), lang: "es" },
+    { page: path.join("en", "menu"), out: path.join(outDir, "menu-en.pdf"), lang: "en" },
+    { page: path.join("fr", "carte"), out: path.join(outDir, "menu-fr.pdf"), lang: "fr" },
+  ];
+
+  for (const j of jobs) {
+    await makePDF(j.page, j.out, j.lang);
+  }
+}
+
+go().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

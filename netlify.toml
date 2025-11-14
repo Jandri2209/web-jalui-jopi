@@ -5,6 +5,9 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--no-audit --no-fund --loglevel=error"
+  PUPPETEER_CACHE_DIR = "/opt/buildhome/.cache/puppeteer"
+  PUPPETEER_PRODUCT = "chrome"
+
 
 [functions]
   node_bundler = "esbuild"
