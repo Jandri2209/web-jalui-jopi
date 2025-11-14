@@ -30,7 +30,7 @@
 <footer class="site-footer pro">
   <div class="container footer-wrap">
     <!-- Marca / contacto -->
-    <section class="f-brand">
+    <section class="f-brand f-col">
       <a href="{{ homeHref }}" class="brand brand--footer" aria-label="Discobar Jalui Jopi">
         <img src="/assets/brand/logo-jalui.png" alt="Discobar Jalui Jopi">
         <span>Jalui Jopi</span>
@@ -69,13 +69,8 @@
       </div>
     </section>
 
-    <div class="f-ctas">
-      <a class="btn alt" href="/contacto/">{{ i18n.es.CTA_Contact }}</a>
-      <a class="btn" href="/carta/">{{ i18n.es.CTA_SeeMenu }}</a>
-    </div>
-
     <!-- Horario -->
-    <section class="f-hours" aria-label="Horario">
+    <section class="f-hours f-col" aria-label="Horario">
       <h4>Horario</h4>
       <ul class="hours">
         <li><span>L–J</span><strong>7:00–23:30</strong></li>
@@ -83,10 +78,16 @@
         <li><span>S–D</span><strong>7:00–24:00</strong></li>
       </ul>
       <p class="note">{{ T.OpenHoursNote }}</p>
+
+      <!-- CTAs MOVIDOS AQUÍ -->
+      <div class="f-ctas">
+        <a class="btn alt" href="/contacto/">{{ i18n.es.CTA_Contact }}</a>
+        <a class="btn" href="/carta/">{{ i18n.es.CTA_SeeMenu }}</a>
+      </div>
     </section>
 
     <!-- Legal -->
-    <nav class="f-legal" aria-label="Información legal">
+    <nav class="f-legal f-col" aria-label="Información legal">
       <h4>{{ T.Legal }}</h4>
       <ul>
         <li><a href="{{ legalHref }}">{{ T.Info }}</a></li>
