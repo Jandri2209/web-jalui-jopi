@@ -67,7 +67,6 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 }
 .site-header a.brand span { color: inherit; }
 
-
 /* Panel móvil */
 @media (max-width:899px){
   .main-nav{
@@ -195,6 +194,26 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
+/* CTAs en cabecera */
+.cta-row { display:flex; gap:.6rem; margin:.6rem 0 1rem; flex-wrap:wrap; }
+.btn { display:inline-block; padding:.5rem .9rem; border-radius:.6rem; background:#fff; color:#111; text-decoration:none; font-weight:600; }
+.btn.alt { background:transparent; border:1px solid rgba(148,163,184,.5); color:inherit; }
+
+/* Leyenda */
+.soft { border:0; border-top:1px solid rgba(148,163,184,.3); margin:1.2rem 0; }
+.allergen-legend h4 { margin:0 0 .6rem; }
+.legend-grid { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.5rem .8rem; }
+.legend-grid li { display:flex; align-items:center; gap:.5rem; }
+
+/* Print: PDF bonito */
+@media print {
+  nav, footer, .menu-hero img, .cta-row { display:none !important; }
+  body { background:#fff; color:#000; }
+  .menu-row { break-inside: avoid; }
+  .menu-cat h3 { page-break-after: avoid; }
+  .soft { border-color:#000; }
+}
+
 
 /* Responsive: en móvil escondemos puntos y dejamos iconos debajo */
 @media (max-width: 640px){
@@ -207,7 +226,7 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 }
 
 /* ========== Formulario ========== */
-.contact-form{ max-width:640px; margin:0 auto }
+.contact-form{ margin:0 auto }
 .contact-form label{ display:block; font-weight:600; margin-bottom:6px }
 .contact-form input,.contact-form textarea,.contact-form select{
   width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--border);

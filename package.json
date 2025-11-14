@@ -3,14 +3,15 @@
   "private": true,
   "scripts": {
     "dev": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy"
+    "build": "npx @11ty/eleventy && node scripts/generate-pdfs.js"
   },
   "dependencies": {
     "nodemailer": "^6.9.15"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@quasibit/eleventy-plugin-sitemap": "^2.2.0"
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
+    "puppeteer": "^23.6.0"
   },
   "engines": {
     "node": ">=18"

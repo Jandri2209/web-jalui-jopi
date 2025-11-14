@@ -13,11 +13,12 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
 {% if pid %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q ~ "&query_place_id=" ~ pid %}
   {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=place_id:" ~ pid %}
 {% else %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ q %}
   {% set writeReviewHref = mapsHref %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
 {% endif %}
-{% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ q %}
 
 <section class="section">
   <h1>{{ i18n.fr.HowToGetHere }}</h1>

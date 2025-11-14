@@ -9,21 +9,7 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
 {% set T = i18n[lang] or i18n.fr %}
 {% set MENU = MENUS[lang] or menu_fr %}
 
-<article>
-  <header class="menu-hero">
-    <img src="/images/home/menu-hero.webp" alt="Jalui Jopi">
-    <h1 style="margin-top:10px">{{ T.Carta }}</h1>
-    <p class="lead-note">
-      {{ T.PricesNote }} <time>{{ "now" | date("fr-FR") }}</time>
-    </p>
-  </header>
-
-  {% for cat in MENU.categories %}
-    <section class="menu-cat">
-      {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.title }}">{% endif %}
-      <h3>{{ cat.title }}</h3>
-
-      {% set ICON = {
+{% set ICON = {
         'gluten':'/images/icons/allergens/gluten.svg',
         'huevo':'/images/icons/allergens/huevo.svg',
         'lácteos':'/images/icons/allergens/lacteos.svg',
@@ -38,6 +24,20 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
         'frutos de cáscara':'/images/icons/allergens/frutos_de_cascara.svg',
         'sulfitos':'/images/icons/allergens/sulfitos.svg'
       } %}
+
+<article>
+  <header class="menu-hero">
+    <img src="/images/home/menu-hero.webp" alt="Jalui Jopi">
+    <h1 style="margin-top:10px">{{ T.Carta }}</h1>
+    <p class="lead-note">
+      {{ T.PricesNote }} <time>{{ "now" | date("fr-FR") }}</time>
+    </p>
+  </header>
+
+  {% for cat in MENU.categories %}
+    <section class="menu-cat">
+      {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.title }}">{% endif %}
+      <h3>{{ cat.title }}</h3>
 
       <div class="menu-items">
         {% for it in cat.items %}
@@ -64,4 +64,29 @@ alt: {"es": "/carta/", "en": "/en/menu/"}
       </div>
     </section>
   {% endfor %}
+    <hr class="soft">
+    <section class="allergen-legend">
+      <h4>{{ T.LegendTitle }}</h4>
+        {% set ORDER = [
+          'gluten','huevo','lácteos','pescado','moluscos','crustáceos',
+          'soja','sésamo','mostaza','apio','cacahuetes','frutos de cáscara','sulfitos'
+        ] %}
+        <ul class="legend-grid">
+          {% for k in ORDER %}
+            <li>
+              <img src="{{ ICON[k] }}" alt="{{ T.AllergenNames[k] or k }}" width="22" height="22">
+              <span>{{ T.AllergenNames[k] or k }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      <p class="lead-note" style="margin-top:.4rem">{{ T.AllergenDisclaimer }}</p>
+      <div class="cta-row">
+        <a class="btn" href="{{ lang == 'en' ? '/en/contact/' : (lang == 'fr' ? '/fr/contact/' : '/contacto/') }}">
+          {{ T.CTA_Book }}
+        </a>
+        <a class="btn alt" href="/assets/pdf/menu-{{ lang == 'en' ? 'en' : (lang == 'fr' ? 'fr' : 'es') }}.pdf" target="_blank" rel="noopener">
+          {{ T.CTA_DownloadPDF }}
+        </a>
+      </div>
+    </section>
 </article>
