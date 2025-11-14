@@ -143,51 +143,70 @@ a:visited{ color:#a78bfa }
 .map-embed{ aspect-ratio:16/11; background:#111; border-radius:16px; overflow:hidden; border:1px solid #262626 }
 .map-embed iframe{ width:100%; height:100%; border:0 }
 
-/* ========== Footer PRO ========== */
+/* ========== Footer PRO (limpio) ========== */
 .site-footer.pro{ margin-top:40px; border-top:1px solid var(--border) }
 /* En footer permitimos morado visitado excepto en badges/ctas */
 .site-footer.pro a, .site-footer.pro a:hover{ text-decoration:none }
-/* CTAs del footer más contenidos */
-.site-footer.pro .f-ctas .btn{
-  padding:.6rem .9rem;
-  border-radius:999px;
-  width:auto; height:auto; /* evita círculos */
-}
-.site-footer.pro .f-ctas .btn.alt{ background:transparent; }
 
-.badge:visited, .brand--footer:visited{ color:var(--fg) }
-
+/* Grid a 3 columnas en desktop */
 .footer-wrap{
   display:grid;
-  grid-template-columns:1.4fr .8fr .7fr .7fr;
-  gap:24px; padding:28px 0;
+  grid-template-columns: minmax(360px,1.2fr) 1fr .9fr; /* Marca | Horario(+CTAs) | Legal */
+  gap:24px;
+  padding:28px 0;
+  justify-items:center;
 }
-.brand--footer{ display:flex; align-items:center; gap:10px; color:var(--fg) }
-.brand--footer img{ height:28px; width:auto; filter:invert(1) }
-.tagline{ color:var(--muted); margin:.25rem 0 1rem }
 
-.f-contact{ list-style:none; padding:0; margin:.5rem 0 1rem; display:grid; gap:.4rem }
-.f-contact li{ display:flex; gap:.55rem; align-items:flex-start }
-.f-contact .ico{ width:18px; height:18px; flex:0 0 18px; color:var(--muted) }
+/* Columna común: centra contenidos y límites de ancho legible */
+.f-col{ text-align:center; }
+.f-brand{ max-width:48ch; }
 
-.f-social{ display:flex; gap:.5rem; margin:.2rem 0 1rem; flex-wrap:wrap }
+/* Marca y redes centradas */
+.brand--footer{ display:flex; align-items:center; gap:10px; color:var(--fg); justify-content:center; }
+.brand--footer img{ height:28px; width:auto; /* ¡quitamos el invert! */ filter:none; }
+.f-social{ display:flex; gap:.5rem; margin:.2rem 0 1rem; flex-wrap:wrap; justify-content:center; }
+
 .badge{
   display:inline-flex; align-items:center; gap:.45rem;
   padding:.35rem .6rem; border:1px solid var(--border);
   border-radius:999px; background:#111; color:var(--fg)
 }
 .badge .ico{ width:16px; height:16px }
+.badge:visited, .brand--footer:visited{ color:var(--fg) }
 
-.f-ctas{ display:flex; gap:.5rem; flex-wrap:wrap }
+.tagline{ color:var(--muted); margin:.25rem 0 1rem }
 
-.f-nav ul, .f-legal ul{
-  list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.35rem
+.f-contact{ list-style:none; padding:0; margin:.5rem 0 1rem; display:grid; gap:.4rem }
+.f-contact li{ display:flex; gap:.55rem; align-items:flex-start }
+.f-contact .ico{ width:18px; height:18px; flex:0 0 18px; color:var(--muted) }
+
+/* Horario centrado */
+.f-hours .hours{
+  list-style:none; padding:0; margin:.5rem 0 .8rem;
+  display:grid; gap:.35rem;
+}
+.f-hours .hours li{ display:flex; justify-content:center; gap:.7rem }
+.f-hours .hours span{ color:var(--muted) }
+
+/* Nota encima de los CTAs con más aire hacia abajo */
+.f-hours .note{
+  color:var(--muted);
+  font-size:.9rem;
+  margin:0 0 1.2rem;   /* antes tenía margen arriba; ahora damos margen ABAJO */
 }
 
-.f-hours .hours{ list-style:none; padding:0; margin:.5rem 0 .4rem; display:grid; gap:.3rem }
-.f-hours .hours li{ display:flex; justify-content:space-between; gap:1rem }
-.f-hours .hours span{ color:var(--muted) }
-.f-hours .note{ color:var(--muted); font-size:.9rem; margin:.25rem 0 0 }
+/* CTAs dentro de Horario (centrados a ancho cómodo) */
+.f-ctas{
+  display:flex; flex-direction:column; gap:.7rem;
+  width:100%; max-width:320px; margin:0 auto;
+}
+.f-ctas .btn{ width:100%; }
+.site-footer.pro .f-ctas .btn{ padding:.6rem .9rem; border-radius:999px; }
+.site-footer.pro .f-ctas .btn.alt{ background:transparent; }
+
+/* Legal */
+.f-legal ul{ list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.35rem }
+.f-legal ul li{ margin:.25rem 0; }
 
 .backtop{
   margin-top:.8rem; background:transparent; color:var(--fg);
@@ -196,6 +215,23 @@ a:visited{ color:#a78bfa }
 
 .footer-meta{ border-top:1px solid var(--border); padding:10px 0 28px; color:var(--muted);
   display:flex; justify-content:center; align-items:center; text-align:center }
+
+/* Aire lateral extra en móvil para que no “sangre” el texto */
+.site-footer .container{ padding-inline:24px; }
+@media (max-width:480px){ .site-footer .container{ padding-inline:18px; } }
+
+/* Responsivo: 2 columnas */
+@media (max-width:940px){
+  .footer-wrap{ grid-template-columns:1fr 1fr; }
+  .f-legal{ width:100%; max-width:420px; }
+}
+
+/* Responsivo: 1 columna */
+@media (max-width:640px){
+  .footer-wrap{ grid-template-columns:1fr; row-gap:20px; }
+  .f-brand{ max-width:52ch; }
+  .f-ctas{ max-width:420px; }
+}
 
 /* Badge reseñas Google */
 .rating-badge{ display:flex; align-items:center; gap:14px; }
@@ -282,65 +318,7 @@ a:visited{ color:#a78bfa }
 /* Enlaces dentro de cabecera de reseñas sin morado visitado */
 .plat-header a:visited{ color:var(--fg) }
 
-.logo-google{ display:inline-block; vertical-align:-3px }
-
-
-/* ========== Footer PRO ========== */
-/* Grid a 3 columnas en desktop */
-.footer-wrap{
-  display:grid;
-  grid-template-columns: minmax(360px,1.2fr) 1fr .9fr; /* Marca | Horario(+CTAs) | Legal */
-  gap:24px;
-  padding:28px 0;
-  justify-items:center;          /* centra cada columna dentro del grid */
-}
-
-/* Columna común: centra contenidos y límites de ancho legible */
-.f-col{ text-align:center; }
-.f-brand{ max-width:48ch; }
-.f-legal ul{ margin-top:.5rem; }
-.f-legal ul li{ margin:.25rem 0; }
-
-/* Marca y redes centradas */
-.brand--footer{ justify-content:center; }
-.f-social{ justify-content:center; }
-
-/* Horario centrado */
-.f-hours .hours{
-  list-style:none;
-  padding:0;
-  margin:.5rem 0 .8rem;
-  display:grid;
-  gap:.35rem;
-}
-.f-hours .hours li{ display:flex; justify-content:center; gap:.7rem }
-.f-hours .hours span{ color:var(--muted) }
-.f-hours .note{ color:var(--muted); font-size:.9rem; margin:.6rem 0 0 }
-
-/* CTAs dentro de Horario (centrados a ancho cómodo) */
-.f-ctas{
-  display:flex; flex-direction:column; gap:.6rem;
-  width:100%; max-width:320px; margin:0 auto;
-}
-.f-ctas .btn{ width:100%; }
-
-/* Aire lateral extra en móvil para que no “sangre” el texto */
-.site-footer .container{ padding-inline:24px; }
-@media (max-width:480px){ .site-footer .container{ padding-inline:18px; } }
-
-/* Responsivo: 2 columnas */
-@media (max-width:940px){
-  .footer-wrap{ grid-template-columns:1fr 1fr; }
-  /* Que legal no quede estrecha */
-  .f-legal{ width:100%; max-width:420px; }
-}
-
-/* Responsivo: 1 columna */
-@media (max-width:640px){
-  .footer-wrap{ grid-template-columns:1fr; row-gap:20px; }
-  .f-brand{ max-width:52ch; }
-  .f-ctas{ max-width:420px; }
-}
+/* .logo-google{ display:inline-block; vertical-align:-3px } */
 
 /* ========== Responsive ========== */
 @media (max-width:900px){ .gethere-grid{ grid-template-columns:1fr } }
@@ -352,16 +330,5 @@ a:visited{ color:#a78bfa }
 }
 @media (min-width:900px){ .brand img{ height:36px } .grid-3{ grid-template-columns:repeat(3,1fr) } }
 @media (min-width:920px){ .hero{ grid-template-columns:1.2fr 1fr; gap:24px; padding:40px 0 20px } }
-@media (max-width:640px){
-  .f-ctas .btn{ width:100% }
-}
 @media(max-width:760px){ .home-gallery{ grid-template-columns:1fr 1fr; } }
 /* Footer: normaliza CTAs en desktop */
-@media (min-width:1024px){
-  .site-footer.pro .footer-wrap{ align-items:start; justify-items:start; } /* evita estirar filas */
-  .site-footer.pro .f-ctas{ display:flex; flex-direction:column; gap:.6rem; align-self:center; justify-self: center;place-self:center; align-items:center;}
-  .site-footer.pro .f-ctas .btn{
-    width:auto; height:auto; padding:12px 18px;
-    border-radius:999px; line-height:1.2; font-weight:700;
-  }
-}
