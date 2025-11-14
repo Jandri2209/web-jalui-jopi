@@ -29,7 +29,12 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
 
 {# Iframe sin API key: prioridad -> site.mapsEmbed > coords > dirección #}
 {% if site.mapsEmbed %}
-  {% set mapsIframe = site.mapsEmbed %}
+  {# Acepta tanto URL completa como solo el pb #}
+  {% if '://' in site.mapsEmbed %}
+    {% set mapsIframe = site.mapsEmbed %}
+  {% else %}
+    {% set mapsIframe = "https://www.google.com/maps/embed?pb=" ~ site.mapsEmbed %}
+  {% endif %}
 {% elif hasCoords %}
   {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qCoords ~ "&z=" ~ zoom %}
 {% else %}

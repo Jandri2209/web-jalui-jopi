@@ -1,3 +1,4 @@
+// scripts/generate-pdfs.js
 const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
@@ -15,7 +16,7 @@ async function makePDF(pagePath, outPath, lang) {
 
   try {
     const page = await browser.newPage();
-    await page.emulateMediaType("screen"); // usamos tus estilos @media print
+    await page.emulateMediaType("screen");
     await page.goto(url, { waitUntil: "networkidle0" });
     await page.pdf({
       path: outPath,
@@ -31,7 +32,8 @@ async function makePDF(pagePath, outPath, lang) {
 }
 
 async function go() {
-  const outDir = path.resolve("assets", "pdf");
+  // ⬇️ Publica directamente en la carpeta que Netlify despliega
+  const outDir = path.resolve("_site", "assets", "pdf");
   await ensureDir(outDir);
 
   await makePDF("carta", path.join(outDir, "menu-es.pdf"), "es");
