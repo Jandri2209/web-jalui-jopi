@@ -3,15 +3,16 @@
   "private": true,
   "scripts": {
     "dev": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy && npx puppeteer browsers install chrome --cache-dir=$PUPPETEER_CACHE_DIR && node scripts/generate-pdfs.js"
+    "build": "npx @11ty/eleventy && node scripts/generate-pdfs.js",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
-    "nodemailer": "^6.9.15"
+    "nodemailer": "^6.9.15",
+    "puppeteer": "^23.7.3"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
-    "puppeteer": "^23.7.3"
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0"
   },
   "engines": { "node": ">=18" }
 }

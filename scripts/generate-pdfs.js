@@ -3,15 +3,19 @@ const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
 
-async function ensureDir(p) { await fs.promises.mkdir(p, { recursive: true }); }
+async function ensureDir(p){ await fs.promises.mkdir(p, { recursive:true }); }
+async function mustExist(p){
+  try { await fs.promises.stat(p); }
+  catch { throw new Error(`PDF no encontrado tras generar: ${p}`); }
+}
 
-async function makePDF(pagePath, outPath, lang) {
+async function makePDF(pagePath, outPath, lang){
   const url = `file://${path.resolve("_site", pagePath, "index.html")}`;
   console.log(`[PDF] ${lang.toUpperCase()} -> ${url}`);
 
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: ["--no-sandbox","--disable-setuid-sandbox"],
   });
 
   try {
@@ -22,23 +26,23 @@ async function makePDF(pagePath, outPath, lang) {
       path: outPath,
       format: "A4",
       printBackground: true,
-      margin: { top: "10mm", right: "10mm", bottom: "10mm", left: "10mm" },
+      margin: { top:"10mm", right:"10mm", bottom:"10mm", left:"10mm" },
       preferCSSPageSize: true,
     });
     console.log(`[PDF] guardado: ${outPath}`);
+    await mustExist(outPath);
   } finally {
     await browser.close();
   }
 }
 
-async function go() {
-  // ⬇️ Publica directamente en la carpeta que Netlify despliega
+async function go(){
   const outDir = path.resolve("_site", "assets", "pdf");
   await ensureDir(outDir);
 
-  await makePDF("carta", path.join(outDir, "menu-es.pdf"), "es");
-  await makePDF(path.join("en", "menu"), path.join(outDir, "menu-en.pdf"), "en");
-  await makePDF(path.join("fr", "carte"), path.join(outDir, "menu-fr.pdf"), "fr");
+  await makePDF("carta",                 path.join(outDir, "menu-es.pdf"), "es");
+  await makePDF(path.join("en","menu"),  path.join(outDir, "menu-en.pdf"), "en");
+  await makePDF(path.join("fr","carte"), path.join(outDir, "menu-fr.pdf"), "fr");
 }
 
-go().catch((e) => { console.error(e); process.exit(1); });
+go().catch(e => { console.error(e); process.exit(1); });
