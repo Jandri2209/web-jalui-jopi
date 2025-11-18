@@ -96,6 +96,7 @@ async function makePDF(pagePath, outPath, lang) {
       printBackground: true,
       margin: { top: "10mm", right: "10mm", bottom: "10mm", left: "10mm" },
       preferCSSPageSize: true,
+      scale: 0.95   // ~5% de “zoom out” para evitar saltos de línea raros
     });
 
     console.log(`[PDF] guardado: ${outPath}`);
