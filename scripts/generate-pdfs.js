@@ -53,9 +53,9 @@ async function go() {
   const outDir = path.resolve("_site", "assets", "pdf");
   await ensureDir(outDir);
 
-  await makePDF("carta", path.join(outDir, "Menú Jalui Jopi.pdf"), "es");
-  await makePDF(path.join("en", "menu"), path.join(outDir, "Menu Jalui Jopi.pdf"), "en");
-  await makePDF(path.join("fr", "carte"), path.join(outDir, "Menu Jalui Jopi.pdf"), "fr");
+  await makePDF("carta", path.join(outDir, "menu-es.pdf"), "es");
+  await makePDF(path.join("en", "menu"), path.join(outDir, "menu-en.pdf"), "en");
+  await makePDF(path.join("fr", "carte"), path.join(outDir, "menu-fr.pdf"), "fr");
 }
 
 go().catch((e) => { console.error(e); process.exit(1); });
