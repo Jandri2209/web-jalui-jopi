@@ -488,10 +488,9 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 @media (min-width:900px){ .brand img{ height:36px } .grid-3{ grid-template-columns:repeat(3,1fr) } }
 @media (min-width:920px){ .hero{ grid-template-columns:1.2fr 1fr; gap:24px; padding:40px 0 20px } }
 @media print {
-  /* Oculta todo lo de la “chrome” de la página */
   .site-header, nav, .lang-switch, .cta-row,
   .site-footer, .footer-wrap, .footer-meta,
-  .menu-hero img { display:none !important; }
+  .menu-hero img { display: none !important; }
 
   body { background:#fff; color:#000; font-size:12pt; }
   .container { max-width: 720px; margin: 0 auto; }
