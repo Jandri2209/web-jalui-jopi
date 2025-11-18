@@ -196,8 +196,6 @@ main, #main{ flex:1 0 auto; }      /* el contenido ocupa el alto disponible */
 }
 /* CTAs en cabecera */
 .cta-row { display:flex; gap:.6rem; margin:.6rem 0 1rem; flex-wrap:wrap; }
-.btn { display:inline-block; padding:.5rem .9rem; border-radius:.6rem; background:#fff; color:#111; text-decoration:none; font-weight:600; }
-.btn.alt { background:transparent; border:1px solid rgba(148,163,184,.5); color:inherit; }
 
 /* Leyenda */
 .soft { border:0; border-top:1px solid rgba(148,163,184,.3); margin:1.2rem 0; }
