@@ -18,7 +18,7 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
   {% set qCoords = "" %}
 {% endif %}
 
-{# Enlace externo: preferimos place_id si existe #}
+{# Lien externe : priorité au place_id s’il existe #}
 {% if pid %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) ~ "&query_place_id=" ~ pid %}
   {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
@@ -27,9 +27,8 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
   {% set writeReviewHref = mapsHref %}
 {% endif %}
 
-{# Iframe sin API key: prioridad -> site.mapsEmbed > coords > dirección #}
+{# Iframe sans clé API : priorité -> site.mapsEmbed > coords > adresse #}
 {% if site.mapsEmbed %}
-  {# Acepta tanto URL completa como solo el pb #}
   {% if '://' in site.mapsEmbed %}
     {% set mapsIframe = site.mapsEmbed %}
   {% else %}
@@ -59,16 +58,17 @@ alt: {"es": "/como-llegar/", "en": "/en/getting-here/"}
       </a>
     </div>
 
-    <div class="map-card">
-      <div class="map-embed">
-        <iframe
-          src="{{ mapsIframe }}"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Carte — {{ site.address }}"></iframe>
-      </div>
-      <p class="map-note">{{ i18n.fr.MapNote or "Zoomez la carte pour voir les accès et le stationnement." }}</p>
+    <div class="map-embed">
+      <iframe
+        src="{{ mapsIframe }}"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Carte — {{ site.address }}"></iframe>
     </div>
+    <p class="map-note">
+      En affichant cette carte, Google peut déposer des cookies sur votre appareil.
+      Voir notre <a href="/fr/cookies/">politique de cookies</a>.
+    </p>
   </div>
 </section>

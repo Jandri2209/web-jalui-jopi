@@ -18,11 +18,27 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
   {% set qCoords = "" %}
 {% endif %}
 
-{# Enlace externo a Google Maps #}
+{# Enlace externo: preferimos place_id si existe #}
 {% if pid %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) ~ "&query_place_id=" ~ pid %}
+  {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
 {% else %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) %}
+  {% set writeReviewHref = mapsHref %}
+{% endif %}
+
+{# Iframe sin API key: prioridad -> site.mapsEmbed > coords > dirección #}
+{% if site.mapsEmbed %}
+  {# Acepta tanto URL completa como solo el pb #}
+  {% if '://' in site.mapsEmbed %}
+    {% set mapsIframe = site.mapsEmbed %}
+  {% else %}
+    {% set mapsIframe = "https://www.google.com/maps/embed?pb=" ~ site.mapsEmbed %}
+  {% endif %}
+{% elif hasCoords %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qCoords ~ "&z=" ~ zoom %}
+{% else %}
+  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qAddr ~ "&z=" ~ zoom %}
 {% endif %}
 
 <section class="section">
@@ -34,7 +50,7 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
       <p>📍 {{ site.address }}</p>
 
       <div class="cta-row">
-        <a class="btn" href="tel:{{ site.phone | replace(' ','') }}">📞 {{ i18n.es.Call }}</a>
+        <a class="btn" href="tel:+34948840496">📞 {{ i18n.es.Call }}</a>
         <a class="btn alt" href="mailto:{{ site.email }}">✉ {{ i18n.es.Write }}</a>
       </div>
 
@@ -43,70 +59,16 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
       </a>
     </div>
 
-    <div class="map-card">
-      <div class="map-embed" style="position:relative">
-        <!-- Mapa interactivo sin cookies -->
-        <div id="map" aria-label="Mapa — {{ site.address }}"></div>
-      </div>
-      <p class="map-note">{{ i18n.es.MapNote or "Amplía el mapa para ver accesos y aparcamiento." }}</p>
+    <div class="map-embed">
+      <iframe
+        src="{{ mapsIframe }}"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa — {{ site.address }}"></iframe>
     </div>
-  </div>
+    <p class="map-note">
+      Al mostrar este mapa, Google puede establecer cookies en tu dispositivo.
+      Más info en <a href="/cookies/">Política de cookies</a>.
+    </p>
 </section>
-
-<!-- Leaflet CSS (SRI correcto) -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-  crossorigin=""
-/>
-<!-- Leaflet JS (SRI correcto) -->
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin=""
-></script>
-
-<script>
-(function(){
-  const el = document.getElementById('map');
-  if (!el) return;
-
-  // Si Leaflet no cargó por CSP/SRI, mostramos fallback
-  if (typeof L === 'undefined') {
-    el.innerHTML = '<div style="padding:1rem; text-align:center; color:#9aa2ad">No se pudo cargar el mapa. <a href="{{ mapsHref }}">Abrir en Google Maps</a></div>';
-    el.style.minHeight = '280px';
-    return;
-  }
-
-  // Tamaños seguros
-  el.style.width = '100%';
-  el.style.height = '100%';
-  el.style.minHeight = '340px';   // por si el aspect-ratio no aplica
-  el.style.borderRadius = '12px';
-  el.style.overflow = 'hidden';
-
-  const LAT = parseFloat('{{ site.lat or "42.0738" }}');
-  const LNG = parseFloat('{{ site.lng or "-1.5158" }}');
-  const ZOOM = {{ zoom }};
-
-  const map = L.map(el, { zoomControl: true, scrollWheelZoom: false })
-               .setView([LAT, LNG], ZOOM);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 20,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  const marker = L.marker([LAT, LNG]).addTo(map);
-  marker.bindPopup('Jalui Jopi');
-
-  // Asegura cálculo correcto si el contenedor cambia de tamaño
-  setTimeout(() => { map.invalidateSize(); }, 0);
-  window.addEventListener('resize', () => map.invalidateSize(), { passive: true });
-
-  // En móvil, mueve un pelín para que el popup no tape el pin
-  if (window.innerWidth < 700) map.panBy([0, 40], { animate: false });
-})();
-</script>
-
