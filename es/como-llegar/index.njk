@@ -18,27 +18,11 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
   {% set qCoords = "" %}
 {% endif %}
 
-{# Enlace externo: preferimos place_id si existe #}
+{# Enlace externo a Google Maps #}
 {% if pid %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) ~ "&query_place_id=" ~ pid %}
-  {% set writeReviewHref = "https://search.google.com/local/writereview?placeid=" ~ pid %}
 {% else %}
   {% set mapsHref = "https://www.google.com/maps/search/?api=1&query=" ~ (hasCoords and qCoords or qAddr) %}
-  {% set writeReviewHref = mapsHref %}
-{% endif %}
-
-{# Iframe sin API key: prioridad -> site.mapsEmbed > coords > dirección #}
-{% if site.mapsEmbed %}
-  {# Acepta tanto URL completa como solo el pb #}
-  {% if '://' in site.mapsEmbed %}
-    {% set mapsIframe = site.mapsEmbed %}
-  {% else %}
-    {% set mapsIframe = "https://www.google.com/maps/embed?pb=" ~ site.mapsEmbed %}
-  {% endif %}
-{% elif hasCoords %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qCoords ~ "&z=" ~ zoom %}
-{% else %}
-  {% set mapsIframe = "https://www.google.com/maps?output=embed&q=" ~ qAddr ~ "&z=" ~ zoom %}
 {% endif %}
 
 <section class="section">
@@ -50,7 +34,7 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
       <p>📍 {{ site.address }}</p>
 
       <div class="cta-row">
-        <a class="btn" href="tel:+34948840496">📞 {{ i18n.es.Call }}</a>
+        <a class="btn" href="tel:{{ site.phone | replace(' ','') }}">📞 {{ i18n.es.Call }}</a>
         <a class="btn alt" href="mailto:{{ site.email }}">✉ {{ i18n.es.Write }}</a>
       </div>
 
@@ -60,15 +44,59 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
     </div>
 
     <div class="map-card">
-      <div class="map-embed">
-        <iframe
-          src="{{ mapsIframe }}"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa — {{ site.address }}"></iframe>
+      <div class="map-embed" style="position:relative">
+        <!-- Mapa interactivo sin cookies -->
+        <div id="map" aria-label="Mapa — {{ site.address }}"></div>
       </div>
       <p class="map-note">{{ i18n.es.MapNote or "Amplía el mapa para ver accesos y aparcamiento." }}</p>
     </div>
   </div>
 </section>
+
+{# ===== Leaflet (CSS + JS) desde CDN. No instala cookies. ===== #}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha384-1j3x8m6l2HjQkTQnQm1S2qf8cYVhX8zQmA3A6wqI8M3E8kXUQH0lY8QkqYV2rJ7V"
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha384-2bQyQk5J7vB3wKq0t3QvQyH+zH1mS8Y1fR6Yb2m3m9p1rQ6Vv7v6m9iZ9z4l9p8B"
+  crossorigin=""
+></script>
+
+<script>
+(function(){
+  // Coordenadas desde tu config; pon fallback por si faltan
+  const LAT = parseFloat('{{ site.lat or "42.0738" }}');
+  const LNG = parseFloat('{{ site.lng or "-1.5158" }}');
+  const ZOOM = {{ zoom }};
+
+  const el = document.getElementById('map');
+  if (!el || isNaN(LAT) || isNaN(LNG)) return;
+
+  // El contenedor ya tiene aspect-ratio y borde; ocupamos todo
+  el.style.width = '100%';
+  el.style.height = '100%';
+  el.style.borderRadius = '12px';
+  el.style.overflow = 'hidden';
+
+  const map = L.map(el, { zoomControl: true, scrollWheelZoom: false })
+               .setView([LAT, LNG], ZOOM);
+
+  // Tiles de OpenStreetMap (sin cookies). Requieren atribución.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const marker = L.marker([LAT, LNG]).addTo(map);
+  marker.bindPopup('Jalui Jopi').openPopup();
+
+  // En pantallas pequeñas, centra un pelín más alto para dejar visible el popup
+  if (window.innerWidth < 700) {
+    map.panBy([0, 40], {animate: false});
+  }
+})();
+</script>

@@ -6,9 +6,7 @@ const path = require("path");
 const puppeteer = require("puppeteer");
 
 /* ============== Utils ============== */
-async function ensureDir(p) {
-  await fs.promises.mkdir(p, { recursive: true });
-}
+async function ensureDir(p) { await fs.promises.mkdir(p, { recursive: true }); }
 
 function resolveCssPath(siteDir) {
   const candidates = [
@@ -39,7 +37,13 @@ function formatHeaderDate(lang, d = new Date()) {
   return `Actualizado · ${day} ${pick(mES)} ${year}`;
 }
 
-/* CSS de reserva si no se encuentra el del sitio */
+const LABELS = {
+  es: { page: "Pág.", of: "de" },
+  en: { page: "Page", of: "of" },
+  fr: { page: "Page", of: "sur" },
+};
+
+/* CSS fallback por si no encontramos el del sitio */
 const FALLBACK_PRINT_CSS = `
 @media print {
   .site-header, nav, .lang-switch, .cta-row, .site-footer, .footer-wrap, .footer-meta, .menu-hero img { display:none !important; }
@@ -61,26 +65,36 @@ async function makePDF(pagePath, outPath, lang) {
   const siteBase = `file://${siteDir}/`;
   const cssPath  = resolveCssPath(siteDir);
 
-  const brandName  = "Jalui Jopi";
-  const headerDate = formatHeaderDate(lang);
+  const brandName   = "Jalui Jopi";
+  const headerDate  = formatHeaderDate(lang);
+  const labels      = LABELS[lang] || LABELS.es;
 
-  // Logo en _site/assets/brand/logo-jalui.png -> data URL
-  const logoPath = path.join(siteDir, "assets", "brand", "logo-jalui.png");
+  // Logo -> data URL
+  const logoPath    = path.join(siteDir, "assets", "brand", "logo-jalui.png");
   const logoDataURL = fs.existsSync(logoPath) ? readAsDataURL(logoPath, "image/png") : null;
 
-  // Flags de overlay
+  // Flags overlay
   const ENABLE_WATERMARK = true;
-  const ENABLE_FRAME = true;
+  const ENABLE_FRAME     = true;
 
-  // Header y Footer para Puppeteer
+  // Márgenes del PDF (mm) — los usamos también para alinear overlay
+  const MARGIN = { top: 18, right: 10, bottom: 14, left: 10 };
+
+  // ===== Header/Footer con estilo
   const headerTemplate = `
     <style>
-      .head{ font-size:9px; width:100%; padding:6px 10px;
-             display:flex; align-items:center; justify-content:space-between;
-             border-bottom:1px solid #e5e7eb; background:#ffffff; }
-      .brand{ display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#111827 }
-      .brand img{ height:16px; width:auto; display:inline-block; }
-      .muted{ color:#6b7280 }
+      *{ box-sizing:border-box; }
+      .head{
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+        font-size:10px; width:100%;
+        padding:8px 12px;
+        display:flex; align-items:center; justify-content:space-between;
+        background:#0b0b0b; color:#f6f6f6;
+        border-bottom:1px solid #222;
+      }
+      .brand{ display:inline-flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.02em; }
+      .brand img{ height:16px; width:auto; display:inline-block; filter: invert(1) brightness(1.1) contrast(.95); }
+      .muted{ opacity:.8 }
     </style>
     <div class="head">
       <div class="brand">
@@ -93,11 +107,19 @@ async function makePDF(pagePath, outPath, lang) {
 
   const footerTemplate = `
     <style>
-      .foot{ font-size:9px; width:100%; padding:4px 10px; color:#6b7280;
-             display:flex; justify-content:flex-end; border-top:1px solid #e5e7eb; background:#ffffff; }
+      *{ box-sizing:border-box; }
+      .foot{
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+        font-size:10px; width:100%;
+        padding:6px 12px;
+        display:flex; align-items:center; justify-content:flex-end;
+        background:#ffffff; color:#525252;
+        border-top:1px solid #e5e7eb;
+      }
+      .sep{ opacity:.45; padding:0 .25em; }
     </style>
     <div class="foot">
-      Página <span class="pageNumber"></span> / <span class="totalPages"></span>
+      ${labels.page} <span class="pageNumber"></span> <span class="sep">/</span> <span class="totalPages"></span> ${labels.of}
     </div>
   `;
 
@@ -112,25 +134,23 @@ async function makePDF(pagePath, outPath, lang) {
     const page = await browser.newPage();
     await page.emulateMediaType("print");
 
-    // Carga HTML local
+    // Cargar HTML
     await page.goto(fileUrl, { waitUntil: "domcontentloaded" });
 
-    // Inyecta tu CSS principal (o fallback)
+    // Inyectar CSS del sitio (o fallback)
     if (cssPath) {
       await page.addStyleTag({ path: cssPath });
     } else {
-      console.warn("[PDF] No se encontró hoja de estilos. Usando CSS de impresión mínimo.");
+      console.warn("[PDF] No se encontró hoja de estilos. Usando CSS mínimo.");
       await page.addStyleTag({ content: FALLBACK_PRINT_CSS });
     }
 
     // Normaliza rutas absolutas a file://
     await page.evaluate((baseHref) => {
-      // <img src="/...">
       document.querySelectorAll('img[src^="/"]').forEach(img => {
         const rel = img.getAttribute("src").replace(/^\//, "");
         img.src = baseHref + rel;
       });
-      // srcset en <img>
       document.querySelectorAll("img[srcset]").forEach(img => {
         const fixed = img.getAttribute("srcset")
           .split(",")
@@ -138,65 +158,84 @@ async function makePDF(pagePath, outPath, lang) {
           .join(", ");
         img.setAttribute("srcset", fixed);
       });
-      // SVG <use href="/...">
       document.querySelectorAll("use[href^='/']").forEach(use => {
         const rel = use.getAttribute("href").replace(/^\//, "");
         use.setAttribute("href", baseHref + rel);
       });
-      // SVG <image href="/...">
       document.querySelectorAll("image[href^='/']").forEach(im => {
         const rel = im.getAttribute("href").replace(/^\//, "");
         im.setAttribute("href", baseHref + rel);
       });
     }, siteBase);
 
-    // Overlay: marca de agua y marco fino (solo para print)
+    // ===== Overlay: watermark + marco perfectamente alineado al .container
     if (ENABLE_WATERMARK || ENABLE_FRAME) {
-      await page.evaluate((logoDataURL, ENABLE_WATERMARK, ENABLE_FRAME) => {
+      await page.evaluate((logoDataURL, flags, margins) => {
+        const { wm: WM, frame: FR } = flags;
+
+        // Estilos comunes para print
         const STYLE = document.createElement("style");
         STYLE.textContent = `
-          @media screen { .__wm { display:none !important } }
-          @media print  { .__wm { display:grid !important } }
+          @media screen { .__wm, .__frame { display:none !important } }
+          @media print  { .__wm, .__frame { display:block !important } }
         `;
         document.head.appendChild(STYLE);
 
-        if (ENABLE_WATERMARK && logoDataURL) {
-          const wm = document.createElement("div");
-          wm.className = "__wm";
-          wm.setAttribute("aria-hidden", "true");
-          wm.innerHTML = `<img src="${logoDataURL}" alt="" style="width:220px; height:auto; opacity:.08; filter:grayscale(100%)">`;
+        // Busca el contenedor principal más ancho (el que usas en la carta)
+        const containers = Array.from(document.querySelectorAll(".container"));
+        let target = containers[0] || document.body;
+        let maxW = 0;
+        containers.forEach(el => {
+          const w = el.getBoundingClientRect().width;
+          if (w > maxW) { maxW = w; target = el; }
+        });
+
+        const r = target.getBoundingClientRect();
+
+        if (WM && logoDataURL) {
+          const wm = document.createElement("img");
+          wm.src = logoDataURL;
+          wm.alt = "";
           Object.assign(wm.style, {
             position: "fixed",
-            inset: "0",
-            display: "grid",
-            placeItems: "center",
+            left: (r.left + r.width/2 - 110) + "px",   // centrado aprox (220px de ancho)
+            top: (r.top + 60) + "px",                  // baja un poco para no chocar con el H1
+            width: "220px",
+            height: "auto",
+            opacity: "0.10",
+            filter: "grayscale(100%)",
+            mixBlendMode: "multiply",
             zIndex: "0",
             pointerEvents: "none"
           });
+          wm.className = "__wm";
           document.body.appendChild(wm);
         }
 
-        if (ENABLE_FRAME) {
+        if (FR) {
           const frame = document.createElement("div");
-          frame.className = "__wm";
           Object.assign(frame.style, {
             position: "fixed",
-            inset: "8mm",
-            border: "1px solid rgba(0,0,0,.15)",
-            borderRadius: "6px",
+            left: (r.left) + "px",
+            top:  (r.top)  + "px",
+            width: r.width + "px",
+            height: r.height + "px",
+            border: "1px solid rgba(0,0,0,.14)",
+            borderRadius: "12px",
             zIndex: "0",
             pointerEvents: "none"
           });
+          frame.className = "__frame";
           document.body.appendChild(frame);
         }
-      }, logoDataURL, ENABLE_WATERMARK, ENABLE_FRAME);
+      }, logoDataURL, { wm: ENABLE_WATERMARK, frame: ENABLE_FRAME }, MARGIN);
     }
 
-    // Espera a recursos
-    await page.waitForNetworkIdle({ idleTime: 200, timeout: 5000 }).catch(() => {});
-    try { await page.evaluate(() => document.fonts && document.fonts.ready || null); } catch {}
+    // Esperas cortas
+    await page.waitForNetworkIdle({ idleTime: 250, timeout: 5000 }).catch(() => {});
+    try { await page.evaluate(() => (document.fonts && document.fonts.ready) || null); } catch {}
 
-    // Exporta PDF con header/footer
+    // Exporta PDF
     await page.pdf({
       path: outPath,
       format: "A4",
@@ -204,7 +243,7 @@ async function makePDF(pagePath, outPath, lang) {
       displayHeaderFooter: true,
       headerTemplate,
       footerTemplate,
-      margin: { top: "18mm", right: "10mm", bottom: "14mm", left: "10mm" },
+      margin: { top: `${MARGIN.top}mm`, right: `${MARGIN.right}mm`, bottom: `${MARGIN.bottom}mm`, left: `${MARGIN.left}mm` },
       preferCSSPageSize: true,
       scale: 0.95
     });
