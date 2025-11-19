@@ -53,50 +53,60 @@ alt: {"en": "/en/getting-here/", "fr": "/fr/comment-arriver/"}
   </div>
 </section>
 
-{# ===== Leaflet (CSS + JS) desde CDN. No instala cookies. ===== #}
+<!-- Leaflet CSS (SRI correcto) -->
 <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha384-1j3x8m6l2HjQkTQnQm1S2qf8cYVhX8zQmA3A6wqI8M3E8kXUQH0lY8QkqYV2rJ7V"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
   crossorigin=""
 />
+<!-- Leaflet JS (SRI correcto) -->
 <script
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha384-2bQyQk5J7vB3wKq0t3QvQyH+zH1mS8Y1fR6Yb2m3m9p1rQ6Vv7v6m9iZ9z4l9p8B"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
   crossorigin=""
 ></script>
 
 <script>
 (function(){
-  // Coordenadas desde tu config; pon fallback por si faltan
+  const el = document.getElementById('map');
+  if (!el) return;
+
+  // Si Leaflet no cargó por CSP/SRI, mostramos fallback
+  if (typeof L === 'undefined') {
+    el.innerHTML = '<div style="padding:1rem; text-align:center; color:#9aa2ad">No se pudo cargar el mapa. <a href="{{ mapsHref }}">Abrir en Google Maps</a></div>';
+    el.style.minHeight = '280px';
+    return;
+  }
+
+  // Tamaños seguros
+  el.style.width = '100%';
+  el.style.height = '100%';
+  el.style.minHeight = '340px';   // por si el aspect-ratio no aplica
+  el.style.borderRadius = '12px';
+  el.style.overflow = 'hidden';
+
   const LAT = parseFloat('{{ site.lat or "42.0738" }}');
   const LNG = parseFloat('{{ site.lng or "-1.5158" }}');
   const ZOOM = {{ zoom }};
 
-  const el = document.getElementById('map');
-  if (!el || isNaN(LAT) || isNaN(LNG)) return;
-
-  // El contenedor ya tiene aspect-ratio y borde; ocupamos todo
-  el.style.width = '100%';
-  el.style.height = '100%';
-  el.style.borderRadius = '12px';
-  el.style.overflow = 'hidden';
-
   const map = L.map(el, { zoomControl: true, scrollWheelZoom: false })
                .setView([LAT, LNG], ZOOM);
 
-  // Tiles de OpenStreetMap (sin cookies). Requieren atribución.
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   const marker = L.marker([LAT, LNG]).addTo(map);
-  marker.bindPopup('Jalui Jopi').openPopup();
+  marker.bindPopup('Jalui Jopi');
 
-  // En pantallas pequeñas, centra un pelín más alto para dejar visible el popup
-  if (window.innerWidth < 700) {
-    map.panBy([0, 40], {animate: false});
-  }
+  // Asegura cálculo correcto si el contenedor cambia de tamaño
+  setTimeout(() => { map.invalidateSize(); }, 0);
+  window.addEventListener('resize', () => map.invalidateSize(), { passive: true });
+
+  // En móvil, mueve un pelín para que el popup no tape el pin
+  if (window.innerWidth < 700) map.panBy([0, 40], { animate: false });
 })();
 </script>
+
