@@ -67,23 +67,36 @@ async function makePDF(pagePath, outPath, lang){
   const headerTemplate = `
     <style>
       *{ box-sizing:border-box; }
+      :root{ --H: 12mm; }  /* ⇦ ALTO del header negro (ajústalo a tu gusto) */
+
       .head{
         position:relative; width:100%;
         font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
-        font-size:10px; padding:8px 12px;
+        font-size:10px;
+        /* altura forzada en mm: */
+        height: var(--H);
+        padding: 0 12px;                 /* padding lateral */
         color:#f6f6f6;
         -webkit-print-color-adjust:exact; print-color-adjust:exact;
+        display:flex; align-items:center; /* centra verticalmente la fila */
       }
       .head .bg{
-        position:absolute; inset:0;
+        position:absolute;
+        left:0; right:0;
+        top:-1mm;                        /* ⇦ sube 1mm para cubrir cualquier hairline del visor */
+        height: calc(var(--H) + 1mm);    /* ⇦ el fondo cubre toda la altura (y un pelín más) */
         background:#0b0b0b;
         border-bottom:1px solid #222;
         z-index:0;
         -webkit-print-color-adjust:exact; print-color-adjust:exact;
       }
-      .row{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; }
+      .row{
+        position:relative; z-index:1;
+        width:100%;
+        display:flex; align-items:center; justify-content:space-between;
+      }
       .brand{ display:inline-flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.02em; }
-      .brand img{ height:16px; width:auto; display:inline-block; filter:invert(1) brightness(1.1) contrast(.95); }
+      .brand img{ height:16px; width:auto; display:inline-block; filter:none; } /* sin invertir */
       .muted{ opacity:.85 }
     </style>
     <div class="head">
